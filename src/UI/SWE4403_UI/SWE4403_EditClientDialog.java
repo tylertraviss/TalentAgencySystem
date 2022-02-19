@@ -1,6 +1,7 @@
 package SWE4403_UI;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 public class SWE4403_EditClientDialog extends SWE4403_JDialog {
 
@@ -9,8 +10,9 @@ public class SWE4403_EditClientDialog extends SWE4403_JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public SWE4403_EditClientDialog() {
-		super("Edit Clients");
+	public SWE4403_EditClientDialog(JFrame owner) {
+		super(null, owner, "Edit Clients");
+		SWE4403_ButtonHandler.getInstance().setDialog(this);
 
 		/*
 		 * DIALOG LABEL SETTINGS
@@ -25,9 +27,6 @@ public class SWE4403_EditClientDialog extends SWE4403_JDialog {
 		removeClientButton = new SWE4403_RemoveClientButton("Remove Client");
 		removeClientButton.setBounds(294, 198, 130, 40);
 
-		/*
-		 * Adding components to the dialog box
-		 */
 		contentPanel.add(addClientButton);
 		contentPanel.add(removeClientButton);
 	}

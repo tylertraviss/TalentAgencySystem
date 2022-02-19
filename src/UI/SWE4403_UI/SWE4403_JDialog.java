@@ -1,8 +1,10 @@
 package SWE4403_UI;
 
 import java.awt.BorderLayout;
+import java.awt.Dialog;
 
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public abstract class SWE4403_JDialog extends JDialog {
@@ -13,8 +15,9 @@ public abstract class SWE4403_JDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public SWE4403_JDialog(String title) {
+	public SWE4403_JDialog(JDialog ownerDialogBox, JFrame ownerFrame, String title) {
 		super();
+		setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 		setTitle(title);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -26,6 +29,8 @@ public abstract class SWE4403_JDialog extends JDialog {
 		dialogLabel = new SWE4403_DialogJLabel();
 		dialogLabel.setBounds(10, 11, 414, 174);
 		contentPanel.add(dialogLabel);
+
+		SWE4403_ButtonHandler.getInstance().setDialog(this);
 	}
 
 }

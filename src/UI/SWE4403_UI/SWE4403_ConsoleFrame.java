@@ -5,18 +5,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 /**
- * Note : ## --> comments to remove later on
- * 
- * Last Edit : Elliot - 19.02.2022 (17:44)
+ * Note : ## = comments to remove something
  */
 
 public class SWE4403_ConsoleFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JTextArea consoleTextArea;
 	private JScrollPane consoleScrollPane;
 	private SWE4403_Button editEmployeeButton, editClientButton;
 
@@ -54,13 +50,13 @@ public class SWE4403_ConsoleFrame extends JFrame {
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setTitle(FRAME_TITLE);
+		SWE4403_ButtonHandler.getInstance().setFrame(this);
 
 		/*
 		 * SCROLLPANE AND TEXTAREA SETTINGS
 		 */
 		// console text area is where everything gets displayed
-		consoleTextArea = new SWE4403_ConsoleTextArea();
-		consoleScrollPane = new SWE4403_ConsoleScrollPane(consoleTextArea);
+		consoleScrollPane = new SWE4403_ConsoleScrollPane(SWE4403_ConsoleTextArea.getInstance());
 		consoleScrollPane.setBounds(10, 11, 424, 170);
 		contentPane.add(consoleScrollPane);
 

@@ -1,6 +1,7 @@
 package SWE4403_UI;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 public class SWE4403_EditEmployeeDialog extends SWE4403_JDialog {
 
@@ -9,8 +10,8 @@ public class SWE4403_EditEmployeeDialog extends SWE4403_JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public SWE4403_EditEmployeeDialog() {
-		super("Edit Employee");
+	public SWE4403_EditEmployeeDialog(JFrame owner) {
+		super(null, owner, "Edit Employee");
 
 		/*
 		 * DIALOG LABEL SETTINGS

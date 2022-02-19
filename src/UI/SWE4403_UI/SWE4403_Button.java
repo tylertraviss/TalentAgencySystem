@@ -7,6 +7,8 @@ import javax.swing.JButton;
 
 public abstract class SWE4403_Button extends JButton implements ActionListener {
 
+	protected SWE4403_ButtonHandler bh = SWE4403_ButtonHandler.getInstance();
+
 	public SWE4403_Button(String text) {
 		this.setText(text);
 		this.setBorder(SWE4403_RoundedBorder.getInstance());
@@ -17,6 +19,8 @@ public abstract class SWE4403_Button extends JButton implements ActionListener {
 		addActionListener(this);
 	}
 
-	public abstract void actionPerformed(ActionEvent e);
+	public void actionPerformed(ActionEvent e) {
+		SWE4403_ButtonHandler.getInstance().handleButton(this);
+	}
 
 }
