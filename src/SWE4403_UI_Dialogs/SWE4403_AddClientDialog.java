@@ -7,7 +7,7 @@ import javax.swing.JTextField;
 import SWE4403_UI_TextFields.SWE4403_DateTextField;
 import SWE4403_UI_TextFields.SWE4403_NormalTextField;
 
-public class SWE4403_AddClientDialog extends SWE4403_AddDialog {
+public class SWE4403_AddClientDialog extends SWE4403_ConfirmationDialog {
 
 	private JTextField experiencesTF, endDateTF, startDateTF, awardsTF;
 
@@ -15,13 +15,13 @@ public class SWE4403_AddClientDialog extends SWE4403_AddDialog {
 		super(null, ownerDialog, "Add New Client", "Client");
 
 		experiencesTF = new SWE4403_NormalTextField("Experiences (Seperate them by [,])");
-		experiencesTF.setBounds(10, 5, 344, 48);
-		endDateTF = new SWE4403_DateTextField("End Date");
-		endDateTF.setBounds(194, 64, 160, 48);
-		startDateTF = new SWE4403_DateTextField("Start Date");
-		startDateTF.setBounds(10, 64, 160, 48);
+		experiencesTF.setBounds(10, 5, 424, 48);
+		endDateTF = new SWE4403_DateTextField("End Date (dd/mm/yyyy)");
+		endDateTF.setBounds(234, 64, 200, 48);
+		startDateTF = new SWE4403_DateTextField("Start Date (dd/mm/yyyy)");
+		startDateTF.setBounds(10, 64, 200, 48);
 		awardsTF = new SWE4403_NormalTextField("Awards (Seperate them by [,])");
-		awardsTF.setBounds(10, 123, 344, 48);
+		awardsTF.setBounds(10, 123, 424, 48);
 
 		/*
 		 * TEXTFIELD SETTINGS
@@ -35,7 +35,7 @@ public class SWE4403_AddClientDialog extends SWE4403_AddDialog {
 		 * ## Remove this text area later on
 		 */
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(10, 182, 344, 159);
+		textArea.setBounds(10, 182, 424, 159);
 		textArea.setEditable(false);
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
