@@ -17,6 +17,8 @@ import SWE4403_UI_Dialogs.SWE4403_AddClientDialog;
 import SWE4403_UI_Dialogs.SWE4403_AddEmployeeDialog;
 import SWE4403_UI_Dialogs.SWE4403_EditClientDialog;
 import SWE4403_UI_Dialogs.SWE4403_EditEmployeeDialog;
+import SWE4403_UI_Dialogs.SWE4403_RemoveClientInputDialog;
+import SWE4403_UI_Dialogs.SWE4403_RemoveEmployeeInputDialog;
 
 public class SWE4403_ButtonHandler {
 
@@ -46,7 +48,6 @@ public class SWE4403_ButtonHandler {
 
 	public void handleButton(JButton b) {
 		JDialog dialogToOpen = null;
-		String log = null;
 
 		if (frame == null && dialog == null) {
 			throw new NullPointerException();
@@ -62,50 +63,56 @@ public class SWE4403_ButtonHandler {
 			dialogToOpen = new SWE4403_AddEmployeeDialog(dialog);
 			console.log("Opened add new Employee dialog");
 		} else if (b instanceof SWE4403_RemoveEmployeeButton) {
-			// ##
-			log = "To Implement: Add a dialog box to take employee name, then a confirmation to remove that employee\nError opening RemoveEmployeeDialog";
+			dialogToOpen = new SWE4403_RemoveEmployeeInputDialog(dialog);
+			console.log("Opened employee name to remove input dialogbox");
 		} else if (b instanceof SWE4403_AddClientButton) {
 			dialogToOpen = new SWE4403_AddClientDialog(dialog);
 			console.log("Opened add new client dialog");
 		} else if (b instanceof SWE4403_RemoveClientButton) {
-			// ##
-			log = "To Implement: Add a dialog box to take in client name, then a confirmation to remove that employee\nError opening RemoveClientDialog";
+			dialogToOpen = new SWE4403_RemoveClientInputDialog(dialog);
+			console.log("Opened client name to remove input dialogbox");
 		} else if (b instanceof SWE4403_OkButton) {
 			switch (((SWE4403_OkButton) b).getType()) {
-				case "Client":
-					// ##
+				case "addClient":
 					console.log("This ok button came from the new client dialog");
 					break;
-				case "Employee":
-					// ##
+				case "addEmployee":
 					console.log("This ok button came from the new employee dialog");
+					break;
+				case "removeClient":
+					console.log("This ok button came from removing client dialog");
+					break;
+				case "removeEmployee":
+					console.log("This ok button came from removing client dialog");
 					break;
 				default:
 					console.log("unknown source of ok button");
+					break;
 			}
 		} else if (b instanceof SWE4403_CancelButton) {
 			switch (((SWE4403_CancelButton) b).getType()) {
-				case "Client":
-					// ##
+				case "addClient":
 					console.log("This cancel button came from the new client dialog");
 					break;
-				case "Employee":
-					// ##
+				case "addEmployee":
 					console.log("This cancel button came from the new employee dialog");
+					break;
+				case "removeClient":
+					console.log("This cancel button came from the removing client dialog");
+					break;
+				case "removeEmployee":
+					console.log("This cancel button came from the removing employee dialog");
 					break;
 				default:
 					console.log("unknown source of cancel button");
+					break;
 			}
 		} else {
-			log = "Unknown button from: " + b.getClass().getCanonicalName();
+			console.log("Unknown button from: " + b.getClass().getCanonicalName());
 		}
 
 		if (dialogToOpen != null)
 			dialogToOpen.setVisible(true);
-		else {
-			log += "\nThe dialog box is curerntly not implemented yet";
-			console.log(log);
-		}
 	}
 
 }
