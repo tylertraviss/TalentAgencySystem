@@ -13,7 +13,7 @@ import SWE4403_UI_Buttons.SWE4403_CancelButton;
 import SWE4403_UI_Buttons.SWE4403_OkButton;
 import SWE4403_UI_Utilities.SWE4403_ButtonHandler;
 
-public class SWE4403_AddDialog extends JDialog {
+public abstract class SWE4403_AddDialog extends JDialog {
 
 	protected final JPanel contentPanel = new JPanel();
 
@@ -27,7 +27,7 @@ public class SWE4403_AddDialog extends JDialog {
 		// to specifiy if this ok button is in the add client or add employee
 		setTitle(title);
 		setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-		setBounds(100, 100, 380, 470);
+		setBounds(100, 100, 460, 470);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -46,10 +46,10 @@ public class SWE4403_AddDialog extends JDialog {
 		/*
 		 * BUTTON SETTINGS
 		 */
-		okButton = new SWE4403_OkButton("OK", type);
+		okButton = new SWE4403_OkButton("Confirm", type);
 		okButton.setBounds(10, 382, 85, 38);
 		cancelButton = new SWE4403_CancelButton("Cancel", type);
-		cancelButton.setBounds(269, 382, 85, 38);
+		cancelButton.setBounds(349, 382, 85, 38);
 
 		contentPanel.add(okButton);
 		contentPanel.add(cancelButton);
