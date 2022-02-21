@@ -7,20 +7,21 @@ import javax.swing.JTextField;
 import SWE4403_UI_TextFields.SWE4403_DateTextField;
 import SWE4403_UI_TextFields.SWE4403_NormalTextField;
 
-public class SWE4403_AddClientDialog extends SWE4403_ConfirmationDialog {
+public class SWE4403_AddClientDialog extends SWE4403_AddDialog {
 
 	private JTextField experiencesTF, endDateTF, startDateTF, awardsTF;
 
 	public SWE4403_AddClientDialog(JDialog ownerDialog) {
-		super(null, ownerDialog, "Add New Client", "Client");
+		super(null, ownerDialog, "Add New Client", "addClient");
 
-		experiencesTF = new SWE4403_NormalTextField("Experiences (Seperate them by [,])");
+		experiencesTF = new SWE4403_NormalTextField("Experiences (Seperate them by [,])",
+				"Example 1, Example 2, Exam...");
 		experiencesTF.setBounds(10, 5, 424, 48);
-		endDateTF = new SWE4403_DateTextField("End Date (dd/mm/yyyy)");
+		endDateTF = new SWE4403_DateTextField("End Date (dd/mm/yyyy)", "dd/mm/yyyy");
 		endDateTF.setBounds(234, 64, 200, 48);
-		startDateTF = new SWE4403_DateTextField("Start Date (dd/mm/yyyy)");
+		startDateTF = new SWE4403_DateTextField("Start Date (dd/mm/yyyy)", "dd/mm/yyyy");
 		startDateTF.setBounds(10, 64, 200, 48);
-		awardsTF = new SWE4403_NormalTextField("Awards (Seperate them by [,])");
+		awardsTF = new SWE4403_NormalTextField("Awards (Seperate them by [,])", "Example 1, Example 2, Exam...");
 		awardsTF.setBounds(10, 123, 424, 48);
 
 		/*

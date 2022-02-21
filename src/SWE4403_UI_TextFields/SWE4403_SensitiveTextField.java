@@ -8,14 +8,15 @@ public abstract class SWE4403_SensitiveTextField extends SWE4403_TextField {
 
 	private String title;
 
-	public SWE4403_SensitiveTextField(String title) {
-		super(title);
+	public SWE4403_SensitiveTextField(String title, String placeholder) {
+		super(title, placeholder);
 		this.title = title;
 		addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// different types of checks
 		SWE4403_TextFieldHandler.getInstance().handleTextField(this, title);
 	}
 }

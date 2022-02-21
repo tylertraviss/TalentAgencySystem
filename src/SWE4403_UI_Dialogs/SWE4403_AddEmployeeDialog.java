@@ -1,7 +1,6 @@
 package SWE4403_UI_Dialogs;
 
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -9,24 +8,24 @@ import SWE4403_UI_TextFields.SWE4403_DateTextField;
 import SWE4403_UI_TextFields.SWE4403_NormalTextField;
 import SWE4403_UI_TextFields.SWE4403_WageTextField;
 
-public class SWE4403_AddEmployeeDialog extends SWE4403_ConfirmationDialog {
+public class SWE4403_AddEmployeeDialog extends SWE4403_AddDialog {
 
 	private JTextField jobTitleTF, wageTF, startDateTF, endDateTF;
 	private JTextArea textArea;
 
 	public SWE4403_AddEmployeeDialog(JDialog ownerDialog) {
-		super(new JFrame(), ownerDialog, "Add New Employee", "Employee");
+		super(null, ownerDialog, "Add New Employee", "addEmployee");
 
 		/*
 		 * TEXTFIELD SETTINGS
 		 */
-		jobTitleTF = new SWE4403_NormalTextField("Job Title");
+		jobTitleTF = new SWE4403_NormalTextField("Job Title", null);
 		jobTitleTF.setBounds(10, 11, 424, 48);
 		wageTF = new SWE4403_WageTextField("Wage");
 		wageTF.setBounds(10, 127, 424, 48);
-		startDateTF = new SWE4403_DateTextField("Start Date");
+		startDateTF = new SWE4403_DateTextField("Start Date", "dd/mm/yyyy");
 		startDateTF.setBounds(10, 70, 200, 48);
-		endDateTF = new SWE4403_DateTextField("End Date");
+		endDateTF = new SWE4403_DateTextField("End Date", "dd/mm/yyyy");
 		endDateTF.setBounds(234, 70, 200, 48);
 
 		contentPanel.add(jobTitleTF);
