@@ -2,9 +2,6 @@ package SWE4403_UI_Dialogs;
 
 import java.awt.BorderLayout;
 import java.awt.Dialog;
-import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.Toolkit;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -32,11 +29,14 @@ public abstract class SWE4403_EditDialog extends JDialog {
 		contentPanel.setLayout(null);
 
 		// ensures the dialogbox dont go out of screen
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		if ((ownerFrame.getX() + ownerFrame.getWidth() >= (screenSize.getWidth() / 2)))
-			setLocation(new Point(ownerFrame.getX() - getWidth(), ownerFrame.getY()));
-		else
-			setLocation(new Point(ownerFrame.getX() + ownerFrame.getWidth(), ownerFrame.getY()));
+		// ## uncomment this btm code to allow the dialog boxes to fit within screen
+		// Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		// if ((ownerFrame.getX() + ownerFrame.getWidth() >= (screenSize.getWidth() /
+		// 2)))
+		// setLocation(new Point(ownerFrame.getX() - getWidth(), ownerFrame.getY()));
+		// else
+		// setLocation(new Point(ownerFrame.getX() + ownerFrame.getWidth(),
+		// ownerFrame.getY()));
 
 		dialogLabel = new SWE4403_EditDialogJLabel();
 		dialogLabel.setBounds(10, 11, 414, 174);
