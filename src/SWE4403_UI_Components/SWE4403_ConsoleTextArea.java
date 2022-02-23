@@ -6,6 +6,10 @@ import SWE4403_UI_Utilities.SWE4403_StandardFont;
 
 public class SWE4403_ConsoleTextArea extends JTextArea {
 
+	/**
+	 * UNUSED CLASS. CAN BE DELELETED
+	 */
+
 	private static SWE4403_ConsoleTextArea instance = null;
 
 	private SWE4403_ConsoleTextArea() {
