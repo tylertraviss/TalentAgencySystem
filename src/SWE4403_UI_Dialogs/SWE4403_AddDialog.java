@@ -11,7 +11,6 @@ import javax.swing.border.EmptyBorder;
 
 import SWE4403_UI_Buttons.SWE4403_CancelButton;
 import SWE4403_UI_Buttons.SWE4403_OkButton;
-import SWE4403_UI_Utilities.SWE4403_ButtonHandler;
 
 public abstract class SWE4403_AddDialog extends JDialog {
 
@@ -53,8 +52,5 @@ public abstract class SWE4403_AddDialog extends JDialog {
 
 		contentPanel.add(okButton);
 		contentPanel.add(cancelButton);
-
-		SWE4403_ButtonHandler.getInstance().setDialog(this);
-
 	}
 }
