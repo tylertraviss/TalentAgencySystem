@@ -15,7 +15,7 @@ public class SWE4403_RoundedBorder implements Border {
 
 	private SWE4403_RoundedBorder() {
 		radius = 10;
-		color = Color.BLACK;
+		color = Color.GRAY;
 	}
 
 	public static SWE4403_RoundedBorder getInstance() {
