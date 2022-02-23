@@ -2,7 +2,7 @@ package SWE4403_UI_JLabels;
 
 import SWE4403_UI_Utilities.SWE4403_StandardFont;
 
-public class SWE4403_InputDialogJLabel extends SWE4403_JLabel {
+public class SWE4403_InputDialogJLabel extends SWE4403_HTMLLabel {
 
 	public SWE4403_InputDialogJLabel() {
 		super();
