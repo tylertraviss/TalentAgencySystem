@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 
 import SWE4403_UI_Buttons.SWE4403_AddClientButton;
 import SWE4403_UI_Buttons.SWE4403_RemoveClientButton;
-import SWE4403_UI_Utilities.SWE4403_ButtonHandler;
 
 public class SWE4403_EditClientDialog extends SWE4403_EditDialog {
 
@@ -16,7 +15,6 @@ public class SWE4403_EditClientDialog extends SWE4403_EditDialog {
 	 */
 	public SWE4403_EditClientDialog(JFrame owner) {
 		super(null, owner, "Edit Clients");
-		SWE4403_ButtonHandler.getInstance().setDialog(this);
 
 		/*
 		 * DIALOG LABEL SETTINGS

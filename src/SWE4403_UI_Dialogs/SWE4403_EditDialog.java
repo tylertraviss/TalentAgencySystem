@@ -8,7 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import SWE4403_UI_JLabels.SWE4403_EditDialogJLabel;
-import SWE4403_UI_Utilities.SWE4403_ButtonHandler;
 
 public abstract class SWE4403_EditDialog extends JDialog {
 
@@ -41,8 +40,6 @@ public abstract class SWE4403_EditDialog extends JDialog {
 		dialogLabel = new SWE4403_EditDialogJLabel();
 		dialogLabel.setBounds(10, 11, 414, 174);
 		contentPanel.add(dialogLabel);
-
-		SWE4403_ButtonHandler.getInstance().setDialog(this);
 	}
 
 }
