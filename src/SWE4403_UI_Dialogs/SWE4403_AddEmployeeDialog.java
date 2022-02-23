@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 import SWE4403_UI_TextFields.SWE4403_DateTextField;
 import SWE4403_UI_TextFields.SWE4403_NormalTextField;
 import SWE4403_UI_TextFields.SWE4403_WageTextField;
+import SWE4403_UI_Utilities.SWE4403_ButtonHandler;
 
 public class SWE4403_AddEmployeeDialog extends SWE4403_AddDialog {
 
@@ -41,6 +42,8 @@ public class SWE4403_AddEmployeeDialog extends SWE4403_AddDialog {
 		textArea.setEditable(false);
 		textArea.setBounds(10, 186, 424, 159);
 		contentPanel.add(textArea);
+
+		SWE4403_ButtonHandler.getInstance().setDialog(this);
 	}
 
 }

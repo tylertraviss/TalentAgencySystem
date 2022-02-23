@@ -4,6 +4,7 @@ import javax.swing.JDialog;
 import javax.swing.JTextField;
 
 import SWE4403_UI_TextFields.SWE4403_NormalTextField;
+import SWE4403_UI_Utilities.SWE4403_ButtonHandler;
 
 public class SWE4403_RemoveEmployeeInputDialog extends SWE4403_InputDialog {
 
@@ -23,6 +24,8 @@ public class SWE4403_RemoveEmployeeInputDialog extends SWE4403_InputDialog {
 		 */
 		contentPanel.add(employeeNameTF);
 		employeeNameTF.setBounds(10, 121, 274, 48);
+		
+		SWE4403_ButtonHandler.getInstance().setDialog(this);
 
 	}
 

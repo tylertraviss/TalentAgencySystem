@@ -6,6 +6,7 @@ import javax.swing.JTextField;
 
 import SWE4403_UI_TextFields.SWE4403_DateTextField;
 import SWE4403_UI_TextFields.SWE4403_NormalTextField;
+import SWE4403_UI_Utilities.SWE4403_ButtonHandler;
 
 public class SWE4403_AddClientDialog extends SWE4403_AddDialog {
 
@@ -44,6 +45,8 @@ public class SWE4403_AddClientDialog extends SWE4403_AddDialog {
 				"A ScrollPane and check boxes of all the existing clients will be listed here so that they can be added"
 						+ "later on to the clientList of this current client (in the groups)");
 		contentPanel.add(textArea);
+
+		SWE4403_ButtonHandler.getInstance().setDialog(this);
 
 	}
 }
