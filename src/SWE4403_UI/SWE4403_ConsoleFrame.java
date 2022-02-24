@@ -1,13 +1,12 @@
 package SWE4403_UI;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import SWE4403_UI_Buttons.SWE4403_Button;
 import SWE4403_UI_Buttons.SWE4403_EditClientButton;
 import SWE4403_UI_Buttons.SWE4403_EditEmployeeButton;
 import SWE4403_UI_Buttons.SWE4403_UndoButton;
@@ -22,9 +21,10 @@ public class SWE4403_ConsoleFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JScrollPane consoleScrollPane;
-	private SWE4403_Button editEmployeeButton, editClientButton, undoButton;
+	private JButton editEmployeeButton, editClientButton, undoButton;
 
 	private static final String FRAME_TITLE = "SWE4403 Project";
+	private JPanel buttonPanel;
 
 	/**
 	 * Launch the application.
@@ -53,7 +53,6 @@ public class SWE4403_ConsoleFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 635, 420);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.BLACK);
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		setResizable(false);
@@ -72,16 +71,20 @@ public class SWE4403_ConsoleFrame extends JFrame {
 		/*
 		 * BUTTONS SETTINGS
 		 */
-		editEmployeeButton = new SWE4403_EditEmployeeButton("Edit Employees");
 		editClientButton = new SWE4403_EditClientButton("Edit Clients");
+		editEmployeeButton = new SWE4403_EditEmployeeButton("Edit Employees");
 		undoButton = new SWE4403_UndoButton("Undo");
 
-		editClientButton.setBounds(10, 322, 130, 40);
-		editEmployeeButton.setBounds(480, 322, 130, 40);
-		undoButton.setBounds(230, 322, 130, 40);
+		/*
+		 * BUTTON PANEL SETTINGS
+		 */
+		buttonPanel = new JPanel();
+		buttonPanel.setBorder(null);
+		buttonPanel.setBounds(10, 322, 600, 58);
+		buttonPanel.add(editClientButton);
+		buttonPanel.add(editEmployeeButton);
+		buttonPanel.add(undoButton);
 
-		contentPane.add(editClientButton);
-		contentPane.add(editEmployeeButton);
-		contentPane.add(undoButton);
+		contentPane.add(buttonPanel);
 	}
 }
