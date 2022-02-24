@@ -2,6 +2,7 @@ package SWE4403_UI_Dialogs;
 
 import java.awt.BorderLayout;
 import java.awt.Dialog;
+import java.awt.Dimension;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -29,13 +30,6 @@ public abstract class SWE4403_InputDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
-		okButton = new SWE4403_OkButton("Confirm", type);
-		okButton.setSize(90, 30);
-		okButton.setLocation(10, 200);
-		cancelButton = new SWE4403_CancelButton("Cancel", type);
-		cancelButton.setSize(90, 30);
-		cancelButton.setLocation(194, 200);
-
 		// ensures the dialogbox dont go out of screen
 		// ## UNCOMMENT THE CODE BELOW FOR DISPLAY FORMATTING
 		// Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -55,8 +49,23 @@ public abstract class SWE4403_InputDialog extends JDialog {
 		questionLabel.setString("Placeholder text. If you are reading this your code is wrong.");
 
 		contentPanel.add(questionLabel);
-		contentPanel.add(okButton);
-		contentPanel.add(cancelButton);
+
+		/*
+		 * Button Panel Settings
+		 */
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 190, 274, 40);
+		contentPanel.add(panel);
+
+		okButton = new SWE4403_OkButton("Confirm", type);
+		cancelButton = new SWE4403_CancelButton("Cancel", type);
+
+		// overwrite the size of the buttons to make them fit
+		okButton.setPreferredSize(new Dimension(90, 30));
+		cancelButton.setPreferredSize(new Dimension(90, 30));
+
+		panel.add(okButton);
+		panel.add(cancelButton);
 	}
 
 }
