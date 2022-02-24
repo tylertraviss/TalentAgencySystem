@@ -1,5 +1,6 @@
 package SWE4403_UI_Buttons;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,7 +21,9 @@ public abstract class SWE4403_Button extends JButton implements ActionListener {
 		this.setFocusPainted(false);
 		this.setFocusable(false);
 		this.setContentAreaFilled(false);
+		this.setPreferredSize(new Dimension(140, 40));
 		addActionListener(this);
+
 	}
 
 	@Override
