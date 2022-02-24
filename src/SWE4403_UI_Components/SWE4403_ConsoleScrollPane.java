@@ -2,14 +2,12 @@ package SWE4403_UI_Components;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
 
 import javax.swing.JScrollPane;
 
 import SWE4403_UI_Utilities.SWE4403_RoundedBorder;
 
-public class SWE4403_ConsoleScrollPane extends JScrollPane implements AdjustmentListener {
+public class SWE4403_ConsoleScrollPane extends JScrollPane {
 
 	private static SWE4403_ConsoleScrollPane instance = null;
 
@@ -20,7 +18,6 @@ public class SWE4403_ConsoleScrollPane extends JScrollPane implements Adjustment
 		this.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
 		this.setBorder(SWE4403_RoundedBorder.getInstance());
 		this.setBackground(Color.BLACK);
-		getVerticalScrollBar().addAdjustmentListener(this);
 	}
 
 	public static SWE4403_ConsoleScrollPane getInstance() {
@@ -29,9 +26,9 @@ public class SWE4403_ConsoleScrollPane extends JScrollPane implements Adjustment
 		return instance;
 	}
 
-	@Override
-	public void adjustmentValueChanged(AdjustmentEvent e) {
-		e.getAdjustable().setValue(e.getAdjustable().getMaximum());
-	}
+	// public void scrollToBottom() {
+	// System.out.println(getVerticalScrollBar().getMaximum());
+	// getVerticalScrollBar().setValue(getVerticalScrollBar().getMaximum());
+	// }
 
 }
