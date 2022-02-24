@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 
 import SWE4403_UI_Buttons.SWE4403_AddEmployeeButton;
 import SWE4403_UI_Buttons.SWE4403_RemoveEmployeeButton;
+import javax.swing.JPanel;
 
 public class SWE4403_EditEmployeeDialog extends SWE4403_EditDialog {
 
@@ -25,12 +26,17 @@ public class SWE4403_EditEmployeeDialog extends SWE4403_EditDialog {
 		 * DIALOG BUTTONS SETTINGS
 		 */
 		addEmployeeButton = new SWE4403_AddEmployeeButton("Add Employee");
-		addEmployeeButton.setBounds(10, 198, 130, 40);
 		removeEmployeeButton = new SWE4403_RemoveEmployeeButton("Remove Employee");
-		removeEmployeeButton.setBounds(294, 198, 130, 40);
 
-		contentPanel.add(addEmployeeButton);
-		contentPanel.add(removeEmployeeButton);
+		/*
+		 * BUTTON PANEL BUTTONS
+		 */
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 198, 414, 52);
+		contentPanel.add(panel);
+
+		panel.add(addEmployeeButton);
+		panel.add(removeEmployeeButton);
 	}
 
 }
