@@ -17,6 +17,7 @@ public abstract class SWE4403_AddDialog extends JDialog {
 	protected final JPanel contentPanel = new JPanel();
 
 	private JButton okButton, cancelButton;
+	private JPanel panel;
 
 	/**
 	 * Create the dialog.
@@ -46,11 +47,15 @@ public abstract class SWE4403_AddDialog extends JDialog {
 		 * BUTTON SETTINGS
 		 */
 		okButton = new SWE4403_OkButton("Confirm", type);
-		okButton.setBounds(10, 382, 85, 38);
 		cancelButton = new SWE4403_CancelButton("Cancel", type);
-		cancelButton.setBounds(349, 382, 85, 38);
 
-		contentPanel.add(okButton);
-		contentPanel.add(cancelButton);
+		/*
+		 * PANEL BUTTON SETTINGS
+		 */
+		panel = new JPanel();
+		panel.setBounds(10, 378, 424, 50);
+		contentPanel.add(panel);
+		panel.add(okButton);
+		panel.add(cancelButton);
 	}
 }
