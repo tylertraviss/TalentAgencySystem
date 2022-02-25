@@ -2,10 +2,10 @@ package com.company;
 
 public class Person {
 
-    private String name;
-    private int age;
-    private String gender;
-    private String nationality;
+    protected String name;
+    protected int age;
+    protected String gender;
+    protected String nationality;
 
     public String getName() {
         return name;
