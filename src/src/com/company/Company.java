@@ -57,4 +57,11 @@ public class Company {
     public void setTotalIncome(double totalIncome) {
         this.totalIncome = totalIncome;
     }
+
+    // Add RemoveEmployee
+
+    // Add RemoveClients
+
+    // Calculate Expenses
+
 }
