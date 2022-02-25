@@ -60,8 +60,22 @@ public class Company {
 
     // Add RemoveEmployee
 
-    // Add RemoveClients
+    public void removeEmployee(Person p){
 
-    // Calculate Expenses
+        // To Be Completed
+
+    }
+
+    public void removeClients(Person p){
+
+        // To be Completed
+
+    }
+
+    public double calculateExpenses(){
+
+        // To be Completed
+        return 0;
+    }
 
 }
