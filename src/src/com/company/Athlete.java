@@ -1,6 +1,6 @@
 package com.company;
 
-public class Athlete {
+public class Athlete extends Client{
 
     private String name;
     private int height;

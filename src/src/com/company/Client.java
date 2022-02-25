@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.List;
 
-public class Client {
+public class Client extends Person{
 
     private List<Experience> experiences;
     private List<Client> group;

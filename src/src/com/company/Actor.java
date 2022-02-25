@@ -1,6 +1,6 @@
 package com.company;
 
-public class Actor {
+public class Actor extends Client{
 
     private String name;
     private String actorType;
