@@ -2,18 +2,9 @@ package com.company;
 
 public class Athlete extends Client{
 
-    private String name;
     private int height;
     private double weight;
     private String sportType;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public int getHeight() {
         return height;

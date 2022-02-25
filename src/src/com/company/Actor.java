@@ -2,7 +2,6 @@ package com.company;
 
 public class Actor extends Client{
 
-    private String name;
     private String actorType;
 
     public String getActorType() {
@@ -13,11 +12,4 @@ public class Actor extends Client{
         this.actorType = actorType;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
