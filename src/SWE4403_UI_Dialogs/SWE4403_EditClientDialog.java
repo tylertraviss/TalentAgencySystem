@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import SWE4403_UI_Buttons.SWE4403_AddClientButton;
 import SWE4403_UI_Buttons.SWE4403_RemoveClientButton;
+import SWE4403_UI_JLabels.SWE4403_JLabel;
 
 public class SWE4403_EditClientDialog extends SWE4403_EditDialog {
 

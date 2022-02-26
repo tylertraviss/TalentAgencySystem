@@ -2,10 +2,10 @@ package SWE4403_UI_Dialogs;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import SWE4403_UI_Buttons.SWE4403_AddEmployeeButton;
 import SWE4403_UI_Buttons.SWE4403_RemoveEmployeeButton;
-import javax.swing.JPanel;
 
 public class SWE4403_EditEmployeeDialog extends SWE4403_EditDialog {
 

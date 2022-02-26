@@ -5,6 +5,7 @@ import java.awt.Dialog;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import SWE4403_UI_JLabels.SWE4403_EditDialogJLabel;
