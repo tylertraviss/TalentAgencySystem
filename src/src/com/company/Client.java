@@ -4,10 +4,20 @@ import java.util.List;
 
 public class Client extends Person{
 
+    private static int clientID = 1000;
+
     private List<Experience> experiences;
     private List<Client> group;
     private double comsission;
     private List<Award> awards;
+
+    public Client(String name, int age, String gender, String nationality, List<Experience> experiences, List<Client> group, double comsission, List<Award> awards) {
+        super(name, age, gender, nationality);
+        this.experiences = experiences;
+        this.group = group;
+        this.comsission = comsission;
+        this.awards = awards;
+    }
 
     public List<Experience> getExperiences() {
         return experiences;

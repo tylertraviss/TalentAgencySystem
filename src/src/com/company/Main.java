@@ -3,7 +3,7 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        
+
         Date startTime = new Date(11, 15, 2021);
         Date finishTime = new Date(11, 15, 2022);
 
@@ -27,7 +27,7 @@ public class Main {
                 "Male",
                 "Canada",
                 "Chief Software Developer",
-                100000,
+                90000,
                 startTime,
                 finishTime,
                 Barrera
@@ -39,7 +39,7 @@ public class Main {
                 "Male",
                 "Canada",
                 "Chief Operations Officer",
-                100000,
+                90000,
                 startTime,
                 finishTime,
                 Barrera
@@ -51,13 +51,13 @@ public class Main {
                 "Male",
                 "Canada",
                 "Chief Machine Learning Officer",
-                100000,
+                90000,
                 startTime,
                 finishTime,
                 Barrera
         );
 
-        System.out.println(Elliot.toString());
+        System.out.println(Elliot);
 
     }
 }

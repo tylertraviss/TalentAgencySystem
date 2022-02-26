@@ -1,5 +1,5 @@
 package com.company;
 
-public class Instrument {
+public abstract class Instrument {
     public void play(){}
 }

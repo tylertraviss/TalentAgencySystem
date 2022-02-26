@@ -1,9 +1,18 @@
 package com.company;
 
+import java.util.List;
+
 public class Musician extends Client{
     private String stageName;
     private String genre;
     private Instrument instrument;
+
+    public Musician(String name, int age, String gender, String nationality, List<Experience> experiences, List<Client> group, double comsission, List<Award> awards, String stageName, String genre, Instrument instrument) {
+        super(name, age, gender, nationality, experiences, group, comsission, awards);
+        this.stageName = stageName;
+        this.genre = genre;
+        this.instrument = instrument;
+    }
 
     public String getStageName() {
         return stageName;

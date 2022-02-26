@@ -3,7 +3,7 @@ package com.company;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-public class Experience extends Client{
+public class Experience{
     
     private String jobTitle;
     private String supervisor;

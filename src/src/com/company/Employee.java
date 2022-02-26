@@ -2,16 +2,13 @@ package com.company;
 
 public class Employee extends Person{
 
+    private static int employedID = 1000;
+
     // Constructor
+
+
     public Employee(String name, int age, String gender, String nationality, String jobTitle, double wage, Date contractStartDate, Date contractEndDate, Employee superior) {
-
-        // Setting Information from Extended Code
-        this.setName(name);
-        this.setAge(age);
-        this.setGender(gender);
-        this.setNationality(nationality);
-
-        // New Features
+        super(name, age, gender, nationality);
         this.jobTitle = jobTitle;
         this.wage = wage;
         this.contractStartDate = contractStartDate;
