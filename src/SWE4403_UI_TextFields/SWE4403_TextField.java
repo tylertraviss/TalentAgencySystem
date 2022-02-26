@@ -8,8 +8,8 @@ import java.awt.event.FocusListener;
 
 import javax.swing.JTextField;
 
-import SWE4403_UI_Utilities.SWE4403_PlaceholderFont;
-import SWE4403_UI_Utilities.SWE4403_StandardFont;
+import SWE4403_Font.SWE4403_PlaceholderFont;
+import SWE4403_Font.SWE4403_StandardFont;
 import SWE4403_UI_Utilities.SWE4403_TextFieldHandler;
 import SWE4403_UI_Utilities.SWE4403_TitledBorder;
 

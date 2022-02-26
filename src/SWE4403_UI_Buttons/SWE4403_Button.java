@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import SWE4403_Font.SWE4403_StandardFont;
 import SWE4403_UI_Utilities.SWE4403_ButtonHandler;
 import SWE4403_UI_Utilities.SWE4403_RoundedBorder;
-import SWE4403_UI_Utilities.SWE4403_StandardFont;
 
 public abstract class SWE4403_Button extends JButton implements ActionListener {
 

@@ -1,6 +1,6 @@
 package SWE4403_UI_JLabels;
 
-import SWE4403_UI_Utilities.SWE4403_StandardFont;
+import SWE4403_Font.SWE4403_StandardFont;
 
 public class SWE4403_InputDialogJLabel extends SWE4403_HTMLLabel {
 

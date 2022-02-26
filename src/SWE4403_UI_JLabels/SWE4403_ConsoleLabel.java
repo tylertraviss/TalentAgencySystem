@@ -2,7 +2,7 @@ package SWE4403_UI_JLabels;
 
 import javax.swing.JLabel;
 
-import SWE4403_UI_Utilities.SWE4403_StandardFont;
+import SWE4403_Font.SWE4403_StandardFont;
 
 public abstract class SWE4403_ConsoleLabel extends JLabel {
 
