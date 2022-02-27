@@ -57,7 +57,7 @@ public class Main {
                 Barrera
         );
 
-        System.out.println(Elliot);
+        System.out.println(Tyler.getId());
 
     }
 }

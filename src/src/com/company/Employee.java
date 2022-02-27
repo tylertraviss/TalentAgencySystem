@@ -14,8 +14,10 @@ public class Employee extends Person{
         this.contractStartDate = contractStartDate;
         this.contractEndDate = contractEndDate;
         this.superior = superior;
+        this.id = employedID++;
     }
 
+    private int id;
     private String jobTitle;
     private double wage;
     private Date contractStartDate;
@@ -61,6 +63,8 @@ public class Employee extends Person{
     public Employee getSuperior() {
         return superior;
     }
+
+    public int getId(){ return this.id; }
 
     @Override
     public String toString() {
