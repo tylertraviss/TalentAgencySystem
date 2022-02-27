@@ -5,8 +5,6 @@ public class Employee extends Person{
     private static int employedID = 1000;
 
     // Constructor
-
-
     public Employee(String name, int age, String gender, String nationality, String jobTitle, double wage, Date contractStartDate, Date contractEndDate, Employee superior) {
         super(name, age, gender, nationality);
         this.jobTitle = jobTitle;
@@ -69,7 +67,8 @@ public class Employee extends Person{
     @Override
     public String toString() {
         return "Employee{" +
-                "jobTitle='" + jobTitle + '\'' +
+                "id=" + id +
+                ", jobTitle='" + jobTitle + '\'' +
                 ", wage=" + wage +
                 ", contractStartDate=" + contractStartDate +
                 ", contractEndDate=" + contractEndDate +

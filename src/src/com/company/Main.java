@@ -57,7 +57,9 @@ public class Main {
                 Barrera
         );
 
-        System.out.println(Tyler.getId());
+        
+
+        System.out.println(Tyler);
 
     }
 }

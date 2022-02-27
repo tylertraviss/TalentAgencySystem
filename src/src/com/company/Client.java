@@ -10,6 +10,7 @@ public class Client extends Person{
     private List<Client> group;
     private double comsission;
     private List<Award> awards;
+    private int id;
 
     public Client(String name, int age, String gender, String nationality, List<Experience> experiences, List<Client> group, double comsission, List<Award> awards) {
         super(name, age, gender, nationality);
@@ -17,7 +18,10 @@ public class Client extends Person{
         this.group = group;
         this.comsission = comsission;
         this.awards = awards;
+        this.id = clientID++;
     }
+
+    public int getID(){ return this.id; }
 
     public List<Experience> getExperiences() {
         return experiences;
