@@ -64,6 +64,11 @@ public class Employee extends Person{
 
     public int getId(){ return this.id; }
 
+    // Prototype Design Pattern
+    public Employee clone(){
+        return new Employee(this.name, this.age, this.gender, this.nationality, this.jobTitle, this.wage, this.contractStartDate, this.contractEndDate, this.superior);
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
