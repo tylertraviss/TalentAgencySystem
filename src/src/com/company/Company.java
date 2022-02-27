@@ -8,10 +8,10 @@ public class Company {
 
     private String name;
     private String hqLoc;
-    private List<Person> employees;
+    private List<Employee> employees;
     private List<Person> clients;
     private static Company instance = null;
-    private double totalIncome;
+    private double totalIncome = 0;
 
     // Singleton private constructor
     private Company() {
@@ -42,11 +42,11 @@ public class Company {
         this.hqLoc = hqLoc;
     }
 
-    public List<Person> getEmployees() {
+    public List<Employee> getEmployees() {
         return employees;
     }
 
-    public void setEmployees(List<Person> employees) {
+    public void setEmployees(List<Employee> employees) {
         this.employees = employees;
     }
 
@@ -66,7 +66,7 @@ public class Company {
         this.totalIncome = totalIncome;
     }
 
-    public void addEmployee(Person p) {
+    public void addEmployee(Employee p) {
         employees.add(p);
     }
 
@@ -74,8 +74,9 @@ public class Company {
         clients.add(p);
     }
 
+    // removing an Employee based off a specific ID
     public void removeEmployee(int empID) {
-        Iterator<Person> iterator = employees.iterator();
+        Iterator<Employee> iterator = employees.iterator();
         while (iterator.hasNext()) {
             Person currentEmployee = iterator.next();
             // if (currentEmployee.getID() == empID) <--- UNCOMMENT THIS after adding getID
@@ -84,8 +85,8 @@ public class Company {
         }
     }
 
+    // Removing a client based off a specific ID
     public void removeClients(int cID) {
-
         Iterator<Person> iterator = clients.iterator();
         while (iterator.hasNext()) {
             Person currentClient = iterator.next();
@@ -95,10 +96,21 @@ public class Company {
         }
     }
 
-    public double calculateExpenses() {
+    // Displays All Employees toString()
+    public String displayEmployees(){
+        return this.getEmployees().toString();
+    }
 
-        // To be Completed
-        return 0;
+    // Calculating Wages of All Employees
+    public double sumEmployeesWages() {
+        double totalWages = 0;
+
+        // Iterating to get total wage expenses
+        for(Employee E: employees){
+            totalWages += E.getWage();
+        }
+
+        return totalWages;
     }
 
 }

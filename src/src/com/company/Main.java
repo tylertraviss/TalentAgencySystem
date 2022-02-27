@@ -4,11 +4,16 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // Generate Company
+        Company TalentAgencyCompany = Company.getInstance();
+        TalentAgencyCompany.setName("Fredericton Talent Agency");
+        TalentAgencyCompany.setHqLoc("Fredericton, NB");
+
+        // Generating Dates For Employees
         Date startTime = new Date(11, 15, 2021);
         Date finishTime = new Date(11, 15, 2022);
 
         // Generating Employees
-
         Employee Barrera = new Employee(
             "Julian Barerra",
             35,
@@ -57,9 +62,12 @@ public class Main {
                 Barrera
         );
 
-        
+        //TalentAgencyCompany.addEmployee(Barrera);
+        TalentAgencyCompany.addEmployee(Kisenge);
 
-        System.out.println(Tyler);
+        System.out.println(TalentAgencyCompany.displayEmployees());
+
+        System.out.println(TalentAgencyCompany.sumEmployeesWages());
 
     }
 }
