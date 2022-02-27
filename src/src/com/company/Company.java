@@ -113,4 +113,8 @@ public class Company {
         return totalWages;
     }
 
+    public double averageWage(){
+        return sumEmployeesWages() / employees.size();
+    }
+
 }

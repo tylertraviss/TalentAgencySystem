@@ -27,47 +27,62 @@ public class Main {
         );
 
         Employee Elliot = new Employee(
-                "Elliot Chin",
-                20,
-                "Male",
-                "Canada",
-                "Chief Software Developer",
-                90000,
-                startTime,
-                finishTime,
-                Barrera
+            "Elliot Chin",
+            20,
+            "Male",
+            "Canada",
+            "Chief Software Developer",
+            90000,
+            startTime,
+            finishTime,
+            Barrera
         );
 
         Employee Kisenge = new Employee(
-                "Kisenge Mbaga",
-                20,
-                "Male",
-                "Canada",
-                "Chief Operations Officer",
-                90000,
-                startTime,
-                finishTime,
-                Barrera
+            "Kisenge Mbaga",
+            20,
+            "Male",
+            "Canada",
+            "Chief Operations Officer",
+            90000,
+            startTime,
+            finishTime,
+            Barrera
         );
 
         Employee Tyler = new Employee(
-                "Tyler Travis",
-                20,
-                "Male",
-                "Canada",
-                "Chief Machine Learning Officer",
-                90000,
-                startTime,
-                finishTime,
-                Barrera
+            "Tyler Travis",
+            20,
+            "Male",
+            "Canada",
+            "Chief Machine Learning Officer",
+            90000,
+            startTime,
+            finishTime,
+            Barrera
         );
 
-        //TalentAgencyCompany.addEmployee(Barrera);
-        TalentAgencyCompany.addEmployee(Kisenge);
+        Employee Carter = new Employee(
+            "Carter Moore",
+            18,
+            "Male",
+            "Canada",
+            "Computer Programming Intern",
+            35000,
+            startTime,
+            finishTime,
+            Barrera
+        );
 
-        System.out.println(TalentAgencyCompany.displayEmployees());
+        // Adding Employees to System
+        TalentAgencyCompany.addEmployee(Barrera);
+        TalentAgencyCompany.addEmployee(Elliot);
+        TalentAgencyCompany.addEmployee(Kisenge);
+        TalentAgencyCompany.addEmployee(Tyler);
+        TalentAgencyCompany.addEmployee(Carter);
 
         System.out.println(TalentAgencyCompany.sumEmployeesWages());
+        System.out.println(TalentAgencyCompany.averageWage());
 
     }
 }
