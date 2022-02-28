@@ -9,7 +9,7 @@ public class Company {
     private String name;
     private String hqLoc;
     private List<Employee> employees;
-    private List<Person> clients;
+    private List<Client> clients;
     private static Company instance = null;
     private double totalIncome = 0;
 
@@ -50,11 +50,11 @@ public class Company {
         this.employees = employees;
     }
 
-    public List<Person> getClients() {
+    public List<Client> getClients() {
         return clients;
     }
 
-    public void setClients(List<Person> clients) {
+    public void setClients(List<Client> clients) {
         this.clients = clients;
     }
 
@@ -70,7 +70,7 @@ public class Company {
         employees.add(p);
     }
 
-    public void addClient(Person p) {
+    public void addClient(Client p) {
         clients.add(p);
     }
 
@@ -87,7 +87,7 @@ public class Company {
 
     // Removing a client based off a specific ID
     public void removeClients(int cID) {
-        Iterator<Person> iterator = clients.iterator();
+        Iterator<Client> iterator = clients.iterator();
         while (iterator.hasNext()) {
             Person currentClient = iterator.next();
             // if (currentClient.getID() == cID) <--- UNCOMMENT THIS after adding getID
@@ -101,20 +101,36 @@ public class Company {
         return this.getEmployees().toString();
     }
 
+    // Displays All Clients toString()
+    public String displayClients(){
+        return this.getClients().toString();
+    }
+
     // Calculating Wages of All Employees
     public double sumEmployeesWages() {
         double totalWages = 0;
-
-        // Iterating to get total wage expenses
         for(Employee E: employees){
             totalWages += E.getWage();
         }
-
         return totalWages;
     }
 
-    public double averageWage(){
+    // Total Revenue Generated
+    public double revenueGenerated(){
+        double totalExpenses = 0;
+        for(Client C: clients){
+            totalExpenses += C.getComsission() * C.getAnnualRevenueGenerated();
+        }
+        return totalExpenses;
+    }
+
+
+    public double averageEmployeeWage(){
         return sumEmployeesWages() / employees.size();
+    }
+
+    public double annualNetIncome(){
+        return revenueGenerated() - sumEmployeesWages();
     }
 
 }

@@ -74,7 +74,7 @@ public class Main {
             Barrera
         );
 
-        // Adding Musicians
+        // Adding Musician
 
         Musician JohnLennon = new Musician(
             "John Lennon",
@@ -87,7 +87,8 @@ public class Main {
              null,
              "John Lennon",
             "Rock",
-            null
+            null,
+                500000
         );
 
         // Adding Athlete
@@ -103,8 +104,8 @@ public class Main {
             null,
             156,
             60,
-            "Soccer"
-
+            "Soccer",
+            500000
         );
 
 
@@ -115,6 +116,13 @@ public class Main {
         TalentAgencyCompany.addEmployee(Kisenge);
         TalentAgencyCompany.addEmployee(Tyler);
         TalentAgencyCompany.addEmployee(Carter);
+
+        // Add Clients to System
+        TalentAgencyCompany.addClient(JohnLennon);
+        TalentAgencyCompany.addClient(LeoMessi);
+
+        // Printing Generated Revenue
+        System.out.println(TalentAgencyCompany.revenueGenerated());
 
     }
 }

@@ -7,8 +7,8 @@ public class Musician extends Client{
     private String genre;
     private Instrument instrument;
 
-    public Musician(String name, int age, String gender, String nationality, List<Experience> experiences, List<Client> group, double comsission, List<Award> awards, String stageName, String genre, Instrument instrument) {
-        super(name, age, gender, nationality, experiences, group, comsission, awards);
+    public Musician(String name, int age, String gender, String nationality, List<Experience> experiences, List<Client> group, double commission, List<Award> awards, String stageName, String genre, Instrument instrument, double revenueGenerated) {
+        super(name, age, gender, nationality, experiences, group, commission, awards, revenueGenerated);
         this.stageName = stageName;
         this.genre = genre;
         this.instrument = instrument;

@@ -6,8 +6,8 @@ public class Actor extends Client{
 
     private String actorType;
 
-    public Actor(String name, int age, String gender, String nationality, List<Experience> experiences, List<Client> group, double comsission, List<Award> awards, String actorType) {
-        super(name, age, gender, nationality, experiences, group, comsission, awards);
+    public Actor(String name, int age, String gender, String nationality, List<Experience> experiences, List<Client> group, double commission, List<Award> awards, String actorType, double revenueGenerated) {
+        super(name, age, gender, nationality, experiences, group, commission, awards, revenueGenerated);
         this.actorType = actorType;
     }
 
