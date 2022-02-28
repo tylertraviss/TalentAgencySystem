@@ -74,15 +74,47 @@ public class Main {
             Barrera
         );
 
+        // Adding Musicians
+
+        Musician JohnLennon = new Musician(
+            "John Lennon",
+            82,
+            "Male",
+            "United Kingdom",
+            null,
+            null,
+            .20,
+             null,
+             "John Lennon",
+            "Rock",
+            null
+        );
+
+        // Adding Athlete
+
+        Athlete LeoMessi = new Athlete(
+            "Leo Messi",
+            32,
+            "Male",
+            "Argentina",
+            null,
+            null,
+            .30,
+            null,
+            156,
+            60,
+            "Soccer"
+
+        );
+
+
+
         // Adding Employees to System
         TalentAgencyCompany.addEmployee(Barrera);
         TalentAgencyCompany.addEmployee(Elliot);
         TalentAgencyCompany.addEmployee(Kisenge);
         TalentAgencyCompany.addEmployee(Tyler);
         TalentAgencyCompany.addEmployee(Carter);
-
-        System.out.println(TalentAgencyCompany.sumEmployeesWages());
-        System.out.println(TalentAgencyCompany.averageWage());
 
     }
 }
