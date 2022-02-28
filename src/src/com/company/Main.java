@@ -105,7 +105,7 @@ public class Main {
             156,
             60,
             "Soccer",
-            500000
+            5000000
         );
 
 
@@ -122,7 +122,7 @@ public class Main {
         TalentAgencyCompany.addClient(LeoMessi);
 
         // Printing Generated Revenue
-        System.out.println(TalentAgencyCompany.revenueGenerated());
+        System.out.println(TalentAgencyCompany.annualNetIncome());
 
     }
 }
