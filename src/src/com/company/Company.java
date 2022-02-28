@@ -8,10 +8,10 @@ public class Company {
 
     private String name;
     private String hqLoc;
-    private List<Person> employees;
-    private List<Person> clients;
+    private List<Employee> employees;
+    private List<Client> clients;
     private static Company instance = null;
-    private double totalIncome;
+    private double totalIncome = 0;
 
     // Singleton private constructor
     private Company() {
@@ -42,19 +42,19 @@ public class Company {
         this.hqLoc = hqLoc;
     }
 
-    public List<Person> getEmployees() {
+    public List<Employee> getEmployees() {
         return employees;
     }
 
-    public void setEmployees(List<Person> employees) {
+    public void setEmployees(List<Employee> employees) {
         this.employees = employees;
     }
 
-    public List<Person> getClients() {
+    public List<Client> getClients() {
         return clients;
     }
 
-    public void setClients(List<Person> clients) {
+    public void setClients(List<Client> clients) {
         this.clients = clients;
     }
 
@@ -66,16 +66,17 @@ public class Company {
         this.totalIncome = totalIncome;
     }
 
-    public void addEmployee(Person p) {
+    public void addEmployee(Employee p) {
         employees.add(p);
     }
 
-    public void addClient(Person p) {
+    public void addClient(Client p) {
         clients.add(p);
     }
 
+    // removing an Employee based off a specific ID
     public void removeEmployee(int empID) {
-        Iterator<Person> iterator = employees.iterator();
+        Iterator<Employee> iterator = employees.iterator();
         while (iterator.hasNext()) {
             Person currentEmployee = iterator.next();
             // if (currentEmployee.getID() == empID) <--- UNCOMMENT THIS after adding getID
@@ -84,9 +85,9 @@ public class Company {
         }
     }
 
+    // Removing a client based off a specific ID
     public void removeClients(int cID) {
-
-        Iterator<Person> iterator = clients.iterator();
+        Iterator<Client> iterator = clients.iterator();
         while (iterator.hasNext()) {
             Person currentClient = iterator.next();
             // if (currentClient.getID() == cID) <--- UNCOMMENT THIS after adding getID
@@ -95,10 +96,41 @@ public class Company {
         }
     }
 
-    public double calculateExpenses() {
+    // Displays All Employees toString()
+    public String displayEmployees(){
+        return this.getEmployees().toString();
+    }
 
-        // To be Completed
-        return 0;
+    // Displays All Clients toString()
+    public String displayClients(){
+        return this.getClients().toString();
+    }
+
+    // Calculating Wages of All Employees
+    public double sumEmployeesWages() {
+        double totalWages = 0;
+        for(Employee E: employees){
+            totalWages += E.getWage();
+        }
+        return totalWages;
+    }
+
+    // Total Revenue Generated
+    public double revenueGenerated(){
+        double totalExpenses = 0;
+        for(Client C: clients){
+            totalExpenses += C.getComsission() * C.getAnnualRevenueGenerated();
+        }
+        return totalExpenses;
+    }
+
+
+    public double averageEmployeeWage(){
+        return sumEmployeesWages() / employees.size();
+    }
+
+    public double annualNetIncome(){
+        return revenueGenerated() - sumEmployeesWages();
     }
 
 }

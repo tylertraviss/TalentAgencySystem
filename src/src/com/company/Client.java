@@ -10,14 +10,36 @@ public class Client extends Person{
     private List<Client> group;
     private double comsission;
     private List<Award> awards;
+    private int id;
+    private double annualRevenueGenerated;
 
-    public Client(String name, int age, String gender, String nationality, List<Experience> experiences, List<Client> group, double comsission, List<Award> awards) {
+    public static int getClientID() {
+        return clientID;
+    }
+
+    public static void setClientID(int clientID) {
+        Client.clientID = clientID;
+    }
+
+    public double getAnnualRevenueGenerated() {
+        return annualRevenueGenerated;
+    }
+
+    public void setAnnualRevenueGenerated(double annualRevenueGenerated) {
+        this.annualRevenueGenerated = annualRevenueGenerated;
+    }
+
+    public Client(String name, int age, String gender, String nationality, List<Experience> experiences, List<Client> group, double commission, List<Award> awards, double annualRevenueGenerated) {
         super(name, age, gender, nationality);
         this.experiences = experiences;
         this.group = group;
-        this.comsission = comsission;
+        this.comsission = commission;
         this.awards = awards;
+        this.annualRevenueGenerated = annualRevenueGenerated;
+        this.id = clientID++;
     }
+
+    public int getID(){ return this.id; }
 
     public List<Experience> getExperiences() {
         return experiences;
