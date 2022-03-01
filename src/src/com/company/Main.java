@@ -88,7 +88,7 @@ public class Main {
              "John Lennon",
             "Rock",
             null,
-                500000
+            500000
         );
 
         // Adding Athlete
@@ -108,6 +108,21 @@ public class Main {
             5000000
         );
 
+        // Adding Actor
+
+        Actor TomHolland = new Actor(
+            "Tom Holland",
+            25,
+            "Male",
+            "United Kingdom",
+            null,
+            null,
+            0.4,
+            null,
+            "Movie Actor",
+            2500000
+        );
+
 
 
         // Adding Employees to System
@@ -120,6 +135,7 @@ public class Main {
         // Add Clients to System
         TalentAgencyCompany.addClient(JohnLennon);
         TalentAgencyCompany.addClient(LeoMessi);
+        TalentAgencyCompany.addClient(TomHolland);
 
         // Printing Generated Revenue
         System.out.println(TalentAgencyCompany.annualNetIncome());
