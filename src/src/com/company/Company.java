@@ -124,6 +124,32 @@ public class Company {
         return totalExpenses;
     }
 
+    // Average Client Commission
+    public double averageClientCommission(){
+        double sum = 0;
+        for(Client C: clients){
+            sum += C.getComsission();
+        }
+        return sum / amountofClients();
+    }
+
+    // Average Value of Client
+    public double averageClientValue(){
+        double sum = 0;
+        for(Client C: clients){
+            sum += C.getAnnualRevenueGenerated();
+        }
+        return sum / amountofClients();
+    }
+
+
+    public int amountofEmployees(){
+        return employees.size();
+    }
+
+    public int amountofClients(){
+        return clients.size();
+    }
 
     public double averageEmployeeWage(){
         return sumEmployeesWages() / employees.size();

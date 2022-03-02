@@ -10,8 +10,8 @@ public class Main {
         TalentAgencyCompany.setHqLoc("Fredericton, NB");
 
         // Generating Dates For Employees
-        Date startTime = new Date(11, 15, 2021);
-        Date finishTime = new Date(11, 15, 2022);
+        Date startTime = new Date(2021, 1, 21);
+        Date finishTime = new Date(2023, 1, 20);
 
         // Generating Employees
         Employee Barrera = new Employee(
@@ -74,6 +74,18 @@ public class Main {
             Barrera
         );
 
+        Employee EthanGarnier = new Employee(
+            "Ethan Garnier",
+            21,
+            "Male",
+            "Canada",
+            "Chief Cloud Tech Officer",
+            90000,
+            startTime,
+            finishTime,
+            Barrera
+        );
+
         // Adding Musician
 
         Musician JohnLennon = new Musician(
@@ -131,14 +143,15 @@ public class Main {
         TalentAgencyCompany.addEmployee(Kisenge);
         TalentAgencyCompany.addEmployee(Tyler);
         TalentAgencyCompany.addEmployee(Carter);
+        TalentAgencyCompany.addEmployee(EthanGarnier);
 
         // Add Clients to System
         TalentAgencyCompany.addClient(JohnLennon);
         TalentAgencyCompany.addClient(LeoMessi);
         TalentAgencyCompany.addClient(TomHolland);
 
-        // Printing Generated Revenue
-        System.out.println(TalentAgencyCompany.annualNetIncome());
+        ConsoleAudit ca = new ConsoleAudit();
+        ca.execute();
 
     }
 }
