@@ -1,8 +1,10 @@
 package com.company;
 
+import java.io.IOException;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         // Generate Company
         Company TalentAgencyCompany = Company.getInstance();
@@ -152,7 +154,7 @@ public class Main {
 
         ConsoleAudit ca = new ConsoleAudit();
         TextFileAudit tfa = new TextFileAudit();
-        ca.execute();
+        tfa.execute();
 
     }
 }
