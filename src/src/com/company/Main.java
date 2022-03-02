@@ -151,6 +151,7 @@ public class Main {
         TalentAgencyCompany.addClient(TomHolland);
 
         ConsoleAudit ca = new ConsoleAudit();
+        TextFileAudit tfa = new TextFileAudit();
         ca.execute();
 
     }
