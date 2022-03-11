@@ -6,21 +6,21 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class test {
-    @Test
 
+    @Test
     public void testingEmployee(){
 
         // Building Employee
         Employee testEmp = new Employee(
-                "UserA",
-                55,
-                "Female",
-                "China",
-                "CEO",
-                35000,
-                null,
-                null,
-                null
+            "UserA",
+            55,
+            "Female",
+            "China",
+            "CEO",
+            35000,
+            null,
+            null,
+            null
         );
 
         // Testing Initial Entity
@@ -31,18 +31,19 @@ public class test {
         Assertions.assertEquals(testEmp.getWage(),35000);
     }
 
+    @Test
     public void testEmployeeClone(){
         // Generating Test Employee
         Employee testEmp = new Employee(
-                "UserA",
-                55,
-                "Female",
-                "China",
-                "CEO",
-                35000,
-                null,
-                null,
-                null
+            "UserA",
+            55,
+            "Female",
+            "China",
+            "CEO",
+            35000,
+            null,
+            null,
+            null
         );
 
         // Cloning to Second Employee
@@ -54,8 +55,6 @@ public class test {
         Assertions.assertEquals(clonedEmp.getGender(),"Female");
         Assertions.assertEquals(clonedEmp.getNationality(),"China");
         Assertions.assertEquals(clonedEmp.getWage(),35000);
-
-
     }
 
 }

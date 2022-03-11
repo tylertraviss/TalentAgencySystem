@@ -75,7 +75,6 @@ public class Employee extends Person{
     // Prototype Design Pattern
 
     public Employee clone(){
-        // not sure if this is the most efficient way to go along with things lol
         return new Employee(this.name, this.age, this.gender, this.nationality, this.jobTitle, this.wage, this.contractStartDate, this.contractEndDate, this.superior);
     }
 

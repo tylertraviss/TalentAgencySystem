@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class MementoRestorer {
     private ArrayList<Memento> mementoList = new ArrayList<Memento>();
 
