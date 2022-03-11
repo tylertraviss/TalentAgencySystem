@@ -7,6 +7,13 @@ public class Person {
     protected String gender;
     protected String nationality;
 
+    public Person(String name, int age, String gender, String nationality) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.nationality = nationality;
+    }
+
     public String getName() {
         return name;
     }

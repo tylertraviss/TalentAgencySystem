@@ -1,29 +1,38 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Employee extends Person{
 
     // Constructor
     public Employee(String name, int age, String gender, String nationality, String jobTitle, double wage, Date contractStartDate, Date contractEndDate, Employee superior) {
-
-        // Setting Information from Extended Code
-        this.setName(name);
-        this.setAge(age);
-        this.setGender(gender);
-        this.setNationality(nationality);
-
-        // New Features
+        super(name, age, gender, nationality);
         this.jobTitle = jobTitle;
         this.wage = wage;
         this.contractStartDate = contractStartDate;
         this.contractEndDate = contractEndDate;
-        this.superior = superior;
+        this.id = employedID++;
+        subordinates = new ArrayList<Employee>();
+        this.superior= superior;
     }
-
+    
+    private static int employedID = 1000;
+    private int id;
     private String jobTitle;
     private double wage;
     private Date contractStartDate;
     private Date contractEndDate;
+    private List<Employee> subordinates;
     private Employee superior;
+
+    public void addSubordinate(Employee e) {
+        subordinates.add(e);
+    }
+
+    public void removeSubordinate(Employee e){
+        subordinates.remove(e);
+    }
 
     public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
@@ -39,10 +48,6 @@ public class Employee extends Person{
 
     public void setContractEndDate(Date contractEndDate) {
         this.contractEndDate = contractEndDate;
-    }
-
-    public void setSuperior(Employee superior) {
-        this.superior = superior;
     }
 
     public String getJobTitle() {
@@ -61,18 +66,33 @@ public class Employee extends Person{
         return contractEndDate;
     }
 
-    public Employee getSuperior() {
-        return superior;
+    public List<Employee> getSubordinates() {
+        return subordinates;
+    }
+
+    public int getId(){ return this.id; }
+
+    // Prototype Design Pattern
+
+    public Employee clone(){
+        return new Employee(this.name, this.age, this.gender, this.nationality, this.jobTitle, this.wage, this.contractStartDate, this.contractEndDate, this.superior);
     }
 
     @Override
     public String toString() {
+        // print an employee's subordinates.
+        String subs = "";
+        for(int i=0; i<subordinates.size(); i++){
+            subs = subs + ", " + subordinates.get(i).getName();
+        }
+
         return "Employee{" +
-                "jobTitle='" + jobTitle + '\'' +
+                "id=" + id +
+                ", jobTitle='" + jobTitle + '\'' +
                 ", wage=" + wage +
                 ", contractStartDate=" + contractStartDate +
                 ", contractEndDate=" + contractEndDate +
-                ", superior=" + superior +
+                ", subordinates=" + subs +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", gender='" + gender + '\'' +

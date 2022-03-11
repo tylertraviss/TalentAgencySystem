@@ -1,6 +1,6 @@
 package com.company;
 
-public class Award extends Client{
+public class Award{
 
     private String name;
 
