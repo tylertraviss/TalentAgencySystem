@@ -6,7 +6,7 @@ import java.util.List;
 public class Employee extends Person{
 
     // Constructor
-    public Employee(String name, int age, String gender, String nationality, String jobTitle, double wage, Date contractStartDate, Date contractEndDate) {
+    public Employee(String name, int age, String gender, String nationality, String jobTitle, double wage, Date contractStartDate, Date contractEndDate, Employee superior) {
         super(name, age, gender, nationality);
         this.jobTitle = jobTitle;
         this.wage = wage;
@@ -14,6 +14,7 @@ public class Employee extends Person{
         this.contractEndDate = contractEndDate;
         this.id = employedID++;
         subordinates = new ArrayList<Employee>();
+        this.superior= superior;
     }
     
     private static int employedID = 1000;
@@ -23,6 +24,7 @@ public class Employee extends Person{
     private Date contractStartDate;
     private Date contractEndDate;
     private List<Employee> subordinates;
+    private Employee superior;
 
     public void addSubordinate(Employee e) {
         subordinates.add(e);
