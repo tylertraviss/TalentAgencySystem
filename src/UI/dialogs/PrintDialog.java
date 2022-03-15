@@ -12,6 +12,7 @@ public class PrintDialog extends AbstractEditDialog {
 
 		addButton.setText("To TextFile");
 		removeButton.setText("To Console");
+		setLocationRelativeTo(parentFrame);
 
 		addButton.addActionListener(new ActionListener() {
 			@Override

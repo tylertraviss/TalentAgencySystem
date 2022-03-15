@@ -8,24 +8,28 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import UI.borders.WindowBorder;
 import UI.buttons.Button_Skeleton;
 import UI.dialogs.EditClientDialog;
 import UI.dialogs.EditEmployeeDialog;
 import UI.dialogs.EditSponsorDialog;
 import UI.dialogs.PrintDialog;
+import UI.panels.Header;
 import UI.textarea.ConsoleTA;
 
 public class MainFrame {
 
 	private JFrame frame;
 
-	private JPanel buttonPanel;
+	private JPanel buttonPanel, header;
 
 	private JTextArea consoleTA;
 
 	private JButton editClient, editEmployee, editSponsor, print, undo;
+	private JScrollPane consoleSP;
 
 	/**
 	 * Launch the application.
@@ -56,17 +60,23 @@ public class MainFrame {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setUndecorated(true);
 		frame.setBounds(100, 100, 730, 435);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
+		frame.getRootPane().setBorder(WindowBorder.getInstance());
 
 		/*
 		 * JTextArea
 		 */
+
+		consoleSP = new JScrollPane();
+		consoleSP.setBounds(10, 46, 710, 269);
+		frame.getContentPane().add(consoleSP);
 		consoleTA = ConsoleTA.getInstance();
-		consoleTA.setBounds(10, 11, 694, 304);
-		frame.getContentPane().add(consoleTA);
+		consoleSP.setViewportView(consoleTA);
+		consoleSP.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
 		/*
 		 * JPanel
@@ -75,8 +85,11 @@ public class MainFrame {
 		buttonPanel.setOpaque(false);
 		buttonPanel.setBorder(null);
 		buttonPanel.setLayout(new FlowLayout());
-		buttonPanel.setBounds(10, 335, 694, 50);
+		buttonPanel.setBounds(10, 335, 710, 50);
 		frame.getContentPane().add(buttonPanel);
+
+		header = new Header(frame, "Talent Agency System", null, true);
+		frame.getContentPane().add(header);
 
 		/*
 		 * JButton

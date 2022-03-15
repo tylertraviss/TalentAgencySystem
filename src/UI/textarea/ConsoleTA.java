@@ -17,6 +17,9 @@ public class ConsoleTA extends JTextArea {
 		setWrapStyleWord(true);
 	}
 
+	public ConsoleTA(String x) {
+	}
+
 	public static ConsoleTA getInstance() {
 		if (instance == null)
 			instance = new ConsoleTA();

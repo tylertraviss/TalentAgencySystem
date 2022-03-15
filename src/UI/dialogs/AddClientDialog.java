@@ -2,6 +2,7 @@ package UI.dialogs;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,9 +14,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import UI.borders.CustomTitledBorder;
+import UI.borders.WindowBorder;
 import UI.buttons.Button_Skeleton;
-import UI.fonts.BoldFont;
+import UI.fonts.PlaceholderFont;
 import UI.panels.ButtonPanel_Skeleton;
+import UI.panels.Header;
 import UI.textfields.TextField_Skeleton;
 import UI.utilities.ClientType;
 import src.src.com.company.Company;
@@ -25,34 +29,35 @@ public class AddClientDialog extends JDialog {
 	private Company company = Company.getInstance();
 
 	private JTextField name, age, gender, nationality, experiences, commission, awards, avenueGenerated;
-	private JLabel titleLabel;
-	private JPanel buttonPanel, clientTypePanel;
+	private JPanel buttonPanel, clientTypePanel, header;
 	private JButton confirm;
 	private JComboBox clientTypeCBBox, groupCBBox;
+	private JLabel titleLabel;
 
 	public AddClientDialog(JDialog parentDialog) {
 		setModal(true);
-		setLocationRelativeTo(parentDialog);
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		getContentPane().setLayout(null);
-		setBounds(10, 10, 450, 750);
+		getRootPane().setBorder(WindowBorder.getInstance());
+		setBounds(10, 10, 435, 800);
+		setUndecorated(true);
 		setTitle("Add Client");
 
 		/*
 		 * TextFields
 		 */
 		name = new TextField_Skeleton("Name", "Enter name here...");
-		name.setBounds(10, 59, 414, 50);
-		age = new TextField_Skeleton("Age", "Example");
-		age.setBounds(10, 120, 120, 50);
-		gender = new TextField_Skeleton("Gender", "Example");
-		gender.setBounds(150, 120, 120, 50);
-		commission = new TextField_Skeleton("Commission", "Example");
-		commission.setBounds(304, 120, 120, 50);
+		name.setBounds(10, 92, 414, 50);
+		age = new TextField_Skeleton("Age", "Example...");
+		age.setBounds(10, 153, 120, 50);
+		gender = new TextField_Skeleton("Gender", "Example...");
+		gender.setBounds(150, 153, 120, 50);
+		commission = new TextField_Skeleton("Commission", "Example..");
+		commission.setBounds(304, 153, 120, 50);
 		awards = new TextField_Skeleton("Awards (Sepearate each award by [,]", "Award 1, Award 2, Award...");
-		awards.setBounds(10, 242, 414, 50);
+		awards.setBounds(10, 275, 414, 50);
 		avenueGenerated = new TextField_Skeleton("Avenue Generated", "Enter avenue generated here...");
-		avenueGenerated.setBounds(10, 181, 414, 50);
+		avenueGenerated.setBounds(10, 214, 414, 50);
 
 		getContentPane().add(name);
 		getContentPane().add(age);
@@ -62,27 +67,20 @@ public class AddClientDialog extends JDialog {
 		getContentPane().add(avenueGenerated);
 
 		/*
-		 * JLabel
-		 */
-		titleLabel = new JLabel("New Client");
-		titleLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setBounds(10, 11, 414, 50);
-		titleLabel.setFont(BoldFont.getInstance());
-		getContentPane().add(titleLabel);
-
-		/*
 		 * JPanel
 		 */
 		buttonPanel = new ButtonPanel_Skeleton();
-		buttonPanel.setBounds(10, 637, 414, 50);
+		buttonPanel.setBounds(10, 704, 414, 50);
 		getContentPane().add(buttonPanel);
 
 		clientTypePanel = new JPanel();
 		clientTypePanel.setOpaque(false);
-		clientTypePanel.setBounds(10, 456, 414, 170);
+		clientTypePanel.setBounds(10, 523, 414, 170);
 		clientTypePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		getContentPane().add(clientTypePanel);
+
+		header = new Header(this, "New Client", null, false);
+		getContentPane().add(header);
 
 		/*
 		 * JButton
@@ -91,6 +89,7 @@ public class AddClientDialog extends JDialog {
 		confirm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("Button " + clientTypeFilled());
 			}
 
 		});
@@ -101,11 +100,13 @@ public class AddClientDialog extends JDialog {
 		 * ComboBox
 		 */
 		groupCBBox = new JComboBox(Company.getInstance().getClients().toArray());
-		groupCBBox.setBounds(10, 364, 414, 35);
+		groupCBBox.setBounds(10, 397, 414, 50);
+		groupCBBox.setBorder(new CustomTitledBorder("Existing Groups"));
 		getContentPane().add(groupCBBox);
 
 		clientTypeCBBox = new JComboBox(ClientType.values());
-		clientTypeCBBox.setBounds(10, 410, 414, 35);
+		clientTypeCBBox.setBounds(10, 462, 414, 50);
+		clientTypeCBBox.setBorder(new CustomTitledBorder("Client Type"));
 		clientTypeCBBox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -117,11 +118,20 @@ public class AddClientDialog extends JDialog {
 		getContentPane().add(clientTypeCBBox);
 
 		experiences = new TextField_Skeleton("Experiences (Sepearate each experience by [,]", "Exp 1, Exp 2, Exp...");
-		experiences.setBounds(10, 303, 414, 50);
+		experiences.setBounds(10, 336, 414, 50);
 		getContentPane().add(experiences);
+
+		titleLabel = new JLabel("New Client");
+		titleLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setFont(new Font("Consolas", Font.BOLD, 12));
+		titleLabel.setBounds(10, 46, 414, 35);
+		getContentPane().add(titleLabel);
 
 		// by default set actor
 		updateClientTypePanel(ClientType.ACTOR);
+
+		setLocationRelativeTo(parentDialog);
 
 	}
 
@@ -133,7 +143,7 @@ public class AddClientDialog extends JDialog {
 
 		switch (type) {
 		case ACTOR:
-			var actorType = new TextField_Skeleton("Actor Type", "Stunt person / Main character / Side charac...");
+			var actorType = new TextField_Skeleton("Actor Type", "Enter actor type here...");
 			actorType.setPreferredSize(size);
 			clientTypePanel.add(actorType);
 			break;
@@ -163,5 +173,23 @@ public class AddClientDialog extends JDialog {
 
 		clientTypePanel.revalidate();
 		clientTypePanel.repaint();
+
+	}
+
+	private boolean clientTypeFilled() {
+		boolean toReturn = true;
+
+		if (clientTypePanel.getComponents().length == 1)
+			toReturn &= !(((JTextField) clientTypePanel.getComponent(0)).getText().isBlank())
+					& !(clientTypePanel.getComponent(0).getFont() instanceof PlaceholderFont);
+
+		else
+			for (var component : clientTypePanel.getComponents()) {
+				if (((JTextField) component).getText().isBlank())
+					toReturn &= false;
+				if (component.getFont() instanceof PlaceholderFont)
+					toReturn &= false;
+			}
+		return toReturn;
 	}
 }

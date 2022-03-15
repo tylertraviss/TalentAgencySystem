@@ -12,37 +12,40 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import UI.borders.WindowBorder;
 import UI.buttons.Button_Skeleton;
 import UI.panels.ButtonPanel_Skeleton;
+import UI.panels.Header;
 import UI.textfields.TextField_Skeleton;
 
 public abstract class AbstractDeleteDialog extends JDialog implements ActionListener {
 
 	private final JPanel contentPanel = new JPanel();
-	private JPanel buttonPanel;
+	private JPanel buttonPanel, header;
 	private JTextField idToDelete;
 	private JButton confirm;
-	private JLabel titleLabel;
 	private JDialog self;
 
 	/**
 	 * Create the dialog.
 	 */
 	public AbstractDeleteDialog(String title) {
+		setUndecorated(true);
 		setResizable(false);
 		setModal(true);
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setTitle(title);
-		setBounds(100, 100, 450, 255);
+		setBounds(100, 100, 435, 200);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(null);
+		getRootPane().setBorder(WindowBorder.getInstance());
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 
 		/*
 		 * TextField
 		 */
 		idToDelete = new TextField_Skeleton("Enter ID to delete", "Enter ID here...");
-		idToDelete.setBounds(10, 72, 414, 60);
+		idToDelete.setBounds(10, 46, 414, 60);
 		contentPanel.add(idToDelete);
 
 		/*
@@ -54,21 +57,13 @@ public abstract class AbstractDeleteDialog extends JDialog implements ActionList
 		 * JPanel
 		 */
 		buttonPanel = new ButtonPanel_Skeleton();
-		buttonPanel.setLocation(10, 143);
+		buttonPanel.setLocation(10, 117);
 		buttonPanel.setSize(414, 60);
 		buttonPanel.add(confirm);
+		header = new Header(this, title, null, false);
+		contentPanel.add(header);
 
 		contentPanel.add(buttonPanel);
-
-		/*
-		 * JLabel
-		 */
-		titleLabel = new JLabel(title);
-		titleLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font("Consolas", Font.BOLD, 12));
-		titleLabel.setBounds(10, 11, 414, 50);
-		contentPanel.add(titleLabel);
 
 		self = this;
 
