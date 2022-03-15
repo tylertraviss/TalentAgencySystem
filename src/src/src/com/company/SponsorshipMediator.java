@@ -1,32 +1,42 @@
-package com.company;
-import java.util.*;
+package src.src.com.company;
 
-class SponsorshipMediator implements SponsorshipMediatorBase{
+import java.util.ArrayList;
+import java.util.List;
 
-    private ArrayList<Sponsorship> sponsorships= new ArrayList<>();
+class SponsorshipMediator implements SponsorshipMediatorBase {
 
+	private List<Sponsorship> sponsorships;
 
+	private static SponsorshipMediator instance = null;
 
+	private SponsorshipMediator() {
+		sponsorships = new ArrayList<>();
+	}
 
-    public void registerSponsorship(Sponsorship sponsorship){
-        sponsorships.add(sponsorship);
-    }
+	public static SponsorshipMediator getInstance() {
+		if (instance == null)
+			instance = new SponsorshipMediator();
 
+		return instance;
+	}
 
-    public void discontinueSponsorship(Sponsorship sponsorship){
-        sponsorships.remove(sponsorship);
-    }
+	public void registerSponsorship(Sponsorship sponsorship) {
+		sponsorships.add(sponsorship);
+	}
 
+	public void discontinueSponsorship(Sponsorship sponsorship) {
+		sponsorships.remove(sponsorship);
+	}
 
+	public void reportSponsorships() {
+		System.out.println("Records of Current Sponsorships: \n\n");
+		// System.out.println(sponsorships);
 
-    public void reportSponsorships(){
-        System.out.println("Records of Current Sponsorships: \n\n");
-        //System.out.println(sponsorships);
-
-        for (int i = 0; i < sponsorships.size(); i++) {
-            System.out.println(sponsorships.get(i).getSponsor().getSponsorName()+ " is sponsoring " + sponsorships.get(i).getSponsoredClient().getName() +" at $" +sponsorships.get(i).getValue()+ " a year.");
-        }
-    }
-
+		for (int i = 0; i < sponsorships.size(); i++) {
+			System.out.println(sponsorships.get(i).getSponsor().getSponsorName() + " is sponsoring "
+					+ sponsorships.get(i).getSponsoredClient().getName() + " at $" + sponsorships.get(i).getValue()
+					+ " a year.");
+		}
+	}
 
 }

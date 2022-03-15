@@ -1,16 +1,19 @@
-package com.company;
+package src.src.com.company;
 
-public class Award{
+public class Award {
 
-    private String name;
+	private String name;
 
-    public String getName(){
-        return name;
-    }
+	public Award(String name) {
+		this.name = name;
+	}
 
-    public void setName(String newName){
-        this.name = newName;
-    }
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String newName) {
+		this.name = newName;
+	}
 }
 
-// To Add: Functionality

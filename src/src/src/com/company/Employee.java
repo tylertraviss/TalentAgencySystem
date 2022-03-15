@@ -1,102 +1,98 @@
-package com.company;
+package src.src.com.company;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Employee extends Person{
+public class Employee extends Person {
 
-    // Constructor
-    public Employee(String name, int age, String gender, String nationality, String jobTitle, double wage, Date contractStartDate, Date contractEndDate, Employee superior) {
-        super(name, age, gender, nationality);
-        this.jobTitle = jobTitle;
-        this.wage = wage;
-        this.contractStartDate = contractStartDate;
-        this.contractEndDate = contractEndDate;
-        this.id = employedID++;
-        subordinates = new ArrayList<Employee>();
-        this.superior= superior;
-    }
-    
-    private static int employedID = 1000;
-    private int id;
-    private String jobTitle;
-    private double wage;
-    private Date contractStartDate;
-    private Date contractEndDate;
-    private List<Employee> subordinates;
-    private Employee superior;
+	private static int employedID = 1000;
+	private int id;
+	private String jobTitle;
+	private double wage;
+	private Date contractStartDate;
+	private Date contractEndDate;
+	private List<Employee> subordinates;
+	private Employee superior;
 
-    public void addSubordinate(Employee e) {
-        subordinates.add(e);
-    }
+	// Constructor
+	public Employee(String name, int age, String gender, String nationality, String jobTitle, double wage,
+			Date contractStartDate, Date contractEndDate, Employee superior) {
+		super(name, age, gender, nationality);
+		this.jobTitle = jobTitle;
+		this.wage = wage;
+		this.contractStartDate = contractStartDate;
+		this.contractEndDate = contractEndDate;
+		this.id = employedID++;
+		subordinates = new ArrayList<Employee>();
+		this.superior = superior;
+	}
 
-    public void removeSubordinate(Employee e){
-        subordinates.remove(e);
-    }
+	public void addSubordinate(Employee e) {
+		subordinates.add(e);
+	}
 
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
+	public void removeSubordinate(Employee e) {
+		subordinates.remove(e);
+	}
 
-    public void setWage(double wage) {
-        this.wage = wage;
-    }
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle;
+	}
 
-    public void setContractStartDate(Date contractStartDate) {
-        this.contractStartDate = contractStartDate;
-    }
+	public void setWage(double wage) {
+		this.wage = wage;
+	}
 
-    public void setContractEndDate(Date contractEndDate) {
-        this.contractEndDate = contractEndDate;
-    }
+	public void setContractStartDate(Date contractStartDate) {
+		this.contractStartDate = contractStartDate;
+	}
 
-    public String getJobTitle() {
-        return jobTitle;
-    }
+	public void setContractEndDate(Date contractEndDate) {
+		this.contractEndDate = contractEndDate;
+	}
 
-    public double getWage() {
-        return wage;
-    }
+	public String getJobTitle() {
+		return jobTitle;
+	}
 
-    public Date getContractStartDate() {
-        return contractStartDate;
-    }
+	public double getWage() {
+		return wage;
+	}
 
-    public Date getContractEndDate() {
-        return contractEndDate;
-    }
+	public Date getContractStartDate() {
+		return contractStartDate;
+	}
 
-    public List<Employee> getSubordinates() {
-        return subordinates;
-    }
+	public Date getContractEndDate() {
+		return contractEndDate;
+	}
 
-    public int getId(){ return this.id; }
+	public List<Employee> getSubordinates() {
+		return subordinates;
+	}
 
-    // Prototype Design Pattern
+	public int getId() {
+		return this.id;
+	}
 
-    public Employee clone(){
-        return new Employee(this.name, this.age, this.gender, this.nationality, this.jobTitle, this.wage, this.contractStartDate, this.contractEndDate, this.superior);
-    }
+	// Prototype Design Pattern
 
-    @Override
-    public String toString() {
-        // print an employee's subordinates.
-        String subs = "";
-        for(int i=0; i<subordinates.size(); i++){
-            subs = subs + ", " + subordinates.get(i).getName();
-        }
+	public Employee clone() {
+		return new Employee(this.name, this.age, this.gender, this.nationality, this.jobTitle, this.wage,
+				this.contractStartDate, this.contractEndDate, this.superior);
+	}
 
-        return "Employee{" +
-                "id=" + id +
-                ", jobTitle='" + jobTitle + '\'' +
-                ", wage=" + wage +
-                ", contractStartDate=" + contractStartDate +
-                ", contractEndDate=" + contractEndDate +
-                ", subordinates=" + subs +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", gender='" + gender + '\'' +
-                ", nationality='" + nationality + '\'' +
-                '}';
-    }
+	@Override
+	public String toString() {
+		// print an employee's subordinates.
+		String subs = "";
+		for (int i = 0; i < subordinates.size(); i++) {
+			subs = subs + ", " + subordinates.get(i).getName();
+		}
+
+		return "Employee{" + "id=" + id + ", jobTitle='" + jobTitle + '\'' + ", wage=" + wage + ", contractStartDate="
+				+ contractStartDate + ", contractEndDate=" + contractEndDate + ", subordinates=" + subs + ", name='"
+				+ name + '\'' + ", age=" + age + ", gender='" + gender + '\'' + ", nationality='" + nationality + '\''
+				+ '}';
+	}
 }

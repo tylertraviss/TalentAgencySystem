@@ -1,4 +1,4 @@
-package com.company;
+package src.src.com.company;
 public interface SponsorshipMediatorBase {
 
     public void registerSponsorship(Sponsorship sponsorship);

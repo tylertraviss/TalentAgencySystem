@@ -1,4 +1,4 @@
-package com.company;
+package src.src.com.company;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class Athlete extends Client{
                    List<Award> awards, int height, int weight,
                    String sportType, double revenueGenerated)
     {
-        super(name, age, gender, nationality, experiences, group, commission, awards, revenueGenerated);
+        super(name, age, gender, nationality, experiences, commission, awards, revenueGenerated);
         this.height = height;
         this.weight = weight;
         this.sportType = sportType;

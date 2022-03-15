@@ -1,4 +1,4 @@
-package com.company;
+package src.src.com.company;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -96,15 +96,7 @@ public class Company {
         }
     }
 
-    // Displays All Employees toString()
-    public String displayEmployees(){
-        return this.getEmployees().toString();
-    }
 
-    // Displays All Clients toString()
-    public String displayClients(){
-        return this.getClients().toString();
-    }
 
     // Calculating Wages of All Employees
     public double sumEmployeesWages() {
