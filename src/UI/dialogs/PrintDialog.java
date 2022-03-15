@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
+import UI.textarea.ConsoleTA;
+import src.src.com.company.Company;
+
 public class PrintDialog extends AbstractEditDialog {
 
 	public PrintDialog(JFrame parentFrame) {
@@ -17,14 +20,21 @@ public class PrintDialog extends AbstractEditDialog {
 		addButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// export fucntion to text file
 			}
 		});
 
 		removeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// print company stats
+				var company = Company.getInstance();
+
+				if (company.getClients().size() == 0)
+					ConsoleTA.getInstance().log("No Clients Yet");
+				else
+					for (var client : company.getClients())
+						ConsoleTA.getInstance().log(client.toConsole());
+
+				dispose();
 			}
 
 		});

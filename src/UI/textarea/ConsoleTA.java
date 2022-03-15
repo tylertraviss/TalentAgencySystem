@@ -17,9 +17,6 @@ public class ConsoleTA extends JTextArea {
 		setWrapStyleWord(true);
 	}
 
-	public ConsoleTA(String x) {
-	}
-
 	public static ConsoleTA getInstance() {
 		if (instance == null)
 			instance = new ConsoleTA();
@@ -27,8 +24,11 @@ public class ConsoleTA extends JTextArea {
 	}
 
 	public void log(String string) {
-		context += string + System.lineSeparator();
+		context += string + System.lineSeparator() + System.lineSeparator();
 		setText(context);
+
+		revalidate();
+		repaint();
 	}
 
 }

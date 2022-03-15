@@ -15,5 +15,8 @@ public class Award {
 	public void setName(String newName) {
 		this.name = newName;
 	}
-}
 
+	public String toString() {
+		return name;
+	}
+}

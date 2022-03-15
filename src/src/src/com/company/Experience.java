@@ -1,40 +1,24 @@
 package src.src.com.company;
 
-import java.util.*;
-import java.util.concurrent.TimeUnit;
+public class Experience {
 
-public class Experience{
-    
     private String jobTitle;
-    private String supervisor;
-    private int duration;   // Duration is in DAYS
-    
+
     // # Add Constructor
 
-    public String getJobTitle(){
+    public Experience(String jobTititle) {
+        this.jobTitle = jobTititle;
+    }
+
+    public String getJobTitle() {
         return jobTitle;
     }
 
-    public String getSupervisor(){
-        return supervisor;
-    }
-
-    public int getDuration(){
-        return duration;
-    }
-
-    public void setJobTitle(String newTitle){
+    public void setJobTitle(String newTitle) {
         this.jobTitle = newTitle;
     }
 
-    public void setSupervisor(String newSupervisor){
-        this.supervisor = newSupervisor;
+    public String toString() {
+        return jobTitle;
     }
-
-//    public void SetDuration(Date start, Date end){
-//       durInMillies = end.getTime()-start.getTime();
-//        this.duration = TimeUnit.DAYS.convert(durInMillies,TimeUnit.MILLISECONDS);
-//    }
 }
-
-// To Add: Functionality
