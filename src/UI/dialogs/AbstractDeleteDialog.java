@@ -5,23 +5,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
+import UI.borders.CustomTitledBorder;
 import UI.borders.WindowBorder;
 import UI.buttons.Button_Skeleton;
 import UI.panels.ButtonPanel_Skeleton;
 import UI.panels.Header;
-import UI.textfields.TextField_Skeleton;
 
 public abstract class AbstractDeleteDialog extends JDialog implements ActionListener {
 
 	private final JPanel contentPanel = new JPanel();
 	private JPanel buttonPanel, header;
-	private JTextField idToDelete;
 	private JButton confirm;
-	private JDialog self;
+	protected JDialog self;
+	protected JComboBox selectionCBBox;
 
 	/**
 	 * Create the dialog.
@@ -39,13 +39,6 @@ public abstract class AbstractDeleteDialog extends JDialog implements ActionList
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 
 		/*
-		 * TextField
-		 */
-		idToDelete = new TextField_Skeleton("Enter ID to delete", "Enter ID here...");
-		idToDelete.setBounds(10, 46, 414, 60);
-		contentPanel.add(idToDelete);
-
-		/*
 		 * Button
 		 */
 		confirm = new Button_Skeleton("Confirm");
@@ -61,6 +54,11 @@ public abstract class AbstractDeleteDialog extends JDialog implements ActionList
 		contentPanel.add(header);
 
 		contentPanel.add(buttonPanel);
+
+		selectionCBBox = new JComboBox();
+		selectionCBBox.setBounds(10, 46, 414, 50);
+		selectionCBBox.setBorder(new CustomTitledBorder(title));
+		contentPanel.add(selectionCBBox);
 
 		self = this;
 
