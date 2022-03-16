@@ -1,6 +1,8 @@
 package UI.dialogs;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -14,12 +16,18 @@ import UI.borders.CustomTitledBorder;
 import UI.borders.WindowBorder;
 import UI.buttons.Button_Skeleton;
 import UI.fonts.BoldFont;
+import UI.fonts.PlaceholderFont;
 import UI.panels.ButtonPanel_Skeleton;
 import UI.panels.Header;
+import UI.textarea.ConsoleTA;
 import UI.textfields.TextField_Skeleton;
 import src.src.com.company.Company;
+import src.src.com.company.Date;
+import src.src.com.company.Employee;
 
 public class AddEmployeeDialog extends JDialog {
+
+	private Company company = Company.getInstance();
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -33,6 +41,7 @@ public class AddEmployeeDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public AddEmployeeDialog(JDialog parentDialog) {
+		var console = ConsoleTA.getInstance();
 		setModal(true);
 		setUndecorated(true);
 		setModalityType(ModalityType.APPLICATION_MODAL);
@@ -67,6 +76,48 @@ public class AddEmployeeDialog extends JDialog {
 		 * Buttons
 		 */
 		confirm = new Button_Skeleton("Confirm");
+		confirm.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String nameIn, genderIn, nationalityIn, jobTitleIn;
+				Date startIn, endIn;
+				Employee superiorIn;
+				double wageIn;
+				int ageIn;
+
+				if (validateAllFields()) {
+					nameIn = name.getText();
+					genderIn = gender.getText();
+					nationalityIn = nationality.getText();
+					jobTitleIn = jobTitle.getText();
+					wageIn = Double.parseDouble(wage.getText());
+					startIn = strToDate(startDate.getText());
+					endIn = strToDate(endDate.getText());
+					ageIn = Integer.parseInt(age.getText());
+
+					var selectedItem = superiorCBBox.getSelectedItem().toString();
+					if (selectedItem.equalsIgnoreCase("No Superior"))
+						superiorIn = null;
+					else
+						superiorIn = (Employee) superiorCBBox.getSelectedItem();
+
+					Employee employee = new Employee(nameIn, ageIn, genderIn, nationalityIn, jobTitleIn, wageIn,
+							startIn,
+							endIn, superiorIn);
+
+					if (superiorIn != null)
+						superiorIn.addSubordinate(employee);
+					else
+						company.addEmployee(employee);
+
+					console.log("Added new employee: " + employee.getName());
+
+					dispose();
+				}
+			}
+
+		});
 		buttonPanel.add(confirm);
 
 		/*
@@ -102,11 +153,74 @@ public class AddEmployeeDialog extends JDialog {
 		 * ComboBox
 		 */
 		superiorCBBox = new JComboBox(Company.getInstance().getEmployees().toArray());
+		superiorCBBox.addItem("No superior");
 		superiorCBBox.setBorder(new CustomTitledBorder("Select Superior"));
 		superiorCBBox.setBounds(10, 358, 414, 50);
 		contentPanel.add(superiorCBBox);
 
 		setLocationRelativeTo(parentDialog);
 
+	}
+
+	private boolean validateInteger(String num) {
+		try {
+			Integer.parseInt(num);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+
+	private boolean validateDate(JTextField field) {
+
+		String[] temp = field.getText().split("/");
+
+		if (temp.length != 3)
+			return false;
+
+		for (var num : temp)
+			if (!validateInteger(num))
+				return false;
+
+		return true;
+	}
+
+	private boolean validateDoubles(String num) {
+		try {
+			Double.parseDouble(num);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+
+	private boolean isFilled(JTextField field) {
+		return !((field.getFont() instanceof PlaceholderFont) | field.getText().isBlank());
+	}
+
+	private boolean validateAllFields() {
+		boolean toReturn = true;
+
+		toReturn &= isFilled(name);
+		toReturn &= validateInteger(age.getText());
+		toReturn &= isFilled(gender);
+		toReturn &= validateDoubles(wage.getText());
+		toReturn &= isFilled(nationality);
+		toReturn &= isFilled(jobTitle);
+		toReturn &= isFilled(startDate);
+		toReturn &= validateDate(startDate);
+		toReturn &= isFilled(endDate);
+		toReturn &= validateDate(endDate);
+
+		return toReturn;
+	}
+
+	private Date strToDate(String strDate) {
+		String temp[] = strDate.split("/");
+		var day = Integer.parseInt(temp[0]);
+		var month = Integer.parseInt(temp[1]);
+		var year = Integer.parseInt(temp[2]);
+
+		return new Date(day, month, year);
 	}
 }
