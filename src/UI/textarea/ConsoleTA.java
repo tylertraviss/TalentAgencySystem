@@ -2,6 +2,8 @@ package UI.textarea;
 
 import javax.swing.JTextArea;
 
+import UI.fonts.StandardFont;
+
 public class ConsoleTA extends JTextArea {
 
 	private static ConsoleTA instance = null;
@@ -15,6 +17,7 @@ public class ConsoleTA extends JTextArea {
 		setEditable(false);
 		setLineWrap(true);
 		setWrapStyleWord(true);
+		setFont(StandardFont.getInstance());
 	}
 
 	public static ConsoleTA getInstance() {
