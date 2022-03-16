@@ -2,6 +2,8 @@ package UI.dialogs;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -14,11 +16,17 @@ import javax.swing.SwingConstants;
 import UI.borders.CustomTitledBorder;
 import UI.borders.WindowBorder;
 import UI.buttons.Button_Skeleton;
+import UI.fonts.PlaceholderFont;
 import UI.panels.ButtonPanel_Skeleton;
 import UI.panels.Header;
+import UI.textarea.ConsoleTA;
 import UI.textfields.TextField_Skeleton;
 import src.src.com.company.Client;
 import src.src.com.company.Company;
+import src.src.com.company.Sponsor;
+import src.src.com.company.SponsoredClient;
+import src.src.com.company.Sponsorship;
+import src.src.com.company.SponsorshipMediator;
 
 public class AddSponsorDialog extends JDialog {
 
@@ -35,6 +43,8 @@ public class AddSponsorDialog extends JDialog {
 	 */
 	public AddSponsorDialog(JDialog parentDialog) {
 		super(parentDialog);
+		var console = ConsoleTA.getInstance();
+		var sponsorshipMediator = SponsorshipMediator.getInstance();
 		setModal(true);
 		setTitle("Add Sponsor");
 		setModalityType(ModalityType.APPLICATION_MODAL);
@@ -79,6 +89,31 @@ public class AddSponsorDialog extends JDialog {
 		 * Buttons
 		 */
 		confirm = new Button_Skeleton("Confirm");
+		confirm.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String sponsorIn;
+				Client clientIn;
+				double sponsoredAmountIn;
+
+				if (validateAllFields()) {
+					sponsorIn = sponsor.getText();
+					clientIn = (Client) clientCBBox.getSelectedItem();
+					sponsoredAmountIn = Double.parseDouble(amount.getText());
+
+					Sponsor s = new Sponsor(sponsorIn, sponsorshipMediator);
+					SponsoredClient sc = new SponsoredClient(clientIn, sponsorshipMediator);
+					Sponsorship sp = new Sponsorship(s, sc, sponsoredAmountIn, sponsorshipMediator);
+
+					sponsorshipMediator.registerSponsorship(sp);
+
+					console.log("Added new Sponsor: " + s + " for client :\t" + sc);
+
+					dispose();
+				}
+			}
+		});
 		buttonPanel.add(confirm);
 
 		/*
@@ -92,5 +127,37 @@ public class AddSponsorDialog extends JDialog {
 		contentPanel.add(titleLabel);
 
 		setLocationRelativeTo(parentDialog);
+	}
+
+	private boolean validateAllFields() {
+		boolean toReturn = true;
+
+		toReturn &= validateDouble(amount.getText());
+		toReturn &= validateClient();
+
+		return toReturn;
+	}
+
+	private boolean isFilled(JTextField tf) {
+		return !(tf.getText().isBlank() | tf.getFont() instanceof PlaceholderFont);
+	}
+
+	private boolean validateDouble(String num) {
+		try {
+			Double.parseDouble(num);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+
+	private boolean validateClient() {
+		try {
+			String temp = clientCBBox.getSelectedItem().toString();
+			return true;
+		} catch (NullPointerException e) {
+			return false;
+		}
+
 	}
 }
