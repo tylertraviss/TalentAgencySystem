@@ -23,7 +23,7 @@ public class Employee extends Person {
 		this.contractStartDate = contractStartDate;
 		this.contractEndDate = contractEndDate;
 		this.id = employedID++;
-		subordinates = new ArrayList<Employee>();
+		subordinates = new ArrayList<>();
 		this.superior = superior;
 	}
 
@@ -84,15 +84,38 @@ public class Employee extends Person {
 
 	@Override
 	public String toString() {
-		// print an employee's subordinates.
-		String subs = "";
-		for (int i = 0; i < subordinates.size(); i++) {
-			subs = subs + ", " + subordinates.get(i).getName();
+		return name;
+	}
+
+	private String printSubordinates() {
+		String toReturn = "";
+
+		for (var sub : subordinates)
+			toReturn += sub.toConsole() + System.lineSeparator();
+
+		return toReturn;
+	}
+
+	@Override
+	public String toConsole() {
+		String toReturn = "";
+
+		toReturn += "Employee:\t" + name + System.lineSeparator();
+		toReturn += super.toConsole();
+		toReturn += "Job Title:\t" + jobTitle + System.lineSeparator();
+		toReturn += "Wage:\t\t" + wage + System.lineSeparator();
+		toReturn += "Start Date:\t" + contractStartDate.toString() + System.lineSeparator();
+		toReturn += "End Date:\t" + contractEndDate.toString() + System.lineSeparator();
+
+		if (superior != null)
+			toReturn += "Superior:\t\t" + superior.name + System.lineSeparator();
+		else
+			toReturn += "Superior: Null " + System.lineSeparator() + System.lineSeparator();
+
+		if (subordinates.size() > 0) {
+			toReturn += printSubordinates();
 		}
 
-		return "Employee{" + "id=" + id + ", jobTitle='" + jobTitle + '\'' + ", wage=" + wage + ", contractStartDate="
-				+ contractStartDate + ", contractEndDate=" + contractEndDate + ", subordinates=" + subs + ", name='"
-				+ name + '\'' + ", age=" + age + ", gender='" + gender + '\'' + ", nationality='" + nationality + '\''
-				+ '}';
+		return toReturn;
 	}
 }

@@ -45,4 +45,14 @@ public class Person {
     public void setNationality(String nationality) {
         this.nationality = nationality;
     }
+
+    public String toConsole() {
+        String toReturn = "";
+
+        toReturn += "Age:\t\t" + age + System.lineSeparator();
+        toReturn += "Gender:\t\t" + gender + System.lineSeparator();
+        toReturn += "Nationality:\t" + nationality + System.lineSeparator();
+
+        return toReturn;
+    }
 }
