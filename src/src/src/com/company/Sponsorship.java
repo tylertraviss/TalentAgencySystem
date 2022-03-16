@@ -1,20 +1,21 @@
 package src.src.com.company;
 
-public class Sponsorship{
+public class Sponsorship {
     private SponsorshipMediator sponsorshipMediator;
     private Sponsor sponsor;
-    private  SponsoredClient sponsoredClient;
+    private SponsoredClient sponsoredClient;
     private double value;
 
-    public Sponsorship(Sponsor sponsor, SponsoredClient sponsoredClient, double value, SponsorshipMediator sponsorshipMediator ){
-        this.sponsor=sponsor;
-        this.sponsoredClient=sponsoredClient;
-        this.sponsorshipMediator=sponsorshipMediator;
-        this.value= value;
+    public Sponsorship(Sponsor sponsor, SponsoredClient sponsoredClient, double value,
+            SponsorshipMediator sponsorshipMediator) {
+        this.sponsor = sponsor;
+        this.sponsoredClient = sponsoredClient;
+        this.sponsorshipMediator = sponsorshipMediator;
+        this.value = value;
 
     }
 
-    public Sponsor getSponsor(){
+    public Sponsor getSponsor() {
         return sponsor;
     }
 
@@ -22,8 +23,18 @@ public class Sponsorship{
         return sponsoredClient;
     }
 
-    public double getValue(){
+    public double getValue() {
         return value;
+    }
+
+    public String toConsole() {
+        String toReturn = "";
+
+        toReturn += "Sponsor: " + sponsor + System.lineSeparator();
+        toReturn += "Sponsored Client: " + sponsoredClient.toString() + System.lineSeparator();
+        toReturn += "Amount Sponsored: " + value + System.lineSeparator();
+
+        return toReturn;
     }
 
 }
