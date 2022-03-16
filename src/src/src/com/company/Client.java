@@ -57,6 +57,10 @@ public abstract class Client extends Person {
 		group.add(c);
 	}
 
+	public void removeFromGroup(Client c) {
+		group.remove(c);
+	}
+
 	public double getComsission() {
 		return commission;
 	}
@@ -81,8 +85,8 @@ public abstract class Client extends Person {
 	protected String printAwards() {
 		String toReturn = "";
 
-		if (experiences.size() == 0) {
-			toReturn = System.lineSeparator() + "Experiences: N/A" + System.lineSeparator();
+		if (awards == null || awards.size() == 0) {
+			toReturn = "Awards: N/A" + System.lineSeparator();
 			return toReturn;
 		}
 
@@ -90,22 +94,22 @@ public abstract class Client extends Person {
 		for (var award : awards) {
 			toReturn += award.toString() + " | ";
 		}
-		return toReturn;
+		return toReturn + System.lineSeparator();
 	}
 
 	protected String printExperiences() {
 		String toReturn = "";
 
-		if (experiences.size() == 0) {
+		if (experiences == null || experiences.size() == 0) {
 			toReturn = System.lineSeparator() + "Experiences: N/A" + System.lineSeparator();
 			return toReturn;
 		}
 
-		toReturn += System.lineSeparator() + "Experiences:\t";
+		toReturn += "Experiences:\t";
 		for (var exp : experiences)
 			toReturn += exp.toString() + " | ";
 
-		return toReturn;
+		return toReturn + System.lineSeparator();
 	}
 
 	protected String printGroupMembers() {
@@ -118,7 +122,7 @@ public abstract class Client extends Person {
 
 		toReturn += System.lineSeparator() + "Clients in group:" + System.lineSeparator();
 		for (var client : group)
-			toReturn += client.toConsole();
+			toReturn += client.toConsole() + System.lineSeparator();
 
 		toReturn += System.lineSeparator() + "======== END SUBORDINATES =========" + System.lineSeparator();
 
