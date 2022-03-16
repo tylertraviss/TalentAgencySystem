@@ -5,12 +5,15 @@ public class Sponsorship{
     private Sponsor sponsor;
     private  SponsoredClient sponsoredClient;
     private double value;
+    private static int clientID = 3000;
+    private int id;
 
     public Sponsorship(Sponsor sponsor, SponsoredClient sponsoredClient, double value, SponsorshipMediator sponsorshipMediator ){
         this.sponsor=sponsor;
         this.sponsoredClient=sponsoredClient;
         this.sponsorshipMediator=sponsorshipMediator;
         this.value= value;
+        this.id= clientID++;
 
     }
 
@@ -25,5 +28,7 @@ public class Sponsorship{
     public double getValue(){
         return value;
     }
+
+    public int getId(){ return id;}
 
 }

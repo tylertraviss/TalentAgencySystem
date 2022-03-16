@@ -180,7 +180,8 @@ public class Main {
         sponsorshipMediator.registerSponsorship(sponsorship2);
         sponsorshipMediator.registerSponsorship(sponsorship3);
 
-        sponsorshipMediator.discontinueSponsorship(sponsorship2);
+        sponsorshipMediator.discontinueSponsorship(3002);
+
 
         sponsorshipMediator.reportSponsorships();
 
