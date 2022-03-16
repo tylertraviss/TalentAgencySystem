@@ -3,7 +3,7 @@ package src.src.com.company;
 import java.util.ArrayList;
 import java.util.List;
 
-class SponsorshipMediator implements SponsorshipMediatorBase {
+public class SponsorshipMediator implements SponsorshipMediatorBase {
 
 	private List<Sponsorship> sponsorships;
 
@@ -18,6 +18,10 @@ class SponsorshipMediator implements SponsorshipMediatorBase {
 			instance = new SponsorshipMediator();
 
 		return instance;
+	}
+
+	public List<Sponsorship> getSponsorships() {
+		return sponsorships;
 	}
 
 	public void registerSponsorship(Sponsorship sponsorship) {
