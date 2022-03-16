@@ -29,30 +29,21 @@ public class Actor extends Client {
 	public String toConsole() {
 		String toReturn = "";
 
-		toReturn += "Client ID: " + id + System.lineSeparator();
-		toReturn += "Actor: " + name + System.lineSeparator();
-		toReturn += "Age: " + age + System.lineSeparator();
-		toReturn += "Gender: " + gender + System.lineSeparator();
-		toReturn += "Commission: " + commission + System.lineSeparator();
-		toReturn += "Revenue: " + annualRevenueGenerated + System.lineSeparator();
-		toReturn += "Nationality: " + nationality + System.lineSeparator();
-		toReturn += "Actor Type: " + actorType + System.lineSeparator();
+		toReturn += "Actor:\t\t" + name + System.lineSeparator();
 
-		toReturn += "Awards: ";
+		toReturn += super.toConsole();
+
+		toReturn += "Actor Type:\t" + actorType + System.lineSeparator();
+
 		if (awards != null)
-			for (var award : awards)
-				toReturn += award.toString() + " | ";
+			toReturn += printAwards();
 
-		toReturn += "\nExperiences: ";
 		if (experiences != null)
-			for (var exp : experiences)
-				toReturn += exp.toString() + " | ";
+			toReturn += printExperiences();
 
-		toReturn += "\nClients in group: ";
-		if (group != null)
-			for (var client : group)
-				toReturn += "     " + client.toString();
-		toReturn += System.lineSeparator();
+		if (group.size() > 0)
+			toReturn += printGroupMembers();
+
 		return toReturn;
 	}
 }
