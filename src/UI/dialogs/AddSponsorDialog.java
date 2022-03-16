@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -70,7 +71,20 @@ public class AddSponsorDialog extends JDialog {
 		/*
 		 * Combobox
 		 */
-		clientCBBox = new JComboBox(Company.getInstance().getClients().toArray());
+
+		var company = Company.getInstance();
+		var i = company.getClients().iterator();
+		var allClients = new ArrayList<>();
+
+		while (i.hasNext()) {
+			var client = (Client) i.next();
+			allClients.add(client);
+
+			for (var subClient : client.getGroup())
+				allClients.add(subClient);
+		}
+
+		clientCBBox = new JComboBox(allClients.toArray());
 		clientCBBox.setBorder(new CustomTitledBorder("Select Client"));
 		clientCBBox.setBounds(10, 171, 414, 50);
 		contentPanel.add(clientCBBox);
@@ -101,17 +115,17 @@ public class AddSponsorDialog extends JDialog {
 					sponsorIn = sponsor.getText();
 					clientIn = (Client) clientCBBox.getSelectedItem();
 					sponsoredAmountIn = Double.parseDouble(amount.getText());
-
 					Sponsor s = new Sponsor(sponsorIn, sponsorshipMediator);
 					SponsoredClient sc = new SponsoredClient(clientIn, sponsorshipMediator);
 					Sponsorship sp = new Sponsorship(s, sc, sponsoredAmountIn, sponsorshipMediator);
 
 					sponsorshipMediator.registerSponsorship(sp);
 
-					console.log("Added new Sponsor: " + s + " for client :\t" + sc);
+					console.log("Added new Sponsor for client :\t" + sc);
 
 					dispose();
-				}
+				} else
+					new ErrorDialog("Error", "Please fill in all the fields.");
 			}
 		});
 		buttonPanel.add(confirm);
@@ -132,6 +146,7 @@ public class AddSponsorDialog extends JDialog {
 	private boolean validateAllFields() {
 		boolean toReturn = true;
 
+		toReturn &= isFilled(sponsor);
 		toReturn &= validateDouble(amount.getText());
 		toReturn &= validateClient();
 
@@ -153,7 +168,7 @@ public class AddSponsorDialog extends JDialog {
 
 	private boolean validateClient() {
 		try {
-			String temp = clientCBBox.getSelectedItem().toString();
+			clientCBBox.getSelectedItem().toString();
 			return true;
 		} catch (NullPointerException e) {
 			return false;

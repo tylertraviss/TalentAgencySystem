@@ -114,7 +114,8 @@ public class AddEmployeeDialog extends JDialog {
 					console.log("Added new employee: " + employee.getName());
 
 					dispose();
-				}
+				}  else
+				new ErrorDialog("Error", "Please fill in all the fields.");
 			}
 
 		});

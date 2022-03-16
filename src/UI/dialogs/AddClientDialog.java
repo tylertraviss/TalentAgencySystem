@@ -169,7 +169,8 @@ public class AddClientDialog extends JDialog {
 
 					console.log("Added new client: " + toAdd.getName());
 					dispose();
-				}
+				} else
+					new ErrorDialog("Error", "Please fill in all the fields <br>(Awards and Experiences can be empty)");
 			}
 		});
 
@@ -319,22 +320,6 @@ public class AddClientDialog extends JDialog {
 
 		return toReturn;
 	}
-
-	// private Date strToDate(String date) {
-	// String temp[] = date.split("/");
-	// Date toReturn = null;
-
-	// if (temp.length != 3)
-	// return null;
-
-	// for (var i : temp)
-	// if (!validateIntegers(i))
-	// return null;
-
-	// toReturn = new Date(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]),
-	// Integer.parseInt(temp[2]));
-	// return toReturn;
-	// }
 
 	private List<Experience> strExpToList(String list) {
 		List<Experience> toReturn = new ArrayList<>();
