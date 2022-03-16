@@ -22,6 +22,7 @@ import UI.buttons.Button_Skeleton;
 import UI.fonts.PlaceholderFont;
 import UI.panels.ButtonPanel_Skeleton;
 import UI.panels.Header;
+import UI.textarea.ConsoleTA;
 import UI.textfields.TextField_Skeleton;
 import UI.utilities.ClientType;
 import src.src.com.company.Actor;
@@ -44,6 +45,8 @@ public class AddClientDialog extends JDialog {
 	private JLabel titleLabel;
 
 	public AddClientDialog(JDialog parentDialog) {
+		var console = ConsoleTA.getInstance();
+
 		setModal(true);
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		getContentPane().setLayout(null);
@@ -110,7 +113,6 @@ public class AddClientDialog extends JDialog {
 				double commissionIn, revenueGeneratedIn;
 				Instrument instrumentIn;
 
-				System.out.println(validateAllFields());
 				if (validateAllFields()) {
 					nameIn = name.getText();
 					genderIn = gender.getText();
@@ -123,11 +125,14 @@ public class AddClientDialog extends JDialog {
 						awardsIn = awards.getText();
 						awardList = strAwardToList(awardsIn);
 					}
-					group = (Client) groupCBBox.getSelectedItem();
+					var selectedItem = groupCBBox.getSelectedItem().toString();
+					if (selectedItem.equalsIgnoreCase("No Groups"))
+						group = null;
+					else
+						group = (Client) groupCBBox.getSelectedItem();
 					ageIn = Integer.parseInt(age.getText());
 					commissionIn = Double.parseDouble(commission.getText());
 					revenueGeneratedIn = Double.parseDouble(revenueGenerated.getText());
-					group = (Client) groupCBBox.getSelectedItem();
 					clientTypeInList = getClientTypeInfo();
 
 					switch ((ClientType) clientTypeCBBox.getSelectedItem()) {
@@ -157,13 +162,15 @@ public class AddClientDialog extends JDialog {
 									revenueGeneratedIn);
 							break;
 					}
+					if (group != null)
+						group.addToGroup(toAdd);
+					else
+						company.addClient(toAdd);
 
-					company.addClient(toAdd);
+					console.log("Added new client: " + toAdd.getName());
 					dispose();
 				}
-
 			}
-
 		});
 
 		buttonPanel.add(confirm);
@@ -173,6 +180,7 @@ public class AddClientDialog extends JDialog {
 		 */
 		groupCBBox = new JComboBox(Company.getInstance().getClients().toArray());
 		groupCBBox.setBounds(10, 397, 414, 50);
+		groupCBBox.addItem("No Groups");
 		groupCBBox.setBorder(new CustomTitledBorder("Existing Groups"));
 		getContentPane().add(groupCBBox);
 
@@ -302,13 +310,10 @@ public class AddClientDialog extends JDialog {
 		boolean toReturn = true;
 
 		toReturn &= isFilled(name);
-		toReturn &= isFilled(age);
 		toReturn &= validateIntegers(age.getText());
 		toReturn &= isFilled(gender);
 		toReturn &= isFilled(nationality);
-		toReturn &= isFilled(commission);
 		toReturn &= validateDoubles(commission.getText());
-		toReturn &= isFilled(revenueGenerated);
 		toReturn &= validateDoubles(revenueGenerated.getText());
 		toReturn &= clientTypeFilled();
 
