@@ -13,8 +13,15 @@ class SponsorshipMediator implements SponsorshipMediatorBase{
     }
 
 
-    public void discontinueSponsorship(Sponsorship sponsorship){
-        sponsorships.remove(sponsorship);
+    public void discontinueSponsorship(int id){
+        for(int i=0; i<sponsorships.size(); i++){
+            Sponsorship sponsorship = sponsorships.get(i);
+            if (sponsorship.getId()==id){
+                sponsorships.remove(sponsorship);
+            }
+
+        }
+
     }
 
 
