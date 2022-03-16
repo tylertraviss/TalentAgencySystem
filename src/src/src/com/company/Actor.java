@@ -35,14 +35,11 @@ public class Actor extends Client {
 
 		toReturn += "Actor Type:\t" + actorType + System.lineSeparator();
 
-		if (awards != null)
-			toReturn += printAwards();
+		toReturn += printAwards();
 
-		if (experiences != null)
-			toReturn += printExperiences();
+		toReturn += printExperiences();
 
-		if (group.size() > 0)
-			toReturn += printGroupMembers();
+		toReturn += printGroupMembers();
 
 		return toReturn;
 	}

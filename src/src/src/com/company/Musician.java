@@ -56,14 +56,11 @@ public class Musician extends Client {
 		toReturn += "Genre:\t\t" + genre + System.lineSeparator();
 		toReturn += "Instrument:\t" + instrument + System.lineSeparator();
 
-		if (awards != null)
-			toReturn += printAwards();
+		toReturn += printAwards();
 
-		if (experiences != null)
-			toReturn += printExperiences();
+		toReturn += printExperiences();
 
-		if (group.size() > 0)
-			toReturn += printGroupMembers();
+		toReturn += printGroupMembers();
 
 		return toReturn;
 	}

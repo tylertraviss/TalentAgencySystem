@@ -86,7 +86,7 @@ public abstract class Client extends Person {
 		String toReturn = "";
 
 		if (awards == null || awards.size() == 0) {
-			toReturn = "Awards: N/A" + System.lineSeparator();
+			toReturn = "Awards:\t\tN/A" + System.lineSeparator();
 			return toReturn;
 		}
 
@@ -101,7 +101,7 @@ public abstract class Client extends Person {
 		String toReturn = "";
 
 		if (experiences == null || experiences.size() == 0) {
-			toReturn = System.lineSeparator() + "Experiences: N/A" + System.lineSeparator();
+			toReturn = "Experiences:\tN/A" + System.lineSeparator();
 			return toReturn;
 		}
 
@@ -116,7 +116,7 @@ public abstract class Client extends Person {
 		String toReturn = "";
 
 		if (group.size() == 0) {
-			toReturn += System.lineSeparator() + "Clients in group: N/A" + System.lineSeparator();
+			toReturn += "Clients in group: N/A" + System.lineSeparator();
 			return toReturn;
 		}
 
@@ -124,7 +124,7 @@ public abstract class Client extends Person {
 		for (var client : group)
 			toReturn += client.toConsole() + System.lineSeparator();
 
-		toReturn += System.lineSeparator() + "======== END SUBORDINATES =========" + System.lineSeparator();
+		toReturn += System.lineSeparator() + "======== END GROUP MEMBERS =========" + System.lineSeparator();
 
 		return toReturn;
 	}

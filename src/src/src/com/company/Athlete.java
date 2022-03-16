@@ -57,14 +57,11 @@ public class Athlete extends Client {
         toReturn += "Height:\t\t" + height + System.lineSeparator();
         toReturn += "Weight:\t\t" + weight + System.lineSeparator();
 
-        if (awards != null)
-            toReturn += printAwards();
+        toReturn += printAwards();
 
-        if (experiences != null)
-            toReturn += printExperiences();
+        toReturn += printExperiences();
 
-        if (group.size() > 0)
-            toReturn += printGroupMembers();
+        toReturn += printGroupMembers();
 
         return toReturn;
     }
