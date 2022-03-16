@@ -32,6 +32,17 @@ public class SponsorshipMediator implements SponsorshipMediatorBase {
 		sponsorships.remove(sponsorship);
 	}
 
+	public Sponsorship getSponsorshipByClient(Client c) {
+
+		for (var sp : sponsorships) {
+			if (sp.getSponsoredClient().getName().equals(c.getName())) {
+				System.out.println(c.getName());
+				return sp;
+			}
+		}
+		return null;
+	}
+
 	public void reportSponsorships() {
 		System.out.println("Records of Current Sponsorships: \n\n");
 		// System.out.println(sponsorships);
