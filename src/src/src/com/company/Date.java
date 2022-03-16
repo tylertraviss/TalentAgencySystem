@@ -39,4 +39,8 @@ public class Date {
     public String displayDate(){
         return(this.month + "/" + this.day + "/" + this.year);
     }
+
+    public String toString() {
+        return day + "/" + month + "/" + year;
+    }
 }
