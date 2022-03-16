@@ -53,6 +53,10 @@ public abstract class Client extends Person {
 		this.group = group;
 	}
 
+	public void addToGroup(Client c) {
+		group.add(c);
+	}
+
 	public double getComsission() {
 		return commission;
 	}
@@ -74,8 +78,64 @@ public abstract class Client extends Person {
 		return commission * annualRevenueGenerated;
 	}
 
+	protected String printAwards() {
+		String toReturn = "";
+
+		if (experiences.size() == 0) {
+			toReturn = System.lineSeparator() + "Experiences: N/A" + System.lineSeparator();
+			return toReturn;
+		}
+
+		toReturn += "Awards:\t\t";
+		for (var award : awards) {
+			toReturn += award.toString() + " | ";
+		}
+		return toReturn;
+	}
+
+	protected String printExperiences() {
+		String toReturn = "";
+
+		if (experiences.size() == 0) {
+			toReturn = System.lineSeparator() + "Experiences: N/A" + System.lineSeparator();
+			return toReturn;
+		}
+
+		toReturn += System.lineSeparator() + "Experiences:\t";
+		for (var exp : experiences)
+			toReturn += exp.toString() + " | ";
+
+		return toReturn;
+	}
+
+	protected String printGroupMembers() {
+		String toReturn = "";
+
+		if (group.size() == 0) {
+			toReturn += System.lineSeparator() + "Clients in group: N/A" + System.lineSeparator();
+			return toReturn;
+		}
+
+		toReturn += System.lineSeparator() + "Clients in group:" + System.lineSeparator();
+		for (var client : group)
+			toReturn += client.toConsole();
+
+		toReturn += System.lineSeparator() + "======== END SUBORDINATES =========" + System.lineSeparator();
+
+		return toReturn;
+	}
+
 	public abstract String toString();
 
-	public abstract String toConsole();
+	public String toConsole() {
+
+		String toReturn = "";
+		toReturn += "Client ID:\t" + id + System.lineSeparator();
+		toReturn += super.toConsole();
+		toReturn += "Commission:\t" + commission + System.lineSeparator();
+		toReturn += "Revenue:\t" + annualRevenueGenerated + System.lineSeparator();
+
+		return toReturn;
+	}
 
 }
