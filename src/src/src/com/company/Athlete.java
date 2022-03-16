@@ -50,31 +50,21 @@ public class Athlete extends Client {
     public String toConsole() {
         String toReturn = "";
 
-        toReturn += "Client ID: " + id + System.lineSeparator();
-        toReturn += "Athelete: " + name + System.lineSeparator();
-        toReturn += "Age: " + age + System.lineSeparator();
-        toReturn += "Gender: " + gender + System.lineSeparator();
-        toReturn += "Commission: " + commission + System.lineSeparator();
-        toReturn += "Revenue: " + annualRevenueGenerated + System.lineSeparator();
-        toReturn += "Nationality: " + nationality + System.lineSeparator();
-        toReturn += "Height: " + height + System.lineSeparator();
-        toReturn += "Weight: " + weight + System.lineSeparator();
-        toReturn += "Sport Type: " + sportType + System.lineSeparator();
+        toReturn += "Athelete:\t" + name + System.lineSeparator();
+        toReturn += super.toConsole();
 
-        toReturn += "Awards: ";
+        toReturn += "Sport Type:\t" + sportType + System.lineSeparator();
+        toReturn += "Height:\t\t" + height + System.lineSeparator();
+        toReturn += "Weight:\t\t" + weight + System.lineSeparator();
+
         if (awards != null)
-            for (var award : awards)
-                toReturn += award.toString() + " | ";
+            toReturn += printAwards();
 
-        toReturn += "\nExperiences: ";
         if (experiences != null)
-            for (var exp : experiences)
-                toReturn += exp.toString() + " | ";
+            toReturn += printExperiences();
 
-        toReturn += "\nClients in group: ";
-        if (group != null)
-            for (var client : group)
-                toReturn += "    " + client.name;
+        if (group.size() > 0)
+            toReturn += printGroupMembers();
 
         return toReturn;
     }
