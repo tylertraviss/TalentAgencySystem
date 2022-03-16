@@ -16,6 +16,10 @@ public class SponsoredClient {
         return name;
     }
 
+    public Client getClient() {
+        return client;
+    }
+
     public String toString() {
         return name;
     }
