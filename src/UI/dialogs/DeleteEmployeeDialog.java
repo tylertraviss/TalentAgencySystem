@@ -2,6 +2,7 @@ package UI.dialogs;
 
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
@@ -19,19 +20,8 @@ public class DeleteEmployeeDialog extends AbstractDeleteDialog {
 		super("Remove Employee");
 		setLocationRelativeTo(parentDialog);
 
-		var allEmployees = new ArrayList<>();
-
-		var i = company.getEmployees().iterator();
-
-		while (i.hasNext()) {
-			Employee employee = (Employee) i.next();
-			allEmployees.add(employee);
-
-			for (var subClient : employee.getSubordinates())
-				allEmployees.add(subClient);
-		}
-
-		selectionCBBox.setModel(new DefaultComboBoxModel(allEmployees.toArray()));
+		selectionCBBox
+				.setModel(new DefaultComboBoxModel(getListOfSubordinates(company.getEmployees().get(0)).toArray()));
 	}
 
 	@Override
@@ -46,15 +36,47 @@ public class DeleteEmployeeDialog extends AbstractDeleteDialog {
 		if (company.getEmployees().contains(emp)) {
 			company.removeEmployee(emp);
 		} else {
-			for (var employee : company.getEmployees()) {
-				if (employee.getSubordinates().contains(emp)) {
-					employee.removeSubordinate(emp);
-				}
-			}
+			removeSubordinate(company.getEmployees().get(0), emp);
 		}
 
 		console.log("An employee has been removed : " + emp.getName());
 
+		dispose();
+
+	}
+
+	private boolean removeSubordinate(Employee emp, Employee toRemove) {
+		if (emp.getSubordinates().contains(toRemove)) {
+			emp.removeSubordinate(toRemove);
+			return true;
+		}
+
+		for (var sub : emp.getSubordinates()) {
+			var removed = removeSubordinate(sub, toRemove);
+
+			if (removed) {
+				return true;
+			}
+		}
+
+		return false;
+
+	}
+
+	private List<Employee> getListOfSubordinates(Employee emp) {
+		if (emp == null)
+			return null;
+
+		List<Employee> subList = new ArrayList<>();
+
+		subList.add(emp);
+
+		for (var sub : emp.getSubordinates()) {
+			var newSubList = getListOfSubordinates(sub);
+			subList.addAll(newSubList);
+		}
+
+		return subList;
 	}
 
 }
