@@ -1,13 +1,25 @@
 package src.src.com.company;
 
 public class Memento {
-    private Company companyState;
+    private Employee emp;
+    private Client client;
+    private Sponsorship sponsorship;
 
-    public Memento(Company companyState) {
-        this.companyState = companyState;
+    public Memento(Employee emp, Client client, Sponsorship sponsorship) {
+        this.emp = emp;
+        this.client = client;
+        this.sponsorship = sponsorship;
     }
 
-    public Company getCompanyState() {
-        return this.companyState;
+    public Employee getEmployee() {
+        return emp;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public Sponsorship getSponsor() {
+        return sponsorship;
     }
 }

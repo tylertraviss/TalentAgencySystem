@@ -32,6 +32,8 @@ import src.src.com.company.Client;
 import src.src.com.company.Company;
 import src.src.com.company.Experience;
 import src.src.com.company.Instrument;
+import src.src.com.company.MementoCreator;
+import src.src.com.company.MementoRestorer;
 import src.src.com.company.Musician;
 
 public class AddClientDialog extends JDialog {
@@ -114,6 +116,10 @@ public class AddClientDialog extends JDialog {
 				Instrument instrumentIn;
 
 				if (validateAllFields()) {
+
+					MementoCreator mCreator = MementoCreator.getInstance();
+					MementoRestorer mRestorer = MementoRestorer.getInstance();
+
 					nameIn = name.getText();
 					genderIn = gender.getText();
 					nationalityIn = nationality.getText();
@@ -166,6 +172,9 @@ public class AddClientDialog extends JDialog {
 						group.addToGroup(toAdd);
 					else
 						company.addClient(toAdd);
+
+					mCreator.setState(null, toAdd, null);
+					mRestorer.addMementoToList(mCreator.createMementoWithSetState());
 
 					company.sortPeople();
 

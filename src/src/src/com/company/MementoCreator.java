@@ -1,23 +1,59 @@
 package src.src.com.company;
 
 public class MementoCreator {
-    private Company companyState;
 
-    public void setCompanyState(Company companyState) {
-        this.companyState = companyState;
+    private Employee emp;
+    private Client client;
+    private Sponsorship sponsorship;
+    private static MementoCreator instance = null;
+
+    private MementoCreator() {
     }
 
-    public Company getCompanyState() {
-        return this.companyState;
+    public static MementoCreator getInstance() {
+        if (instance == null)
+            instance = new MementoCreator();
+
+        return instance;
     }
 
-    public Memento createMementoWithSetCompanyState() {
-        return new Memento(this.companyState);
+    public void setState(Employee emp, Client client, Sponsorship sponsorship) {
+        this.emp = emp;
+        this.client = client;
+        this.sponsorship = sponsorship;
     }
 
-    public void getCompanyStateFromMemento(Memento memento) {
-        if(memento != null) {
-            this.companyState = memento.getCompanyState();
+    public Employee getEmployee() {
+        return emp;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public Sponsorship getSponsorship() {
+        return sponsorship;
+    }
+
+    public Memento createMementoWithSetState() {
+        return new Memento(emp, client, sponsorship);
+    }
+
+    public void getEmployeeStateFromMemento(Memento memento) {
+        if (memento != null) {
+            this.emp = memento.getEmployee();
+        }
+    }
+
+    public void getClientStateFromMemento(Memento memento) {
+        if (memento != null) {
+            this.client = memento.getClient();
+        }
+    }
+
+    public void getSponsorStateFromMemento(Memento memento) {
+        if (memento != null) {
+            this.sponsorship = memento.getSponsor();
         }
     }
 }

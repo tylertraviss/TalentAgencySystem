@@ -108,13 +108,14 @@ public class Employee extends Person {
 		toReturn += "" + "End Date:\t" + contractEndDate.toString() + System.lineSeparator();
 
 		if (superior != null)
-			toReturn += "Superior:\t\t" + superior.name + System.lineSeparator();
+			toReturn += "Superior:\t" + superior.name + System.lineSeparator() + System.lineSeparator();
 		else
 			toReturn += "Superior: Null " + System.lineSeparator() + System.lineSeparator();
 
-		if (subordinates.size() > 0) {
-			toReturn += printSubordinates();
-		}
+		toReturn += printSubordinates();
+
+		if (subordinates.size() > 0)
+			toReturn += System.lineSeparator() + "======== END SUBORDINATES =========" + System.lineSeparator();
 
 		return toReturn;
 	}

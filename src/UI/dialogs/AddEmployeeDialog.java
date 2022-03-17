@@ -3,6 +3,8 @@ package UI.dialogs;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -24,6 +26,8 @@ import UI.textfields.TextField_Skeleton;
 import src.src.com.company.Company;
 import src.src.com.company.Date;
 import src.src.com.company.Employee;
+import src.src.com.company.MementoCreator;
+import src.src.com.company.MementoRestorer;
 
 public class AddEmployeeDialog extends JDialog {
 
@@ -87,6 +91,9 @@ public class AddEmployeeDialog extends JDialog {
 				int ageIn;
 
 				if (validateAllFields()) {
+					MementoCreator mCreator = MementoCreator.getInstance();
+					MementoRestorer mRestorer = MementoRestorer.getInstance();
+
 					nameIn = name.getText();
 					genderIn = gender.getText();
 					nationalityIn = nationality.getText();
@@ -113,6 +120,9 @@ public class AddEmployeeDialog extends JDialog {
 
 					company.sortPeople();
 					console.log("Added new employee: " + employee.getName());
+
+					mCreator.setState(employee, null, null);
+					mRestorer.addMementoToList(mCreator.createMementoWithSetState());
 
 					dispose();
 				} else
@@ -154,15 +164,36 @@ public class AddEmployeeDialog extends JDialog {
 		/*
 		 * ComboBox
 		 */
-		superiorCBBox = new JComboBox(company.getEmployees().toArray());
+		var allEmp = new ArrayList<>();
+
+		for (var emp : company.getEmployees())
+			allEmp.addAll(getListOfSubordinates(emp));
+
+		superiorCBBox = new JComboBox(allEmp.toArray());
 		superiorCBBox.addItem("No superior");
-		superiorCBBox.setSelectedIndex(company.amountofEmployees());
+		superiorCBBox.setSelectedIndex(allEmp.size());
 		superiorCBBox.setBorder(new CustomTitledBorder("Select Superior"));
 		superiorCBBox.setBounds(10, 358, 414, 50);
 		contentPanel.add(superiorCBBox);
 
 		setLocationRelativeTo(parentDialog);
 
+	}
+
+	private List<Employee> getListOfSubordinates(Employee emp) {
+		if (emp == null)
+			return null;
+
+		List<Employee> subList = new ArrayList<>();
+
+		subList.add(emp);
+
+		for (var sub : emp.getSubordinates()) {
+			var newSubList = getListOfSubordinates(sub);
+			subList.addAll(newSubList);
+		}
+
+		return subList;
 	}
 
 	private boolean validateInteger(String num) {

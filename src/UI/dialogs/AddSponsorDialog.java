@@ -24,6 +24,8 @@ import UI.textarea.ConsoleTA;
 import UI.textfields.TextField_Skeleton;
 import src.src.com.company.Client;
 import src.src.com.company.Company;
+import src.src.com.company.MementoCreator;
+import src.src.com.company.MementoRestorer;
 import src.src.com.company.Sponsor;
 import src.src.com.company.SponsoredClient;
 import src.src.com.company.Sponsorship;
@@ -71,7 +73,6 @@ public class AddSponsorDialog extends JDialog {
 		/*
 		 * Combobox
 		 */
-
 		var company = Company.getInstance();
 		var i = company.getClients().iterator();
 		var allClients = new ArrayList<>();
@@ -112,6 +113,9 @@ public class AddSponsorDialog extends JDialog {
 				double sponsoredAmountIn;
 
 				if (validateAllFields()) {
+					MementoCreator mCreator = MementoCreator.getInstance();
+					MementoRestorer mRestorer = MementoRestorer.getInstance();
+
 					sponsorIn = sponsor.getText();
 					clientIn = (Client) clientCBBox.getSelectedItem();
 					sponsoredAmountIn = Double.parseDouble(amount.getText());
@@ -124,6 +128,9 @@ public class AddSponsorDialog extends JDialog {
 					console.log("Added new Sponsor for client :\t" + sc);
 
 					sponsorshipMediator.sortSponsors();
+
+					mCreator.setState(null, null, sp);
+					mRestorer.addMementoToList(mCreator.createMementoWithSetState());
 
 					dispose();
 				} else

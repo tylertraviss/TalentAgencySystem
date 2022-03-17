@@ -19,6 +19,10 @@ import UI.dialogs.EditSponsorDialog;
 import UI.dialogs.PrintDialog;
 import UI.panels.Header;
 import UI.textarea.ConsoleTA;
+import src.src.com.company.Company;
+import src.src.com.company.Employee;
+import src.src.com.company.MementoRestorer;
+import src.src.com.company.SponsorshipMediator;
 
 public class MainFrame {
 
@@ -126,7 +130,36 @@ public class MainFrame {
 		undo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Edward add your undo function here
+				MementoRestorer mRestorer = MementoRestorer.getInstance();
+				SponsorshipMediator sponsorshipMediator = SponsorshipMediator.getInstance();
+				Company company = Company.getInstance();
+				var memento = mRestorer.getLastMemento();
+
+				if (memento == null)
+					return;
+				var empToRemove = memento.getEmployee();
+				var clientToRemove = memento.getClient();
+				var sponsorship = memento.getSponsor();
+
+				if (empToRemove != null) {
+					if (company.getEmployees().contains(empToRemove))
+						company.removeEmployee(empToRemove);
+					else {
+						removeSubordinate(company.getEmployees().get(0), empToRemove);
+					}
+				} else if (clientToRemove != null) {
+					if (company.getClients().contains(clientToRemove))
+						company.removeClient(clientToRemove);
+					else
+						for (var client : company.getClients())
+							if (client.getGroup().contains(clientToRemove))
+								client.removeFromGroup(clientToRemove);
+
+				} else if (sponsorship != null) {
+					sponsorshipMediator.discontinueSponsorship(sponsorship);
+				}
+
+				mRestorer.removeLastMemento();
 			}
 		});
 		/*
@@ -137,5 +170,23 @@ public class MainFrame {
 		buttonPanel.add(editSponsor);
 		buttonPanel.add(print);
 		buttonPanel.add(undo);
+	}
+
+	private boolean removeSubordinate(Employee emp, Employee toRemove) {
+		if (emp.getSubordinates().contains(toRemove)) {
+			emp.removeSubordinate(toRemove);
+			return true;
+		}
+
+		for (var sub : emp.getSubordinates()) {
+			var removed = removeSubordinate(sub, toRemove);
+
+			if (removed) {
+				return true;
+			}
+		}
+
+		return false;
+
 	}
 }
