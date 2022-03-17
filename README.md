@@ -1,36 +1,43 @@
-<h1 align="center">Talent Agency System</h1>
+<h1 align=center> Talent Agency System </h1>
 
-<p align="center">Project Description</p>
-In compliance with the standards of SWE4403 at The University of New Brunswick. The intent of the Talent Agency System is for the intended use of a private company responsible for managing, working, and editing information of their clientele, their management, and automating many metrics of the company's success.
+## :page_with_curl: Project Description 
+In compliance with the standards of SWE4403 at The University of New Brunswick. The intent of the Talent Agency System is for the intended use of a private company responsible for keeping track of their current clients, employees, and sponsorships for each of their clients.
 
-***
+## :sparkles: Compile and Run
+  
+* To run the project, open the terminal and switch your directory to `TalentAgencySystem` and to `src` using the command below:
+```
+cd src
+```
+* When you are in the right directory (~/TalentAgencySystem/src)  to compile the project, use the command below:
+```
+javac -cp . ./UI/MainFrame.java
+```
+* After compiling the project, use the following command to run it:
+```
+java UI/MainFrame
+```
 
-<p align="center">Contributing Tools</p>
+## :smile: Contributors 
 
-- Java JDK 17
-- Design Patterns Implementation
-- UML Diagrams
+* [**Tyler Travis**](https://github.com/tylertraviss) | Developer 
 
-***
+* [**Kisenge Mbaga**](https://github.com/kisenge)  | Developer
 
-<p align="center">Future Updates</p>
-- TBD 
+* [**Ben Irvine**](https://github.com/Ben-F-Irvine)  | Developer
 
-***
+* [**Elliot Chin**](https://github.com/Elliot-Chin)  | Developer
 
-<p align="center">Team</p>
+* [**Edward Chang**](https://github.com/edwardchang7)  | Developer
 
-**Tyler Travis** | Developer 
 
-**Kisenge Mbaga** | Developer 
+## :hammer: Tools 
 
-**Ben Irvine** | Developer 
+* Java Development Kit (JDK) 11 (and above)
+* <span>Draw.io<span> 
 
-**Elliot Chin** | Developer 
+ 
+## :thought_balloon: Future Works 
+  
+* N/A
 
-**Edward Chang** | Developer 
-
-***
-
-<p align="center">How To Help</p>
-Give a ⭐️ if you like this project!
