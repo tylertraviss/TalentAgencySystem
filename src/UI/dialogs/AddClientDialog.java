@@ -190,7 +190,7 @@ public class AddClientDialog extends JDialog {
 		/*
 		 * ComboBox
 		 */
-		groupCBBox = new JComboBox(company.getClients().toArray());
+		groupCBBox = new JComboBox(company.getClientsForAdding().toArray());
 		groupCBBox.setBounds(10, 397, 414, 50);
 		groupCBBox.addItem("No Groups");
 		if (company.amountofClients() != 0)
