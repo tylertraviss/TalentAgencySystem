@@ -123,6 +123,8 @@ public class AddSponsorDialog extends JDialog {
 
 					console.log("Added new Sponsor for client :\t" + sc);
 
+					sponsorshipMediator.sortSponsors();
+
 					dispose();
 				} else
 					new ErrorDialog("Error", "Please fill in all the fields.");

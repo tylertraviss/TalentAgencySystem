@@ -1,6 +1,6 @@
 package src.src.com.company;
 
-public class Person {
+public class Person implements Comparable<Person> {
 
     protected String name;
     protected int age;
@@ -49,10 +49,15 @@ public class Person {
     public String toConsole() {
         String toReturn = "";
 
-        toReturn += "Age:\t\t" + age + System.lineSeparator();
-        toReturn += "Gender:\t\t" + gender + System.lineSeparator();
-        toReturn += "Nationality:\t" + nationality + System.lineSeparator();
+        toReturn += "" + "Age:\t\t" + age + System.lineSeparator();
+        toReturn += "" + "Gender:\t\t" + gender + System.lineSeparator();
+        toReturn += "" + "Nationality:\t" + nationality + System.lineSeparator();
 
         return toReturn;
+    }
+
+    @Override
+    public int compareTo(Person o) {
+        return this.name.compareToIgnoreCase(o.name);
     }
 }

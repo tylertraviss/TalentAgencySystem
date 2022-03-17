@@ -111,11 +111,12 @@ public class AddEmployeeDialog extends JDialog {
 					else
 						company.addEmployee(employee);
 
+					company.sortPeople();
 					console.log("Added new employee: " + employee.getName());
 
 					dispose();
-				}  else
-				new ErrorDialog("Error", "Please fill in all the fields.");
+				} else
+					new ErrorDialog("Error", "Please fill in all the fields.");
 			}
 
 		});
@@ -153,8 +154,9 @@ public class AddEmployeeDialog extends JDialog {
 		/*
 		 * ComboBox
 		 */
-		superiorCBBox = new JComboBox(Company.getInstance().getEmployees().toArray());
+		superiorCBBox = new JComboBox(company.getEmployees().toArray());
 		superiorCBBox.addItem("No superior");
+		superiorCBBox.setSelectedIndex(company.amountofEmployees());
 		superiorCBBox.setBorder(new CustomTitledBorder("Select Superior"));
 		superiorCBBox.setBounds(10, 358, 414, 50);
 		contentPanel.add(superiorCBBox);

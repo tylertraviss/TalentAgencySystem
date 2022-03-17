@@ -167,6 +167,8 @@ public class AddClientDialog extends JDialog {
 					else
 						company.addClient(toAdd);
 
+					company.sortPeople();
+
 					console.log("Added new client: " + toAdd.getName());
 					dispose();
 				} else
@@ -179,9 +181,11 @@ public class AddClientDialog extends JDialog {
 		/*
 		 * ComboBox
 		 */
-		groupCBBox = new JComboBox(Company.getInstance().getClients().toArray());
+		groupCBBox = new JComboBox(company.getClients().toArray());
 		groupCBBox.setBounds(10, 397, 414, 50);
 		groupCBBox.addItem("No Groups");
+		if (company.amountofClients() != 0)
+			groupCBBox.setSelectedIndex(company.amountofClients());
 		groupCBBox.setBorder(new CustomTitledBorder("Existing Groups"));
 		getContentPane().add(groupCBBox);
 

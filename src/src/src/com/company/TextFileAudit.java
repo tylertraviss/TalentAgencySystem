@@ -1,9 +1,9 @@
 package src.src.com.company;
 
 import java.io.BufferedWriter;
-import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class TextFileAudit implements AuditStrategy {
 
@@ -14,7 +14,7 @@ public class TextFileAudit implements AuditStrategy {
 
 	public TextFileAudit() throws IOException {
 		execute();
-		FileWriter writer = new FileWriter("GeneratedAudit.txt");
+		BufferedWriter writer = new BufferedWriter(new FileWriter("GeneratedAudit.txt"));
 
 		for (int i = 0; i < information.size(); i++) {
 			writer.write(information.get(i));

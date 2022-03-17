@@ -1,6 +1,7 @@
 package src.src.com.company;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Company {
@@ -131,6 +132,11 @@ public class Company {
 
 	public double annualNetIncome() {
 		return revenueGenerated() - sumEmployeesWages();
+	}
+
+	public void sortPeople() {
+		Collections.sort(clients);
+		Collections.sort(employees);
 	}
 
 }

@@ -1,6 +1,6 @@
 package src.src.com.company;
 
-public class Sponsorship {
+public class Sponsorship implements Comparable<Sponsorship> {
     private SponsorshipMediator sponsorshipMediator;
     private Sponsor sponsor;
     private SponsoredClient sponsoredClient;
@@ -35,6 +35,11 @@ public class Sponsorship {
         toReturn += "Amount Sponsored: " + value + System.lineSeparator();
 
         return toReturn;
+    }
+
+    @Override
+    public int compareTo(Sponsorship o) {
+        return this.sponsor.getSponsorName().compareToIgnoreCase(o.getSponsor().getSponsorName());
     }
 
 }

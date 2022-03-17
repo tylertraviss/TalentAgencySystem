@@ -1,6 +1,7 @@
 package src.src.com.company;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SponsorshipMediator implements SponsorshipMediatorBase {
@@ -41,6 +42,10 @@ public class SponsorshipMediator implements SponsorshipMediatorBase {
 			}
 		}
 		return null;
+	}
+
+	public void sortSponsors() {
+		Collections.sort(sponsorships);
 	}
 
 	public void reportSponsorships() {
