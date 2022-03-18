@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import UI.textarea.ConsoleTA;
+
 public class Company {
 
 	private String name;
@@ -43,7 +45,28 @@ public class Company {
 	}
 
 	public List<Employee> getEmployees() {
-		return employees;
+		List<Employee> toReturn = new ArrayList<>();
+		if (employees.size() > 0) {
+			for (var emp : employees)
+				toReturn.addAll(getEmployees(emp));
+		}
+		return toReturn;
+	}
+
+	public List<Employee> getEmployees(Employee emp) {
+		if (emp == null)
+			return null;
+
+		List<Employee> subList = new ArrayList<>();
+
+		subList.add(emp);
+
+		for (var sub : emp.getSubordinates()) {
+			var newSubList = getEmployees(sub);
+			subList.addAll(newSubList);
+		}
+
+		return subList;
 	}
 
 	public void setEmployees(List<Employee> employees) {
@@ -51,6 +74,16 @@ public class Company {
 	}
 
 	public List<Client> getClients() {
+		List<Client> toReturn = new ArrayList<>();
+		toReturn.addAll(clients);
+		for (var c : clients)
+			if (c.getGroup().size() > 0)
+				toReturn.addAll(c.getGroup());
+
+		return toReturn;
+	}
+
+	public List<Client> getClientsForAdding() {
 		return clients;
 	}
 
@@ -75,11 +108,26 @@ public class Company {
 	}
 
 	public void removeEmployee(Employee emp) {
-		employees.remove(emp);
+		if (employees.contains(emp))
+			employees.remove(emp);
+		else
+			removeSubordinate(employees.get(0), emp);
 	}
 
 	public void removeClient(Client client) {
-		clients.remove(client);
+		if (clients.contains(client))
+			clients.remove(client);
+		else {
+			for (var c : clients) {
+				if (c.getGroup().contains(client)) {
+					c.removeFromGroup(client);
+					break;
+				}
+
+			}
+		}
+
+		removeSponsorship(client);
 	}
 
 	// Calculating Wages of All Employees
@@ -119,11 +167,11 @@ public class Company {
 	}
 
 	public int amountofEmployees() {
-		return employees.size();
+		return getEmployees().size();
 	}
 
 	public int amountofClients() {
-		return clients.size();
+		return getClients().size();
 	}
 
 	public double averageEmployeeWage() {
@@ -137,6 +185,47 @@ public class Company {
 	public void sortPeople() {
 		Collections.sort(clients);
 		Collections.sort(employees);
+	}
+
+	private boolean removeSubordinate(Employee emp, Employee toRemove) {
+		if (emp.getSubordinates().contains(toRemove)) {
+			emp.removeSubordinate(toRemove);
+			return true;
+		}
+
+		for (var sub : emp.getSubordinates()) {
+			var removed = removeSubordinate(sub, toRemove);
+
+			if (removed) {
+				return true;
+			}
+		}
+
+		return false;
+
+	}
+
+	private void removeSponsorship(Client c) {
+		var sponsorshipMediator = SponsorshipMediator.getInstance();
+		var console = ConsoleTA.getInstance();
+		var sponsorship = sponsorshipMediator.getSponsorshipByClient(c);
+
+		if (sponsorship != null) {
+			sponsorshipMediator.discontinueSponsorship(sponsorship);
+			console.log("The sponsor for Client [" + c.getName() + "] has been discontinued");
+		}
+
+		if (c.getGroup().size() > 0) {
+			for (var subClient : c.getGroup()) {
+				var subSponsorship = sponsorshipMediator.getSponsorshipByClient(subClient);
+
+				if (subSponsorship != null) {
+					sponsorshipMediator.discontinueSponsorship(subSponsorship);
+					console.log("The sponsor for Client [" + subClient.getName() + "] has been discontinued");
+				}
+			}
+
+		}
 	}
 
 }

@@ -27,11 +27,20 @@ public class ConsoleTA extends JTextArea {
 	}
 
 	public void log(String string) {
+		int start = getCaretPosition();
 		context += string + System.lineSeparator() + System.lineSeparator();
 		setText(context);
+		int end = getCaretPosition();
 
+		System.out.println(start + " " + end);
+
+		setCaretPosition(end);
+		moveCaretPosition(start + 10);
+
+		requestFocus();
 		revalidate();
 		repaint();
+
 	}
 
 }
