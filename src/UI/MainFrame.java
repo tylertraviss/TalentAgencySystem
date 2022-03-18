@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 import UI.borders.WindowBorder;
 import UI.buttons.Button_Skeleton;
@@ -19,6 +20,7 @@ import UI.dialogs.PrintDialog;
 import UI.panels.Header;
 import UI.textarea.ConsoleTA;
 import src.src.com.company.Company;
+import src.src.com.company.Employee;
 import src.src.com.company.MementoRestorer;
 import src.src.com.company.SponsorshipMediator;
 
@@ -28,7 +30,7 @@ public class MainFrame {
 
 	private JPanel buttonPanel, header;
 
-	private ConsoleTA consoleTA;
+	private JTextArea consoleTA;
 
 	private JButton editClient, editEmployee, editSponsor, print, undo;
 	private JScrollPane consoleSP;
@@ -133,28 +135,31 @@ public class MainFrame {
 				Company company = Company.getInstance();
 				var memento = mRestorer.getLastMemento();
 
-				if (memento == null) {
-					consoleTA.log("Nothing to undo.");
+				if (memento == null)
 					return;
-				}
 				var empToRemove = memento.getEmployee();
 				var clientToRemove = memento.getClient();
 				var sponsorship = memento.getSponsor();
 
 				if (empToRemove != null) {
-					company.removeEmployee(empToRemove);
-
+					if (company.getEmployees().contains(empToRemove))
+						company.removeEmployee(empToRemove);
+					else {
+						removeSubordinate(company.getEmployees().get(0), empToRemove);
+					}
 				} else if (clientToRemove != null) {
-					company.removeClient(clientToRemove);
+					if (company.getClients().contains(clientToRemove))
+						company.removeClient(clientToRemove);
+					else
+						for (var client : company.getClients())
+							if (client.getGroup().contains(clientToRemove))
+								client.removeFromGroup(clientToRemove);
 
 				} else if (sponsorship != null) {
 					sponsorshipMediator.discontinueSponsorship(sponsorship);
 				}
 
-
 				mRestorer.removeLastMemento();
-
-				consoleTA.log("Previous action have been undone.");
 			}
 		});
 		/*
@@ -165,5 +170,23 @@ public class MainFrame {
 		buttonPanel.add(editSponsor);
 		buttonPanel.add(print);
 		buttonPanel.add(undo);
+	}
+
+	private boolean removeSubordinate(Employee emp, Employee toRemove) {
+		if (emp.getSubordinates().contains(toRemove)) {
+			emp.removeSubordinate(toRemove);
+			return true;
+		}
+
+		for (var sub : emp.getSubordinates()) {
+			var removed = removeSubordinate(sub, toRemove);
+
+			if (removed) {
+				return true;
+			}
+		}
+
+		return false;
+
 	}
 }
