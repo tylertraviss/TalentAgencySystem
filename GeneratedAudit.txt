@@ -2,19 +2,16 @@ Company Information:
 null
 Location: null
 Employees: 0
-Clients: 1
+Clients: 0
  
 Fiscal Situation:
-Net Income: 1.0
-Income: 1.0
+Net Income: 0.0
+Income: 0.0
 Expenses: 0.0
 Average Employee Wage: NaN
-Average Client Value: 1.0
-Average Client Commission: 1.0
+Average Client Value: NaN
+Average Client Commission: NaN
 
 Employee Information: 
 
 Client Information: 
-1004 | 1 | Value: 1.0
-Revenue Generated: 1.0
-
