@@ -23,6 +23,7 @@
 -- insert description of each component --
 
 # Commands to COMPILE the project
+* To run the project, open the terminal and switch your directory to `TalentAgencySystem` and to `src` using the command below:
 ```
 cd src
 ```
