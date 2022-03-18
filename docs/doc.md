@@ -2,6 +2,9 @@
 
 -- description of the project and the objectives we seek by applying the design patterns --
 
+# Contributors
+-- copy this from our readme.md --
+
 # UML DIagrams 
 ## System UML Diagram
 -- insert system UML -- <br>
