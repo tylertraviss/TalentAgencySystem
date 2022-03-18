@@ -87,6 +87,15 @@ public class Employee extends Person {
 		return name;
 	}
 
+	private String printSubordinates() {
+		String toReturn = "";
+
+		for (var sub : subordinates)
+			toReturn += sub.toConsole() + System.lineSeparator();
+
+		return toReturn;
+	}
+
 	@Override
 	public String toConsole() {
 		String toReturn = "";
@@ -102,6 +111,11 @@ public class Employee extends Person {
 			toReturn += "Superior:\t" + superior.name + System.lineSeparator() + System.lineSeparator();
 		else
 			toReturn += "Superior: Null " + System.lineSeparator() + System.lineSeparator();
+
+		toReturn += printSubordinates();
+
+		if (subordinates.size() > 0)
+			toReturn += System.lineSeparator() + "======== END SUBORDINATES =========" + System.lineSeparator();
 
 		return toReturn;
 	}

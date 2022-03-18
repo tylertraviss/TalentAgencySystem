@@ -164,17 +164,36 @@ public class AddEmployeeDialog extends JDialog {
 		/*
 		 * ComboBox
 		 */
-		
+		var allEmp = new ArrayList<>();
 
-		superiorCBBox = new JComboBox(company.getEmployees().toArray());
+		for (var emp : company.getEmployees())
+			allEmp.addAll(getListOfSubordinates(emp));
+
+		superiorCBBox = new JComboBox(allEmp.toArray());
 		superiorCBBox.addItem("No superior");
-		superiorCBBox.setSelectedIndex(company.getEmployees().size());
+		superiorCBBox.setSelectedIndex(allEmp.size());
 		superiorCBBox.setBorder(new CustomTitledBorder("Select Superior"));
 		superiorCBBox.setBounds(10, 358, 414, 50);
 		contentPanel.add(superiorCBBox);
 
 		setLocationRelativeTo(parentDialog);
 
+	}
+
+	private List<Employee> getListOfSubordinates(Employee emp) {
+		if (emp == null)
+			return null;
+
+		List<Employee> subList = new ArrayList<>();
+
+		subList.add(emp);
+
+		for (var sub : emp.getSubordinates()) {
+			var newSubList = getListOfSubordinates(sub);
+			subList.addAll(newSubList);
+		}
+
+		return subList;
 	}
 
 	private boolean validateInteger(String num) {

@@ -63,10 +63,6 @@ public class Athlete extends Client {
 
         toReturn += printGroupMembers();
 
-        if (group.size() > 0)
-			toReturn += "============ END OF GROUP MEMEBERS ============";
-
-
         return toReturn;
     }
 
