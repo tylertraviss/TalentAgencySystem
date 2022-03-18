@@ -3,7 +3,15 @@
 -- description of the project and the objectives we seek by applying the design patterns --
 
 # Contributors
--- copy this from our readme.md --
+* [**Tyler Travis**](https://github.com/tylertraviss) | Developer 
+
+* [**Kisenge Mbaga**](https://github.com/kisenge)  | Developer
+
+* [**Ben Irvine**](https://github.com/Ben-F-Irvine)  | Developer
+
+* [**Elliot Chin**](https://github.com/Elliot-Chin)  | Developer
+
+* [**Edward Chang**](https://github.com/edwardchang7)  | Developer
 
 # UML DIagrams 
 ## System UML Diagram
@@ -15,11 +23,16 @@
 -- insert description of each component --
 
 # Commands to COMPILE the project
-```bash
--- copy this from our readme.md --
+```
+cd src
+```
+* When you are in the right directory (~/TalentAgencySystem/src)  to compile the project, use the command below:
+```
+javac -cp . ./UI/MainFrame.java
 ```
 
 # Commands to RUN the project
-```bash
--- copy this from our readme.md --
+* After compiling the project, use the following command to run it:
+```
+java UI/MainFrame
 ```
