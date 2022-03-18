@@ -1,4 +1,4 @@
-# :star:Talent Agency System
+# <HTML><center>  :star:Talent Agency System </center></html>
 
 -- description of the project and the objectives we seek by applying the design patterns --
 
@@ -12,7 +12,11 @@
 -- insert description of each component --
 
 # Commands to COMPILE the project
+```bash
 -- copy this from our readme.md --
+```
 
 # Commands to RUN the project
+```bash
 -- copy this from our readme.md --
+```
