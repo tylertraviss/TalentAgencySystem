@@ -121,10 +121,10 @@ public abstract class Client extends Person {
 		}
 
 		toReturn += "Clients in group:" + System.lineSeparator() + System.lineSeparator();
-
 		for (var client : group)
 			toReturn += client.toConsole() + System.lineSeparator();
 
+		toReturn += System.lineSeparator() + "======== END GROUP MEMBERS =========" + System.lineSeparator();
 
 		return toReturn;
 	}
