@@ -7,10 +7,11 @@ public class Musician extends Client {
 	private String genre;
 	private Instrument instrument;
 
-	public Musician(String name, int age, String gender, String nationality, List<Experience> experiences,
-			double commission, List<Award> awards, String stageName, String genre,
-			Instrument instrument, double revenueGenerated) {
+	public Musician(String name, int age, String gender, String nationality,
+			List<Experience> experiences, double commission, List<Award> awards, double revenueGenerated,
+			String stageName, String genre, Instrument instrument) {
 		super(name, age, gender, nationality, experiences, commission, awards, revenueGenerated);
+		
 		this.stageName = stageName;
 		this.genre = genre;
 		this.instrument = instrument;
@@ -49,21 +50,17 @@ public class Musician extends Client {
 		String toReturn = "";
 
 		toReturn += "Musician:\t" + getName() + System.lineSeparator();
-
 		toReturn += super.getStringToPrintToConsole();
-
 		toReturn += "Stage Name:\t" + stageName + System.lineSeparator();
 		toReturn += "Genre:\t\t" + genre + System.lineSeparator();
 		toReturn += "Instrument:\t" + instrument + System.lineSeparator();
-
 		toReturn += printAwards();
-
 		toReturn += printExperiences();
-
 		toReturn += printGroupMembers();
 
-		if (getGroup().size() > 0)
+		if(getGroup().size() > 0) {
 			toReturn += "============ END OF GROUP MEMEBERS ============";
+		}
 
 		return toReturn;
 	}
