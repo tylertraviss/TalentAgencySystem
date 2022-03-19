@@ -58,13 +58,13 @@ public class Employee extends Person {
 	public Date getContractEndDate() {
 		return contractEndDate;
 	}
-
-	public List<Employee> getSubordinates() {
-		return subordinates;
-	}
 	
 	public void setSubordinates(List<Employee> subordinates) {
 		this.subordinates = subordinates;
+	}
+
+	public List<Employee> getSubordinates() {
+		return subordinates;
 	}
 	
 	public void addSubordinate(Employee e) {

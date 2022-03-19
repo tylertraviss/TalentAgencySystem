@@ -1,13 +1,10 @@
 package src.src.com.company;
 
 public class Experience {
-
     private String jobTitle;
 
-    // # Add Constructor
-
-    public Experience(String jobTititle) {
-        this.jobTitle = jobTititle;
+    public Experience(String jobTitle) {
+        this.jobTitle = jobTitle;
     }
 
     public String getJobTitle() {
