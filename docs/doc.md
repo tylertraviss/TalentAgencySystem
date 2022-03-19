@@ -1,6 +1,6 @@
 # <HTML><center>  :star:Talent Agency System </center></html>
 
-The intent of the Talent Agency System is for the intended use of a private company responsible for keeping track of their current clients, employees, and sponsorships for each of their clients.
+In compliance with the standards of SWE4403 at The University of New Brunswick. The intent of the Talent Agency System is for the intended use of a private company responsible for keeping track of their current clients, employees, and sponsorships for each of their clients.
 
 # Contributors
 * [**Tyler Travis**](https://github.com/tylertraviss) | Developer 
