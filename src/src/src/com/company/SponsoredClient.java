@@ -9,7 +9,6 @@ public class SponsoredClient {
         this.sponsorshipMediator = sponsorshipMediator;
         this.client = client;
         this.name = client.getName();
-
     }
 
     public String getName() {
@@ -23,5 +22,4 @@ public class SponsoredClient {
     public String toString() {
         return name;
     }
-
 }

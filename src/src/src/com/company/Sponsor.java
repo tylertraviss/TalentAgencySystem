@@ -7,7 +7,6 @@ public class Sponsor {
     public Sponsor(String sponsorName, SponsorshipMediator sponsorMediator) {
         this.sponsorshipMediator = sponsorMediator;
         this.sponsorName = sponsorName;
-
     }
 
     public String getSponsorName() {
@@ -17,5 +16,4 @@ public class Sponsor {
     public String toString() {
         return "\t" + sponsorName;
     }
-
 }

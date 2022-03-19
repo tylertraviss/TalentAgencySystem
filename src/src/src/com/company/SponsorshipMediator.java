@@ -5,18 +5,17 @@ import java.util.Collections;
 import java.util.List;
 
 public class SponsorshipMediator implements SponsorshipMediatorBase {
-
 	private List<Sponsorship> sponsorships;
-
 	private static SponsorshipMediator instance = null;
 
 	private SponsorshipMediator() {
-		sponsorships = new ArrayList<>();
+		sponsorships = new ArrayList<Sponsorship>();
 	}
 
 	public static SponsorshipMediator getInstance() {
-		if (instance == null)
+		if(instance == null) {			
 			instance = new SponsorshipMediator();
+		}
 
 		return instance;
 	}
@@ -34,13 +33,13 @@ public class SponsorshipMediator implements SponsorshipMediatorBase {
 	}
 
 	public Sponsorship getSponsorshipByClient(Client c) {
-
-		for (var sp : sponsorships) {
-			if (sp.getSponsoredClient().getName().equals(c.getName())) {
+		for(var sp : sponsorships) {
+			if(sp.getSponsoredClient().getName().equals(c.getName())) {
 				System.out.println(c.getName());
 				return sp;
 			}
 		}
+		
 		return null;
 	}
 
@@ -50,13 +49,11 @@ public class SponsorshipMediator implements SponsorshipMediatorBase {
 
 	public void reportSponsorships() {
 		System.out.println("Records of Current Sponsorships: \n\n");
-		// System.out.println(sponsorships);
-
-		for (int i = 0; i < sponsorships.size(); i++) {
+		
+		for(int i = 0; i < sponsorships.size(); i++) {
 			System.out.println(sponsorships.get(i).getSponsor().getSponsorName() + " is sponsoring "
 					+ sponsorships.get(i).getSponsoredClient().getName() + " at $" + sponsorships.get(i).getValue()
 					+ " a year.");
 		}
 	}
-
 }

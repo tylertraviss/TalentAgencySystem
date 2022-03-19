@@ -12,7 +12,6 @@ public class Sponsorship implements Comparable<Sponsorship> {
         this.sponsoredClient = sponsoredClient;
         this.sponsorshipMediator = sponsorshipMediator;
         this.value = value;
-
     }
 
     public Sponsor getSponsor() {
@@ -45,5 +44,4 @@ public class Sponsorship implements Comparable<Sponsorship> {
     public int compareTo(Sponsorship o) {
         return this.sponsor.getSponsorName().compareToIgnoreCase(o.getSponsor().getSponsorName());
     }
-
 }
