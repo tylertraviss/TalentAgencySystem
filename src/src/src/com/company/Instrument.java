@@ -1,8 +1,7 @@
 package src.src.com.company;
 
 public class Instrument {
-
-	String instrumentName;
+	private String instrumentName;
 
 	public Instrument(String instrumentName) {
 		this.instrumentName = instrumentName;

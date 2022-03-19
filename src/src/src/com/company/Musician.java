@@ -7,10 +7,11 @@ public class Musician extends Client {
 	private String genre;
 	private Instrument instrument;
 
-	public Musician(String name, int age, String gender, String nationality, List<Experience> experiences,
-			double commission, List<Award> awards, String stageName, String genre,
-			Instrument instrument, double revenueGenerated) {
+	public Musician(String name, int age, String gender, String nationality,
+			List<Experience> experiences, double commission, List<Award> awards, double revenueGenerated,
+			String stageName, String genre, Instrument instrument) {
 		super(name, age, gender, nationality, experiences, commission, awards, revenueGenerated);
+		
 		this.stageName = stageName;
 		this.genre = genre;
 		this.instrument = instrument;
@@ -41,27 +42,26 @@ public class Musician extends Client {
 	}
 
 	public String toString() {
-		return "Musician | " + name;
+		return "Musician | " + getName();
 	}
 
 	@Override
-	public String toConsole() {
-		String toReturn = "";
+	public String getStringToPrintToConsole() {
+		String stringToReturn = "";
 
-		toReturn += "Musician:\t" + name + System.lineSeparator();
+		stringToReturn += "Musician:\t" + getName() + System.lineSeparator();
+		stringToReturn += super.getStringToPrintToConsole();
+		stringToReturn += "Stage Name:\t" + stageName + System.lineSeparator();
+		stringToReturn += "Genre:\t\t" + genre + System.lineSeparator();
+		stringToReturn += "Instrument:\t" + instrument + System.lineSeparator();
+		stringToReturn += printAwards();
+		stringToReturn += printExperiences();
+		stringToReturn += printGroupMembers();
 
-		toReturn += super.toConsole();
+		if(getGroup().size() > 0) {
+			stringToReturn += "============ END OF GROUP MEMEBERS ============";
+		}
 
-		toReturn += "Stage Name:\t" + stageName + System.lineSeparator();
-		toReturn += "Genre:\t\t" + genre + System.lineSeparator();
-		toReturn += "Instrument:\t" + instrument + System.lineSeparator();
-
-		toReturn += printAwards();
-
-		toReturn += printExperiences();
-
-		toReturn += printGroupMembers();
-
-		return toReturn;
+		return stringToReturn;
 	}
 }

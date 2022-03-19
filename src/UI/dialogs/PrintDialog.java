@@ -28,8 +28,9 @@ public class PrintDialog extends AbstractEditDialog {
 		addButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				TextFileAudit textFileAudit = new TextFileAudit();
 				try {
-					new TextFileAudit();
+					textFileAudit.writeInformationToTextFile();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -57,15 +58,19 @@ public class PrintDialog extends AbstractEditDialog {
 				var console = ConsoleTA.getInstance();
 				var sponsorshipMediator = SponsorshipMediator.getInstance();
 
+				console.log("Client Count : " + company.getNumberOfClients());
+				console.log("Employee Count: " + company.getNumberOfEmployees());
+				console.log("Sponsorship Count: " + sponsorshipMediator.getSponsorships().size());
+
 				console.log(SEPERATOR);
 
 				console.log("\t\tCLIENT LIST");
 
-				if (company.getClients().size() == 0)
+				if (company.getAllClients().size() == 0)
 					console.log("No Clients Yet");
 				else
 					for (var client : company.getClients())
-						console.log(client.toConsole());
+						console.log(client.getStringToPrintToConsole());
 
 				console.log(SEPERATOR);
 
@@ -75,7 +80,7 @@ public class PrintDialog extends AbstractEditDialog {
 					console.log("No Employees Yet");
 				else
 					for (var emp : company.getEmployees())
-						console.log(emp.toConsole());
+						console.log(emp.getStringToPrintToConsole());
 
 				console.log(SEPERATOR);
 
@@ -85,7 +90,7 @@ public class PrintDialog extends AbstractEditDialog {
 					console.log("No Sponsors Yet");
 				else
 					for (var sp : sponsorshipMediator.getSponsorships())
-						console.log(sp.toConsole());
+						console.log(sp.getStringToPrintToConsole());
 
 				console.log(SEPERATOR);
 				dispose();

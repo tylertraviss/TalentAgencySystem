@@ -1,7 +1,6 @@
 package src.src.com.company;
 
 public class Award {
-
 	private String name;
 
 	public Award(String name) {

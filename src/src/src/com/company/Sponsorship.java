@@ -12,7 +12,6 @@ public class Sponsorship implements Comparable<Sponsorship> {
         this.sponsoredClient = sponsoredClient;
         this.sponsorshipMediator = sponsorshipMediator;
         this.value = value;
-
     }
 
     public Sponsor getSponsor() {
@@ -27,19 +26,22 @@ public class Sponsorship implements Comparable<Sponsorship> {
         return value;
     }
 
-    public String toConsole() {
-        String toReturn = "";
+    public String getStringToPrintToConsole() {
+        String stringToReturn = "";
 
-        toReturn += "Sponsor: " + sponsor + System.lineSeparator();
-        toReturn += "Sponsored Client: " + sponsoredClient.toString() + System.lineSeparator();
-        toReturn += "Amount Sponsored: " + value + System.lineSeparator();
+        stringToReturn += "Sponsor: " + sponsor + System.lineSeparator();
+        stringToReturn += "Sponsored Client: " + sponsoredClient.toString() + System.lineSeparator();
+        stringToReturn += "Amount Sponsored: " + value + System.lineSeparator();
 
-        return toReturn;
+        return stringToReturn;
+    }
+
+    public String toString() {
+        return "Sponsor | " + sponsor;
     }
 
     @Override
-    public int compareTo(Sponsorship o) {
-        return this.sponsor.getSponsorName().compareToIgnoreCase(o.getSponsor().getSponsorName());
+    public int compareTo(Sponsorship sponsorship) {
+        return this.sponsor.getSponsorName().compareToIgnoreCase(sponsorship.getSponsor().getSponsorName());
     }
-
 }

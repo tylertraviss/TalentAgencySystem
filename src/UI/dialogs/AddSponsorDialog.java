@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -74,18 +73,8 @@ public class AddSponsorDialog extends JDialog {
 		 * Combobox
 		 */
 		var company = Company.getInstance();
-		var i = company.getClients().iterator();
-		var allClients = new ArrayList<>();
 
-		while (i.hasNext()) {
-			var client = (Client) i.next();
-			allClients.add(client);
-
-			for (var subClient : client.getGroup())
-				allClients.add(subClient);
-		}
-
-		clientCBBox = new JComboBox(allClients.toArray());
+		clientCBBox = new JComboBox(company.getAllClients().toArray());
 		clientCBBox.setBorder(new CustomTitledBorder("Select Client"));
 		clientCBBox.setBounds(10, 171, 414, 50);
 		contentPanel.add(clientCBBox);

@@ -3,16 +3,15 @@ package src.src.com.company;
 import java.util.List;
 
 public class Athlete extends Client {
-
     private double height;
     private double weight;
     private String sportType;
 
-    public Athlete(String name, int age, String gender,
-            String nationality, List<Experience> experiences, double commission,
-            List<Award> awards, double height, double weight,
-            String sportType, double revenueGenerated) {
+    public Athlete(String name, int age, String gender, String nationality,
+    		List<Experience> experiences, double commission, List<Award> awards, double revenueGenerated,
+    		double height, double weight, String sportType) {
         super(name, age, gender, nationality, experiences, commission, awards, revenueGenerated);
+        
         this.height = height;
         this.weight = weight;
         this.sportType = sportType;
@@ -22,7 +21,7 @@ public class Athlete extends Client {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
@@ -43,27 +42,26 @@ public class Athlete extends Client {
     }
 
     public String toString() {
-        return "Athlete | " + name;
+        return "Athlete | " + getName();
     }
 
     @Override
-    public String toConsole() {
-        String toReturn = "";
+    public String getStringToPrintToConsole() {
+        String stringToReturn = "";
 
-        toReturn += "Athelete:\t" + name + System.lineSeparator();
-        toReturn += super.toConsole();
+        stringToReturn += "Athelete:\t" + getName() + System.lineSeparator();
+        stringToReturn += super.getStringToPrintToConsole();
+        stringToReturn += "Sport Type:\t" + sportType + System.lineSeparator();
+        stringToReturn += "Height:\t\t" + height + System.lineSeparator();
+        stringToReturn += "Weight:\t\t" + weight + System.lineSeparator();
+        stringToReturn += printAwards();
+        stringToReturn += printExperiences();
+        stringToReturn += printGroupMembers();
 
-        toReturn += "Sport Type:\t" + sportType + System.lineSeparator();
-        toReturn += "Height:\t\t" + height + System.lineSeparator();
-        toReturn += "Weight:\t\t" + weight + System.lineSeparator();
+        if(getGroup().size() > 0) {        	
+        	stringToReturn += "============ END OF GROUP MEMEBERS ============";
+        }
 
-        toReturn += printAwards();
-
-        toReturn += printExperiences();
-
-        toReturn += printGroupMembers();
-
-        return toReturn;
+        return stringToReturn;
     }
-
 }

@@ -1,11 +1,10 @@
 package src.src.com.company;
 
 public class Person implements Comparable<Person> {
-
-    protected String name;
-    protected int age;
-    protected String gender;
-    protected String nationality;
+    private String name;
+    private int age;
+    private String gender;
+    private String nationality;
 
     public Person(String name, int age, String gender, String nationality) {
         this.name = name;
@@ -46,18 +45,18 @@ public class Person implements Comparable<Person> {
         this.nationality = nationality;
     }
 
-    public String toConsole() {
-        String toReturn = "";
+    public String getStringToPrintToConsole() {
+        String stringToReturn = "";
 
-        toReturn += "" + "Age:\t\t" + age + System.lineSeparator();
-        toReturn += "" + "Gender:\t\t" + gender + System.lineSeparator();
-        toReturn += "" + "Nationality:\t" + nationality + System.lineSeparator();
+        stringToReturn += "Age:\t\t" + age + System.lineSeparator();
+        stringToReturn += "Gender:\t\t" + gender + System.lineSeparator();
+        stringToReturn += "Nationality:\t" + nationality + System.lineSeparator();
 
-        return toReturn;
+        return stringToReturn;
     }
 
     @Override
-    public int compareTo(Person o) {
-        return this.name.compareToIgnoreCase(o.name);
+    public int compareTo(Person person) {
+        return this.name.compareToIgnoreCase(person.name);
     }
 }
