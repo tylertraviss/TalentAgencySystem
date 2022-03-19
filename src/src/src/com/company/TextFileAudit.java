@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class TextFileAudit implements AuditStrategy {
+public class TextFileAudit implements AuditStrategyInterface {
 
 	private Company TalentAgencyCompany = Company.getInstance();
 	private ArrayList<String> information = new ArrayList<String>();

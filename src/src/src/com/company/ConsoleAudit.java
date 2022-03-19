@@ -1,20 +1,20 @@
 package src.src.com.company;
 
-public class ConsoleAudit implements AuditStrategy {
+public class ConsoleAudit implements AuditStrategyInterface {
     private Company talentAgencyCompany = Company.getInstance();
 
     @Override
     public void execute() {
-        companyInfo();
-        financialSituation();
-        employeeInformation();
-        clientInformation();
+        displayCompanyInformation();
+        displayFiscalSituation();
+        displayEmployeeInformation();
+        displayClientInformation();
     }
 
     /*
-        Displays information about company, location, and size.
-    */
-    private void companyInfo(){
+     * Displays information about company, location, and size.
+     */
+    private void displayCompanyInformation(){
         System.out.println("Company Information: ");
         System.out.println(talentAgencyCompany.getName());
         System.out.println("Location: " + talentAgencyCompany.getHqLoc());
@@ -23,10 +23,10 @@ public class ConsoleAudit implements AuditStrategy {
     }
 
     /*
-        Displays information about fiscal information of company.
-    */
-    private void financialSituation(){
-        System.out.println("");
+     * Displays information about fiscal situation of company.
+     */
+    private void displayFiscalSituation(){
+        System.out.println();
         System.out.println("Fiscal Situation:");
         System.out.println("Net Income: " + talentAgencyCompany.calculateAnnualNetIncome());
         System.out.println("Income: " + talentAgencyCompany.calculateClientTotalRevenue());
@@ -37,28 +37,29 @@ public class ConsoleAudit implements AuditStrategy {
     }
 
     /*
-        Displays information about employees.
-    */
-    private void employeeInformation(){
-        System.out.println("");
+     * Displays information about employees.
+     */
+    private void displayEmployeeInformation(){
+        System.out.println();
         System.out.println("Employee Information: ");
-        // Iterating through Employees
-        for (Employee E: talentAgencyCompany.getEmployees()){
-            System.out.println(""+ E.getId() + " | " + E.getName() + " | " + E.getJobTitle());
-            System.out.println("Contract: " + E.getContractStartDate().displayDate() + " -> " + E.getContractEndDate().displayDate());
-            System.out.println("Wage: " + E.getWage());
+        
+        for(Employee tempEmployee : talentAgencyCompany.getEmployees()){
+            System.out.println(""+ tempEmployee.getId() + " | " + tempEmployee.getName() + " | " + tempEmployee.getJobTitle());
+            System.out.println("Contract: " + tempEmployee.getContractStartDate().displayDate() + " -> " + tempEmployee.getContractEndDate().displayDate());
+            System.out.println("Wage: " + tempEmployee.getWage());
             System.out.println();
         }
     }
 
     /*
-        Displays information about clients.
-    */
-    private void clientInformation(){
+     * Displays information about clients.
+     */
+    private void displayClientInformation(){
         System.out.println("Client Information: ");
-        for (Client C: talentAgencyCompany.getAllClients()){
-            System.out.println(C.getId() + " | "+C.getName() + " | Value: " + C.getAnnualRevenueGenerated());
-            System.out.println("Revenue Generated: "+ C.getCalculatedRevenue());
+        
+        for (Client tempClient : talentAgencyCompany.getAllClients()){
+            System.out.println(tempClient.getId() + " | "+tempClient.getName() + " | Value: " + tempClient.getAnnualRevenueGenerated());
+            System.out.println("Revenue Generated: "+ tempClient.getCalculatedRevenue());
             System.out.println();
         }
     }
