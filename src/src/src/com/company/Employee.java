@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Employee extends Person {
-
 	private static int employedID = 1000;
+	
 	private int id;
 	private String jobTitle;
 	private double wage;
@@ -14,53 +14,45 @@ public class Employee extends Person {
 	private List<Employee> subordinates;
 	private Employee superior;
 
-	// Constructor
-	public Employee(String name, int age, String gender, String nationality, String jobTitle, double wage,
-			Date contractStartDate, Date contractEndDate, Employee superior) {
+	public Employee(String name, int age, String gender, String nationality, String jobTitle,
+			double wage, Date contractStartDate, Date contractEndDate, Employee superior) {
 		super(name, age, gender, nationality);
+		
 		this.jobTitle = jobTitle;
 		this.wage = wage;
 		this.contractStartDate = contractStartDate;
 		this.contractEndDate = contractEndDate;
 		this.id = employedID++;
-		subordinates = new ArrayList<>();
+		this.subordinates = new ArrayList<>();
 		this.superior = superior;
-	}
-
-	public void addSubordinate(Employee e) {
-		subordinates.add(e);
-	}
-
-	public void removeSubordinate(Employee e) {
-		subordinates.remove(e);
 	}
 
 	public void setJobTitle(String jobTitle) {
 		this.jobTitle = jobTitle;
 	}
+	
+	public String getJobTitle() {
+		return jobTitle;
+	}
 
 	public void setWage(double wage) {
 		this.wage = wage;
+	}
+	
+	public double getWage() {
+		return wage;
 	}
 
 	public void setContractStartDate(Date contractStartDate) {
 		this.contractStartDate = contractStartDate;
 	}
+	
+	public Date getContractStartDate() {
+		return contractStartDate;
+	}
 
 	public void setContractEndDate(Date contractEndDate) {
 		this.contractEndDate = contractEndDate;
-	}
-
-	public String getJobTitle() {
-		return jobTitle;
-	}
-
-	public double getWage() {
-		return wage;
-	}
-
-	public Date getContractStartDate() {
-		return contractStartDate;
 	}
 
 	public Date getContractEndDate() {
@@ -70,13 +62,24 @@ public class Employee extends Person {
 	public List<Employee> getSubordinates() {
 		return subordinates;
 	}
+	
+	public void setSubordinates(List<Employee> subordinates) {
+		this.subordinates = subordinates;
+	}
+	
+	public void addSubordinate(Employee e) {
+		subordinates.add(e);
+	}
+
+	public void removeSubordinate(Employee e) {
+		subordinates.remove(e);
+	}
 
 	public int getId() {
 		return this.id;
 	}
 
-	// Prototype Design Pattern
-
+	// Used for implementing the prototype design pattern
 	public Employee clone() {
 		return new Employee(this.getName(), this.getAge(), this.getGender(), this.getNationality(), this.jobTitle, this.wage,
 				this.contractStartDate, this.contractEndDate, this.superior);
@@ -89,20 +92,22 @@ public class Employee extends Person {
 
 	@Override
 	public String getStringToPrintToConsole() {
-		String toReturn = "";
+		String stringToReturn = "";
 
-		toReturn += "" + "Employee:\t" + getName() + System.lineSeparator();
-		toReturn += super.getStringToPrintToConsole();
-		toReturn += "" + "Job Title:\t" + jobTitle + System.lineSeparator();
-		toReturn += "" + "Wage:\t\t" + wage + System.lineSeparator();
-		toReturn += "" + "Start Date:\t" + contractStartDate.toString() + System.lineSeparator();
-		toReturn += "" + "End Date:\t" + contractEndDate.toString() + System.lineSeparator();
+		stringToReturn += "" + "Employee:\t" + getName() + System.lineSeparator();
+		stringToReturn += super.getStringToPrintToConsole();
+		stringToReturn += "" + "Job Title:\t" + jobTitle + System.lineSeparator();
+		stringToReturn += "" + "Wage:\t\t" + wage + System.lineSeparator();
+		stringToReturn += "" + "Start Date:\t" + contractStartDate.toString() + System.lineSeparator();
+		stringToReturn += "" + "End Date:\t" + contractEndDate.toString() + System.lineSeparator();
 
-		if (superior != null)
-			toReturn += "Superior:\t" + superior.getName() + System.lineSeparator() + System.lineSeparator();
-		else
-			toReturn += "Superior: Null " + System.lineSeparator() + System.lineSeparator();
+		if(superior != null) {			
+			stringToReturn += "Superior:\t" + superior.getName() + System.lineSeparator() + System.lineSeparator();
+		}
+		else {
+			stringToReturn += "Superior: Null " + System.lineSeparator() + System.lineSeparator();			
+		}
 
-		return toReturn;
+		return stringToReturn;
 	}
 }
