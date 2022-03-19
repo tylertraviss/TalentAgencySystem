@@ -1,6 +1,6 @@
 # <HTML><center>  :star:Talent Agency System </center></html>
 
--- description of the project and the objectives we seek by applying the design patterns --
+The intent of the Talent Agency System is for the intended use of a private company responsible for keeping track of their current clients, employees, and sponsorships for each of their clients.
 
 # Contributors
 * [**Tyler Travis**](https://github.com/tylertraviss) | Developer 
