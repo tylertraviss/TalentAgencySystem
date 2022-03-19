@@ -20,8 +20,8 @@ public class ConsoleAudit implements AuditStrategy{
         System.out.println("Company Information: ");
         System.out.println(TalentAgencyCompany.getName());
         System.out.println("Location: " + TalentAgencyCompany.getHqLoc());
-        System.out.println("Employees: " + TalentAgencyCompany.amountofEmployees());
-        System.out.println("Clients: " + TalentAgencyCompany.amountofClients());
+        System.out.println("Employees: " + TalentAgencyCompany.getNumberOfEmployees());
+        System.out.println("Clients: " + TalentAgencyCompany.getNumberOfClients());
     }
 
     /*
@@ -30,12 +30,12 @@ public class ConsoleAudit implements AuditStrategy{
     private void financialSituation(){
         System.out.println("");
         System.out.println("Fiscal Situation:");
-        System.out.println("Net Income: " + TalentAgencyCompany.annualNetIncome());
-        System.out.println("Income: " + TalentAgencyCompany.revenueGenerated());
-        System.out.println("Expenses: " + TalentAgencyCompany.sumEmployeesWages());
-        System.out.println("Average Employee Wage: " + TalentAgencyCompany.averageEmployeeWage());
-        System.out.println("Average Client Value: " + TalentAgencyCompany.averageClientValue());
-        System.out.println("Average Client Commission: " + TalentAgencyCompany.averageClientCommission());
+        System.out.println("Net Income: " + TalentAgencyCompany.calculateAnnualNetIncome());
+        System.out.println("Income: " + TalentAgencyCompany.calculateClientTotalRevenue());
+        System.out.println("Expenses: " + TalentAgencyCompany.sumAllEmployeeWages());
+        System.out.println("Average Employee Wage: " + TalentAgencyCompany.calculateAverageEmployeeWage());
+        System.out.println("Average Client Value: " + TalentAgencyCompany.calculateAverageClientAnnualRevenue());
+        System.out.println("Average Client Commission: " + TalentAgencyCompany.calculateAverageClientCommissionValue());
     }
 
     /*
@@ -58,7 +58,7 @@ public class ConsoleAudit implements AuditStrategy{
     */
     private void clientInformation(){
         System.out.println("Client Information: ");
-        for (Client C: TalentAgencyCompany.getClients()){
+        for (Client C: TalentAgencyCompany.getAllClients()){
             System.out.println(C.getId() + " | "+C.getName() + " | Value: " + C.getAnnualRevenueGenerated());
             System.out.println("Revenue Generated: "+ C.getCalculatedRevenue());
             System.out.println();

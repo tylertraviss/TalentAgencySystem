@@ -19,7 +19,7 @@ public class DeleteClientDialog extends AbstractDeleteDialog {
 
 		setLocationRelativeTo(parentDialog);
 
-		selectionCBBox.setModel(new DefaultComboBoxModel(company.getClients().toArray()));
+		selectionCBBox.setModel(new DefaultComboBoxModel(company.getAllClients().toArray()));
 	}
 
 	@Override

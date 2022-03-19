@@ -74,7 +74,7 @@ public class AddSponsorDialog extends JDialog {
 		 */
 		var company = Company.getInstance();
 
-		clientCBBox = new JComboBox(company.getClients().toArray());
+		clientCBBox = new JComboBox(company.getAllClients().toArray());
 		clientCBBox.setBorder(new CustomTitledBorder("Select Client"));
 		clientCBBox.setBounds(10, 171, 414, 50);
 		contentPanel.add(clientCBBox);

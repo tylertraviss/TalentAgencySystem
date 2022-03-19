@@ -38,7 +38,7 @@ public class TextFileAudit implements AuditStrategy {
 	private void clientInformation() {
 		information.add("\n");
 		information.add("Client Information: \n");
-		for (Client C : TalentAgencyCompany.getClients()) {
+		for (Client C : TalentAgencyCompany.getAllClients()) {
 			information.add(C.getId() + " | " + C.getName() + " | Value: " + C.getAnnualRevenueGenerated() + "\n");
 			information.add("Revenue Generated: " + C.getCalculatedRevenue() + "\n\n");
 		}
@@ -59,19 +59,19 @@ public class TextFileAudit implements AuditStrategy {
 	private void financialSituation() {
 		information.add("");
 		information.add("Fiscal Situation:" + "\n");
-		information.add("Net Income: " + TalentAgencyCompany.annualNetIncome() + "\n");
-		information.add("Income: " + TalentAgencyCompany.revenueGenerated() + "\n");
-		information.add("Expenses: " + TalentAgencyCompany.sumEmployeesWages() + "\n");
-		information.add("Average Employee Wage: " + TalentAgencyCompany.averageEmployeeWage() + "\n");
-		information.add("Average Client Value: " + TalentAgencyCompany.averageClientValue() + "\n");
-		information.add("Average Client Commission: " + TalentAgencyCompany.averageClientCommission() + "\n");
+		information.add("Net Income: " + TalentAgencyCompany.calculateAnnualNetIncome() + "\n");
+		information.add("Income: " + TalentAgencyCompany.calculateClientTotalRevenue() + "\n");
+		information.add("Expenses: " + TalentAgencyCompany.sumAllEmployeeWages() + "\n");
+		information.add("Average Employee Wage: " + TalentAgencyCompany.calculateAverageEmployeeWage() + "\n");
+		information.add("Average Client Value: " + TalentAgencyCompany.calculateAverageClientAnnualRevenue() + "\n");
+		information.add("Average Client Commission: " + TalentAgencyCompany.calculateAverageClientCommissionValue() + "\n");
 	}
 
 	private void companyInfo() {
 		information.add("Company Information: \n");
 		information.add(TalentAgencyCompany.getName() + "\n");
 		information.add("Location: " + TalentAgencyCompany.getHqLoc() + "\n");
-		information.add("Employees: " + TalentAgencyCompany.amountofEmployees() + "\n");
-		information.add("Clients: " + TalentAgencyCompany.amountofClients() + "\n \n");
+		information.add("Employees: " + TalentAgencyCompany.getNumberOfEmployees() + "\n");
+		information.add("Clients: " + TalentAgencyCompany.getNumberOfClients() + "\n \n");
 	}
 }

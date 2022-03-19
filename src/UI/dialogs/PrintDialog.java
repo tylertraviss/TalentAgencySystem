@@ -57,18 +57,18 @@ public class PrintDialog extends AbstractEditDialog {
 				var console = ConsoleTA.getInstance();
 				var sponsorshipMediator = SponsorshipMediator.getInstance();
 
-				console.log("Client Count : " + company.amountofClients());
-				console.log("Employee Count: " + company.amountofEmployees());
+				console.log("Client Count : " + company.getNumberOfClients());
+				console.log("Employee Count: " + company.getNumberOfEmployees());
 				console.log("Sponsorship Count: " + sponsorshipMediator.getSponsorships().size());
 
 				console.log(SEPERATOR);
 
 				console.log("\t\tCLIENT LIST");
 
-				if (company.getClients().size() == 0)
+				if (company.getAllClients().size() == 0)
 					console.log("No Clients Yet");
 				else
-					for (var client : company.getClientsForAdding())
+					for (var client : company.getClients())
 						console.log(client.getStringToPrintToConsole());
 
 				console.log(SEPERATOR);

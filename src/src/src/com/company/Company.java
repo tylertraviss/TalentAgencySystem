@@ -7,7 +7,6 @@ import java.util.List;
 import UI.textarea.ConsoleTA;
 
 public class Company {
-
 	private String name;
 	private String hqLoc;
 	private List<Employee> employees;
@@ -15,16 +14,18 @@ public class Company {
 	private static Company instance = null;
 	private double totalIncome = 0;
 
-	// Singleton private constructor
+	// Singleton: private constructor
 	private Company() {
-		employees = new ArrayList<>();
-		clients = new ArrayList<>();
+		employees = new ArrayList<Employee>();
+		clients = new ArrayList<Client>();
 	}
 
-	// getting the instance
+	// Singleton: function to retrieve the existing instance
 	public static Company getInstance() {
-		if (instance == null)
+		if(instance == null) {			
 			instance = new Company();
+		}
+		
 		return instance;
 	}
 
@@ -45,28 +46,13 @@ public class Company {
 	}
 
 	public List<Employee> getEmployees() {
-		List<Employee> toReturn = new ArrayList<>();
-		if (employees.size() > 0) {
-			for (var emp : employees)
-				toReturn.addAll(getEmployees(emp));
+		List<Employee> employeeList = new ArrayList<Employee>();
+		
+		for(Employee emp : employees) {
+			employeeList.addAll(getAllEmployees(emp));
 		}
-		return toReturn;
-	}
-
-	public List<Employee> getEmployees(Employee emp) {
-		if (emp == null)
-			return null;
-
-		List<Employee> subList = new ArrayList<>();
-
-		subList.add(emp);
-
-		for (var sub : emp.getSubordinates()) {
-			var newSubList = getEmployees(sub);
-			subList.addAll(newSubList);
-		}
-
-		return subList;
+		
+		return employeeList;
 	}
 
 	public void setEmployees(List<Employee> employees) {
@@ -74,16 +60,6 @@ public class Company {
 	}
 
 	public List<Client> getClients() {
-		List<Client> toReturn = new ArrayList<>();
-		toReturn.addAll(clients);
-		for (var c : clients)
-			if (c.getGroup().size() > 0)
-				toReturn.addAll(c.getGroup());
-
-		return toReturn;
-	}
-
-	public List<Client> getClientsForAdding() {
 		return clients;
 	}
 
@@ -103,100 +79,142 @@ public class Company {
 		employees.add(p);
 	}
 
-	public void addClient(Client p) {
-		clients.add(p);
-	}
-
 	public void removeEmployee(Employee emp) {
 		if (employees.contains(emp))
 			employees.remove(emp);
 		else
 			removeSubordinate(employees.get(0), emp);
 	}
+	
+	public void addClient(Client p) {
+		clients.add(p);
+	}
 
 	public void removeClient(Client client) {
-		if (clients.contains(client))
+		if(clients.contains(client)) {
 			clients.remove(client);
-		else {
-			for (var c : clients) {
-				if (c.getGroup().contains(client)) {
+			
+		} else {
+			for(Client c : clients) {
+				if(c.getGroup().contains(client)) {
 					c.removeFromGroup(client);
 					break;
 				}
-
 			}
 		}
 
 		removeSponsorship(client);
 	}
 
-	// Calculating Wages of All Employees
-	public double sumEmployeesWages() {
+	public double sumAllEmployeeWages() {
 		double totalWages = 0;
-		for (Employee E : employees) {
+		
+		for(Employee E : employees) {
 			totalWages += E.getWage();
 		}
+		
 		return totalWages;
 	}
 
-	// Total Revenue Generated
-	public double revenueGenerated() {
+	public double calculateClientTotalRevenue() {
 		double totalExpenses = 0;
-		for (Client C : clients) {
-			totalExpenses += C.getCommission() * C.getAnnualRevenueGenerated();
+		
+		for(Client tempClient : clients) {
+			totalExpenses += tempClient.getCommission() * tempClient.getAnnualRevenueGenerated();
 		}
+		
 		return totalExpenses;
 	}
 
-	// Average Client Commission
-	public double averageClientCommission() {
+	public double calculateAverageClientCommissionValue() {
 		double sum = 0;
-		for (Client C : clients) {
-			sum += C.getCommission();
+		
+		for(Client tempClient : clients) {
+			sum += tempClient.getCommission();
 		}
-		return sum / amountofClients();
+		
+		return sum / getNumberOfClients();
 	}
 
-	// Average Value of Client
-	public double averageClientValue() {
+	public double calculateAverageClientAnnualRevenue() {
 		double sum = 0;
-		for (Client C : clients) {
-			sum += C.getAnnualRevenueGenerated();
+		
+		for(Client tempClient : clients) {
+			sum += tempClient.getAnnualRevenueGenerated();
 		}
-		return sum / amountofClients();
+		
+		return sum / getNumberOfClients();
 	}
 
-	public int amountofEmployees() {
+	public int getNumberOfEmployees() {
 		return getEmployees().size();
 	}
 
-	public int amountofClients() {
-		return getClients().size();
+	public int getNumberOfClients() {
+		return getAllClients().size();
 	}
 
-	public double averageEmployeeWage() {
-		return sumEmployeesWages() / employees.size();
+	public double calculateAverageEmployeeWage() {
+		return sumAllEmployeeWages() / employees.size();
 	}
 
-	public double annualNetIncome() {
-		return revenueGenerated() - sumEmployeesWages();
+	public double calculateAnnualNetIncome() {
+		return calculateClientTotalRevenue() - sumAllEmployeeWages();
 	}
 
 	public void sortPeople() {
 		Collections.sort(clients);
 		Collections.sort(employees);
 	}
+	
+	public List<Client> getAllClients() {
+		List<Client> listOfClients = new ArrayList<Client>();
+		listOfClients.addAll(clients);
+		
+		for(Client c : clients) {
+			if(c.getGroup().size() > 0) {
+				listOfClients.addAll(c.getGroup());
+			}
+		}
 
-	private boolean removeSubordinate(Employee emp, Employee toRemove) {
-		if (emp.getSubordinates().contains(toRemove)) {
-			emp.removeSubordinate(toRemove);
+		return listOfClients;
+	}
+	
+	private void removeSponsorship(Client client) {
+		SponsorshipMediator sponsorshipMediator = SponsorshipMediator.getInstance();
+		ConsoleTA console = ConsoleTA.getInstance();
+		Sponsorship sponsorship = sponsorshipMediator.getSponsorshipByClient(client);
+
+		if(sponsorship != null) {
+			sponsorshipMediator.discontinueSponsorship(sponsorship);
+			console.log("The sponsor for Client [" + client.getName() + "] has been discontinued.");
+		}
+
+		if (client.getGroup().size() > 0) {
+			for (Client subClient : client.getGroup()) {
+				Sponsorship subSponsorship = sponsorshipMediator.getSponsorshipByClient(subClient);
+
+				if(subSponsorship != null) {
+					sponsorshipMediator.discontinueSponsorship(subSponsorship);
+					console.log("The sponsor for Client [" + subClient.getName() + "] has been discontinued.");
+				}
+			}
+		}
+	}
+	
+	/*
+	 * This is a recursive method
+	 */
+	private boolean removeSubordinate(Employee tempEmployee, Employee employeeToRemove) {
+		if(tempEmployee.getSubordinates().contains(employeeToRemove)) {
+			tempEmployee.removeSubordinate(employeeToRemove);
 			return true;
 		}
 
-		for (var sub : emp.getSubordinates()) {
-			var removed = removeSubordinate(sub, toRemove);
+		for(Employee sub : tempEmployee.getSubordinates()) {
+			boolean removed = removeSubordinate(sub, employeeToRemove);
 
-			if (removed) {
+			if(removed) {
 				return true;
 			}
 		}
@@ -204,28 +222,26 @@ public class Company {
 		return false;
 
 	}
-
-	private void removeSponsorship(Client c) {
-		var sponsorshipMediator = SponsorshipMediator.getInstance();
-		var console = ConsoleTA.getInstance();
-		var sponsorship = sponsorshipMediator.getSponsorshipByClient(c);
-
-		if (sponsorship != null) {
-			sponsorshipMediator.discontinueSponsorship(sponsorship);
-			console.log("The sponsor for Client [" + c.getName() + "] has been discontinued");
+	
+	/*
+	 * This is a recursive method to get all subordinates of a subordinate.
+	 * Ultimately, this function will return a list where index 0 is the passed employee
+	 * and its subordinates are listed out from index 1.
+	 */
+	private List<Employee> getAllEmployees(Employee emp) {
+		if(emp == null) {	
+			return null;
 		}
 
-		if (c.getGroup().size() > 0) {
-			for (var subClient : c.getGroup()) {
-				var subSponsorship = sponsorshipMediator.getSponsorshipByClient(subClient);
+		List<Employee> subList = new ArrayList<Employee>();
 
-				if (subSponsorship != null) {
-					sponsorshipMediator.discontinueSponsorship(subSponsorship);
-					console.log("The sponsor for Client [" + subClient.getName() + "] has been discontinued");
-				}
-			}
+		subList.add(emp);
 
+		for(Employee sub : emp.getSubordinates()) {
+			List<Employee> newSubList = getAllEmployees(sub);
+			subList.addAll(newSubList);
 		}
+
+		return subList;
 	}
-
 }
