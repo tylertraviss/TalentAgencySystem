@@ -1,18 +1,17 @@
 package src.src.com.company;
 
 public class MementoCreator {
-
     private Employee emp;
     private Client client;
     private Sponsorship sponsorship;
     private static MementoCreator instance = null;
 
-    private MementoCreator() {
-    }
+    private MementoCreator() {}
 
     public static MementoCreator getInstance() {
-        if (instance == null)
-            instance = new MementoCreator();
+        if(instance == null) {        	
+        	instance = new MementoCreator();
+        }
 
         return instance;
     }
@@ -40,19 +39,19 @@ public class MementoCreator {
     }
 
     public void getEmployeeStateFromMemento(Memento memento) {
-        if (memento != null) {
+        if(memento != null) {
             this.emp = memento.getEmployee();
         }
     }
 
     public void getClientStateFromMemento(Memento memento) {
-        if (memento != null) {
+        if(memento != null) {
             this.client = memento.getClient();
         }
     }
 
     public void getSponsorStateFromMemento(Memento memento) {
-        if (memento != null) {
+        if(memento != null) {
             this.sponsorship = memento.getSponsor();
         }
     }

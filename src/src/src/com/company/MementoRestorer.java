@@ -11,8 +11,9 @@ public class MementoRestorer {
     }
 
     public static MementoRestorer getInstance() {
-        if (instance == null)
-            instance = new MementoRestorer();
+        if(instance == null) {        	
+        	instance = new MementoRestorer();
+        }
 
         return instance;
     }
@@ -26,13 +27,16 @@ public class MementoRestorer {
     }
 
     public Memento getLastMemento() {
-        if (mementoList.size() == 0)
-            return null;
+        if(mementoList.size() == 0) {        	
+        	return null;
+        }
+        
         return mementoList.get(mementoList.size() - 1);
     }
 
     public void removeLastMemento() {
-        if (mementoList.size() != 0)
-            mementoList.remove(mementoList.size() - 1);
+        if(mementoList.size() != 0) {        	
+        	mementoList.remove(mementoList.size() - 1);
+        }
     }
 }
