@@ -22,16 +22,16 @@ public class Actor extends Client {
 	}
 
 	public String toString() {
-		return "Actor | " + name;
+		return "Actor | " + getName();
 	}
 
 	@Override
-	public String toConsole() {
+	public String getStringToPrintToConsole() {
 		String toReturn = "";
 
-		toReturn += "Actor:\t\t" + name + System.lineSeparator();
+		toReturn += "Actor:\t\t" + getName() + System.lineSeparator();
 
-		toReturn += super.toConsole();
+		toReturn += super.getStringToPrintToConsole();
 
 		toReturn += "Actor Type:\t" + actorType + System.lineSeparator();
 

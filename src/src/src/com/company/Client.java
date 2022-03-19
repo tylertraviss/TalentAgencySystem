@@ -123,7 +123,7 @@ public abstract class Client extends Person {
 		toReturn += "Clients in group:" + System.lineSeparator() + System.lineSeparator();
 
 		for (var client : group)
-			toReturn += client.toConsole() + System.lineSeparator();
+			toReturn += client.getStringToPrintToConsole() + System.lineSeparator();
 
 
 		return toReturn;
@@ -131,11 +131,11 @@ public abstract class Client extends Person {
 
 	public abstract String toString();
 
-	public String toConsole() {
+	public String getStringToPrintToConsole() {
 
 		String toReturn = "";
 		toReturn += "" + "Client ID:\t" + id + System.lineSeparator();
-		toReturn += super.toConsole();
+		toReturn += super.getStringToPrintToConsole();
 		toReturn += "" + "Commission:\t" + commission + System.lineSeparator();
 		toReturn += "" + "Revenue:\t" + annualRevenueGenerated + System.lineSeparator();
 

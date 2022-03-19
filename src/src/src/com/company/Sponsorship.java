@@ -27,7 +27,7 @@ public class Sponsorship implements Comparable<Sponsorship> {
         return value;
     }
 
-    public String toConsole() {
+    public String getStringToPrintToConsole() {
         String toReturn = "";
 
         toReturn += "Sponsor: " + sponsor + System.lineSeparator();

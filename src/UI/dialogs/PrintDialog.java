@@ -69,7 +69,7 @@ public class PrintDialog extends AbstractEditDialog {
 					console.log("No Clients Yet");
 				else
 					for (var client : company.getClientsForAdding())
-						console.log(client.toConsole());
+						console.log(client.getStringToPrintToConsole());
 
 				console.log(SEPERATOR);
 
@@ -79,7 +79,7 @@ public class PrintDialog extends AbstractEditDialog {
 					console.log("No Employees Yet");
 				else
 					for (var emp : company.getEmployees())
-						console.log(emp.toConsole());
+						console.log(emp.getStringToPrintToConsole());
 
 				console.log(SEPERATOR);
 
@@ -89,7 +89,7 @@ public class PrintDialog extends AbstractEditDialog {
 					console.log("No Sponsors Yet");
 				else
 					for (var sp : sponsorshipMediator.getSponsorships())
-						console.log(sp.toConsole());
+						console.log(sp.getStringToPrintToConsole());
 
 				console.log(SEPERATOR);
 				dispose();

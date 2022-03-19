@@ -78,28 +78,28 @@ public class Employee extends Person {
 	// Prototype Design Pattern
 
 	public Employee clone() {
-		return new Employee(this.name, this.age, this.gender, this.nationality, this.jobTitle, this.wage,
+		return new Employee(this.getName(), this.getAge(), this.getGender(), this.getNationality(), this.jobTitle, this.wage,
 				this.contractStartDate, this.contractEndDate, this.superior);
 	}
 
 	@Override
 	public String toString() {
-		return name;
+		return getName();
 	}
 
 	@Override
-	public String toConsole() {
+	public String getStringToPrintToConsole() {
 		String toReturn = "";
 
-		toReturn += "" + "Employee:\t" + name + System.lineSeparator();
-		toReturn += super.toConsole();
+		toReturn += "" + "Employee:\t" + getName() + System.lineSeparator();
+		toReturn += super.getStringToPrintToConsole();
 		toReturn += "" + "Job Title:\t" + jobTitle + System.lineSeparator();
 		toReturn += "" + "Wage:\t\t" + wage + System.lineSeparator();
 		toReturn += "" + "Start Date:\t" + contractStartDate.toString() + System.lineSeparator();
 		toReturn += "" + "End Date:\t" + contractEndDate.toString() + System.lineSeparator();
 
 		if (superior != null)
-			toReturn += "Superior:\t" + superior.name + System.lineSeparator() + System.lineSeparator();
+			toReturn += "Superior:\t" + superior.getName() + System.lineSeparator() + System.lineSeparator();
 		else
 			toReturn += "Superior: Null " + System.lineSeparator() + System.lineSeparator();
 

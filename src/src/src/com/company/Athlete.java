@@ -43,15 +43,15 @@ public class Athlete extends Client {
     }
 
     public String toString() {
-        return "Athlete | " + name;
+        return "Athlete | " + getName();
     }
 
     @Override
-    public String toConsole() {
+    public String getStringToPrintToConsole() {
         String toReturn = "";
 
-        toReturn += "Athelete:\t" + name + System.lineSeparator();
-        toReturn += super.toConsole();
+        toReturn += "Athelete:\t" + getName() + System.lineSeparator();
+        toReturn += super.getStringToPrintToConsole();
 
         toReturn += "Sport Type:\t" + sportType + System.lineSeparator();
         toReturn += "Height:\t\t" + height + System.lineSeparator();

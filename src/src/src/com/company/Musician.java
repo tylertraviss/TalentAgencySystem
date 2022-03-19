@@ -41,16 +41,16 @@ public class Musician extends Client {
 	}
 
 	public String toString() {
-		return "Musician | " + name;
+		return "Musician | " + getName();
 	}
 
 	@Override
-	public String toConsole() {
+	public String getStringToPrintToConsole() {
 		String toReturn = "";
 
-		toReturn += "Musician:\t" + name + System.lineSeparator();
+		toReturn += "Musician:\t" + getName() + System.lineSeparator();
 
-		toReturn += super.toConsole();
+		toReturn += super.getStringToPrintToConsole();
 
 		toReturn += "Stage Name:\t" + stageName + System.lineSeparator();
 		toReturn += "Genre:\t\t" + genre + System.lineSeparator();
