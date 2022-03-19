@@ -149,9 +149,9 @@ public class AddClientDialog extends JDialog {
 							break;
 						case MUSICIAN:
 							instrumentIn = new Instrument(clientTypeInList.get(2));
-							toAdd = new Musician(nameIn, ageIn, genderIn, nationalityIn, experienceList, commissionIn,
-									awardList, clientTypeInList.get(0), clientTypeInList.get(1), instrumentIn,
-									revenueGeneratedIn);
+							toAdd = new Musician(nameIn, ageIn, genderIn, nationalityIn,
+									experienceList, commissionIn, awardList, revenueGeneratedIn,
+									clientTypeInList.get(0), clientTypeInList.get(1), instrumentIn);
 							break;
 						case ATHLETE:
 							if (!validateDoubles(clientTypeInList.get(0))) {
@@ -161,11 +161,10 @@ public class AddClientDialog extends JDialog {
 								// SHOW ERROR MSG
 							}
 
-							toAdd = new Athlete(nameIn, ageIn, genderIn, nationalityIn, experienceList, commissionIn,
-									awardList,
+							toAdd = new Athlete(nameIn, ageIn, genderIn, nationalityIn,
+									experienceList, commissionIn, awardList, revenueGeneratedIn,
 									Double.parseDouble(clientTypeInList.get(0)),
-									Double.parseDouble(clientTypeInList.get(1)), clientTypeInList.get(2),
-									revenueGeneratedIn);
+									Double.parseDouble(clientTypeInList.get(1)), clientTypeInList.get(2));
 							break;
 					}
 					if (group != null)
