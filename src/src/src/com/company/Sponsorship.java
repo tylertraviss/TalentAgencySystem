@@ -27,13 +27,13 @@ public class Sponsorship implements Comparable<Sponsorship> {
     }
 
     public String getStringToPrintToConsole() {
-        String toReturn = "";
+        String stringToReturn = "";
 
-        toReturn += "Sponsor: " + sponsor + System.lineSeparator();
-        toReturn += "Sponsored Client: " + sponsoredClient.toString() + System.lineSeparator();
-        toReturn += "Amount Sponsored: " + value + System.lineSeparator();
+        stringToReturn += "Sponsor: " + sponsor + System.lineSeparator();
+        stringToReturn += "Sponsored Client: " + sponsoredClient.toString() + System.lineSeparator();
+        stringToReturn += "Amount Sponsored: " + value + System.lineSeparator();
 
-        return toReturn;
+        return stringToReturn;
     }
 
     public String toString() {

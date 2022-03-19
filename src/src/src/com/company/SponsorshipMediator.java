@@ -32,11 +32,11 @@ public class SponsorshipMediator implements SponsorshipMediatorBase {
 		sponsorships.remove(sponsorship);
 	}
 
-	public Sponsorship getSponsorshipByClient(Client c) {
-		for(var sp : sponsorships) {
-			if(sp.getSponsoredClient().getName().equals(c.getName())) {
-				System.out.println(c.getName());
-				return sp;
+	public Sponsorship getSponsorshipByClient(Client client) {
+		for(Sponsorship tempSponsorship : sponsorships) {
+			if(tempSponsorship.getSponsoredClient().getName().equals(client.getName())) {
+				System.out.println(client.getName());
+				return tempSponsorship;
 			}
 		}
 		
