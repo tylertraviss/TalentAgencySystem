@@ -59,8 +59,8 @@ public class ConsoleAudit implements AuditStrategy{
     private void clientInformation(){
         System.out.println("Client Information: ");
         for (Client C: TalentAgencyCompany.getClients()){
-            System.out.println(C.getID() + " | "+C.getName() + " | Value: " + C.getAnnualRevenueGenerated());
-            System.out.println("Revenue Generated: "+ C.revenueGenerated());
+            System.out.println(C.getId() + " | "+C.getName() + " | Value: " + C.getAnnualRevenueGenerated());
+            System.out.println("Revenue Generated: "+ C.getCalculatedRevenue());
             System.out.println();
         }
     }

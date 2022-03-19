@@ -143,7 +143,7 @@ public class Company {
 	public double revenueGenerated() {
 		double totalExpenses = 0;
 		for (Client C : clients) {
-			totalExpenses += C.getComsission() * C.getAnnualRevenueGenerated();
+			totalExpenses += C.getCommission() * C.getAnnualRevenueGenerated();
 		}
 		return totalExpenses;
 	}
@@ -152,7 +152,7 @@ public class Company {
 	public double averageClientCommission() {
 		double sum = 0;
 		for (Client C : clients) {
-			sum += C.getComsission();
+			sum += C.getCommission();
 		}
 		return sum / amountofClients();
 	}

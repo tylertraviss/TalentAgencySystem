@@ -39,8 +39,8 @@ public class TextFileAudit implements AuditStrategy {
 		information.add("\n");
 		information.add("Client Information: \n");
 		for (Client C : TalentAgencyCompany.getClients()) {
-			information.add(C.getID() + " | " + C.getName() + " | Value: " + C.getAnnualRevenueGenerated() + "\n");
-			information.add("Revenue Generated: " + C.revenueGenerated() + "\n\n");
+			information.add(C.getId() + " | " + C.getName() + " | Value: " + C.getAnnualRevenueGenerated() + "\n");
+			information.add("Revenue Generated: " + C.getCalculatedRevenue() + "\n\n");
 		}
 	}
 
