@@ -75,8 +75,8 @@ public class Company {
 		this.totalIncome = totalIncome;
 	}
 
-	public void addEmployee(Employee p) {
-		employees.add(p);
+	public void addEmployee(Employee emp) {
+		employees.add(emp);
 	}
 
 	public void removeEmployee(Employee emp) {
@@ -86,8 +86,8 @@ public class Company {
 			removeSubordinate(employees.get(0), emp);
 	}
 	
-	public void addClient(Client p) {
-		clients.add(p);
+	public void addClient(Client client) {
+		clients.add(client);
 	}
 
 	public void removeClient(Client client) {

@@ -41,7 +41,7 @@ public class Sponsorship implements Comparable<Sponsorship> {
     }
 
     @Override
-    public int compareTo(Sponsorship o) {
-        return this.sponsor.getSponsorName().compareToIgnoreCase(o.getSponsor().getSponsorName());
+    public int compareTo(Sponsorship sponsorship) {
+        return this.sponsor.getSponsorName().compareToIgnoreCase(sponsorship.getSponsor().getSponsorName());
     }
 }

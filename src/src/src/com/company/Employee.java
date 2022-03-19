@@ -67,12 +67,12 @@ public class Employee extends Person {
 		return subordinates;
 	}
 	
-	public void addSubordinate(Employee e) {
-		subordinates.add(e);
+	public void addSubordinate(Employee employee) {
+		subordinates.add(employee);
 	}
 
-	public void removeSubordinate(Employee e) {
-		subordinates.remove(e);
+	public void removeSubordinate(Employee employee) {
+		subordinates.remove(employee);
 	}
 
 	public int getId() {

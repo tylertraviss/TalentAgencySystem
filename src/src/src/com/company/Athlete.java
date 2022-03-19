@@ -21,7 +21,7 @@ public class Athlete extends Client {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
