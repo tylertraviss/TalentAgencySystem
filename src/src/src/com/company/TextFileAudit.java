@@ -6,72 +6,71 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class TextFileAudit implements AuditStrategyInterface {
+	private Company talentAgencyCompany;
+	private ArrayList<String> information;
 
-	private Company TalentAgencyCompany = Company.getInstance();
-	private ArrayList<String> information = new ArrayList<String>();
-
-	// Responsible for taking each Arraylist element, writing
-
-	public TextFileAudit() throws IOException {
-		execute();
+	public TextFileAudit() {
+		talentAgencyCompany = Company.getInstance();
+		information = new ArrayList<String>();
+	}
+	
+	public void writeInformationToTextFile() throws IOException {
 		BufferedWriter writer = new BufferedWriter(new FileWriter("GeneratedAudit.txt"));
+		execute(); // Must write to information instance variable before creating the text file with it
 
-		for (int i = 0; i < information.size(); i++) {
+		for(int i = 0; i < information.size(); i++) {
 			writer.write(information.get(i));
 		}
+		
 		writer.close();
 	}
 
-	/*
-	 * Concrete Implementation of Strategy For Text File ArrayList of strings,
-	 * eventually interpreted into file
-	 */
-
 	@Override
 	public void execute() {
-		companyInfo();
-		financialSituation();
-		employeeInformation();
-		clientInformation();
+		displayCompanyInformation();
+		displayFinancialSituation();
+		displayEmployeeInformation();
+		displayClientInformation();
 	}
 
-	private void clientInformation() {
+	private void displayClientInformation() {
 		information.add("\n");
 		information.add("Client Information: \n");
-		for (Client C : TalentAgencyCompany.getAllClients()) {
-			information.add(C.getId() + " | " + C.getName() + " | Value: " + C.getAnnualRevenueGenerated() + "\n");
-			information.add("Revenue Generated: " + C.getCalculatedRevenue() + "\n\n");
+		
+		for(Client tempClient : talentAgencyCompany.getAllClients()) {
+			information.add(tempClient.getId() + " | " + tempClient.getName() + " | Value: " + tempClient.getAnnualRevenueGenerated() + "\n");
+			information.add("Revenue Generated: " + tempClient.getCalculatedRevenue() + "\n\n");
 		}
 	}
 
-	private void employeeInformation() {
-		information.add("" + "\n");
-		information.add("Employee Information: " + "\n");
-		// Iterating through Employees
-		for (Employee E : TalentAgencyCompany.getEmployees()) {
-			information.add("" + E.getId() + " | " + E.getName() + " | " + E.getJobTitle() + "\n");
-			information.add("Contract: " + E.getContractStartDate().displayDate() + " -> "
-					+ E.getContractEndDate().displayDate() + "\n");
-			information.add("Wage: " + E.getWage() + "\n\n");
+	private void displayEmployeeInformation() {
+		information.add("\n");
+		information.add("Employee Information: \n");
+		
+		for(Employee tempEmployee : talentAgencyCompany.getEmployees()) {
+			information.add(tempEmployee.getId() + " | " + tempEmployee.getName() + " | " + tempEmployee.getJobTitle() + "\n");
+			information.add("Contract: " + tempEmployee.getContractStartDate().displayDate() + " -> "
+					+ tempEmployee.getContractEndDate().displayDate() + "\n");
+			information.add("Wage: " + tempEmployee.getWage() + "\n\n");
 		}
 	}
 
-	private void financialSituation() {
+	private void displayFinancialSituation() {
 		information.add("");
 		information.add("Fiscal Situation:" + "\n");
-		information.add("Net Income: " + TalentAgencyCompany.calculateAnnualNetIncome() + "\n");
-		information.add("Income: " + TalentAgencyCompany.calculateClientTotalRevenue() + "\n");
-		information.add("Expenses: " + TalentAgencyCompany.sumAllEmployeeWages() + "\n");
-		information.add("Average Employee Wage: " + TalentAgencyCompany.calculateAverageEmployeeWage() + "\n");
-		information.add("Average Client Value: " + TalentAgencyCompany.calculateAverageClientAnnualRevenue() + "\n");
-		information.add("Average Client Commission: " + TalentAgencyCompany.calculateAverageClientCommissionValue() + "\n");
+		information.add("Net Income: " + talentAgencyCompany.calculateAnnualNetIncome() + "\n");
+		information.add("Income: " + talentAgencyCompany.calculateClientTotalRevenue() + "\n");
+		information.add("Expenses: " + talentAgencyCompany.sumAllEmployeeWages() + "\n");
+		information.add("Average Employee Wage: " + talentAgencyCompany.calculateAverageEmployeeWage() + "\n");
+		information.add("Average Client Value: " + talentAgencyCompany.calculateAverageClientAnnualRevenue() + "\n");
+		information.add("Average Client Commission: " + talentAgencyCompany.calculateAverageClientCommissionValue() + "\n");
 	}
 
-	private void companyInfo() {
+	private void displayCompanyInformation() {
 		information.add("Company Information: \n");
-		information.add(TalentAgencyCompany.getName() + "\n");
-		information.add("Location: " + TalentAgencyCompany.getHqLoc() + "\n");
-		information.add("Employees: " + TalentAgencyCompany.getNumberOfEmployees() + "\n");
-		information.add("Clients: " + TalentAgencyCompany.getNumberOfClients() + "\n \n");
+		information.add(talentAgencyCompany.getName() + "\n");
+		information.add("Location: " + talentAgencyCompany.getHqLoc() + "\n");
+		information.add("Employees: " + talentAgencyCompany.getNumberOfEmployees() + "\n");
+		information.add("Clients: " + talentAgencyCompany.getNumberOfClients() + "\n \n");
 	}
 }

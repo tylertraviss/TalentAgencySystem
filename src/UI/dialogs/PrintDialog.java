@@ -28,8 +28,9 @@ public class PrintDialog extends AbstractEditDialog {
 		addButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				TextFileAudit textFileAudit = new TextFileAudit();
 				try {
-					new TextFileAudit();
+					textFileAudit.writeInformationToTextFile();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}

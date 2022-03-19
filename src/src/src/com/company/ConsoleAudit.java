@@ -14,7 +14,7 @@ public class ConsoleAudit implements AuditStrategyInterface {
     /*
      * Displays information about company, location, and size.
      */
-    private void displayCompanyInformation(){
+    private void displayCompanyInformation() {
         System.out.println("Company Information: ");
         System.out.println(talentAgencyCompany.getName());
         System.out.println("Location: " + talentAgencyCompany.getHqLoc());
@@ -25,7 +25,7 @@ public class ConsoleAudit implements AuditStrategyInterface {
     /*
      * Displays information about fiscal situation of company.
      */
-    private void displayFiscalSituation(){
+    private void displayFiscalSituation() {
         System.out.println();
         System.out.println("Fiscal Situation:");
         System.out.println("Net Income: " + talentAgencyCompany.calculateAnnualNetIncome());
@@ -39,7 +39,7 @@ public class ConsoleAudit implements AuditStrategyInterface {
     /*
      * Displays information about employees.
      */
-    private void displayEmployeeInformation(){
+    private void displayEmployeeInformation() {
         System.out.println();
         System.out.println("Employee Information: ");
         
@@ -54,7 +54,7 @@ public class ConsoleAudit implements AuditStrategyInterface {
     /*
      * Displays information about clients.
      */
-    private void displayClientInformation(){
+    private void displayClientInformation() {
         System.out.println("Client Information: ");
         
         for (Client tempClient : talentAgencyCompany.getAllClients()){
