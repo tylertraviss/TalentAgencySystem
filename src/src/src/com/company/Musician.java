@@ -47,21 +47,21 @@ public class Musician extends Client {
 
 	@Override
 	public String getStringToPrintToConsole() {
-		String toReturn = "";
+		String stringToReturn = "";
 
-		toReturn += "Musician:\t" + getName() + System.lineSeparator();
-		toReturn += super.getStringToPrintToConsole();
-		toReturn += "Stage Name:\t" + stageName + System.lineSeparator();
-		toReturn += "Genre:\t\t" + genre + System.lineSeparator();
-		toReturn += "Instrument:\t" + instrument + System.lineSeparator();
-		toReturn += printAwards();
-		toReturn += printExperiences();
-		toReturn += printGroupMembers();
+		stringToReturn += "Musician:\t" + getName() + System.lineSeparator();
+		stringToReturn += super.getStringToPrintToConsole();
+		stringToReturn += "Stage Name:\t" + stageName + System.lineSeparator();
+		stringToReturn += "Genre:\t\t" + genre + System.lineSeparator();
+		stringToReturn += "Instrument:\t" + instrument + System.lineSeparator();
+		stringToReturn += printAwards();
+		stringToReturn += printExperiences();
+		stringToReturn += printGroupMembers();
 
 		if(getGroup().size() > 0) {
-			toReturn += "============ END OF GROUP MEMEBERS ============";
+			stringToReturn += "============ END OF GROUP MEMEBERS ============";
 		}
 
-		return toReturn;
+		return stringToReturn;
 	}
 }
