@@ -13,15 +13,6 @@ In compliance with the standards of SWE4403 at The University of New Brunswick. 
 
 * [**Edward Chang**](https://github.com/edwardchang7)  | Developer
 
-# UML DIagrams 
-## System UML Diagram
--- insert system UML -- <br>
--- insert description of each component --
-
-## UI UML Diagram
--- insert UI UML -- <br>
--- insert description of each component --
-
 # Commands to COMPILE the project
 * To run the project, open the terminal and switch your directory to `TalentAgencySystem` and to `src` using the command below:
 ```
