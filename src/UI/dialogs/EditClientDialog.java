@@ -14,7 +14,8 @@ public class EditClientDialog extends AbstractEditDialog {
 		addButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddClientDialog(self).setVisible(true);
+				var addClientDialog = new AddClientDialog(self);
+				addClientDialog.setVisible(true);
 			}
 
 		});
@@ -22,7 +23,8 @@ public class EditClientDialog extends AbstractEditDialog {
 		removeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new DeleteClientDialog(self).setVisible(true);
+				var deleteClientDialog = new DeleteClientDialog(self);
+				deleteClientDialog.setVisible(true);
 			}
 		});
 	}

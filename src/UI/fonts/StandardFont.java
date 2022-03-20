@@ -4,7 +4,7 @@ import java.awt.Font;
 
 public class StandardFont extends Font {
 
-	public static StandardFont instance = null;
+	private static StandardFont instance = null;
 
 	private StandardFont() {
 		super("Consolas", Font.PLAIN, 12);

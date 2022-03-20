@@ -3,7 +3,6 @@ package UI.dialogs;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 public class EditEmployeeDialog extends AbstractEditDialog {
@@ -15,7 +14,7 @@ public class EditEmployeeDialog extends AbstractEditDialog {
 		addButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JDialog addEmployeeDialog = new AddEmployeeDialog(self);
+				var addEmployeeDialog = new AddEmployeeDialog(self);
 				addEmployeeDialog.setVisible(true);
 			}
 
@@ -25,7 +24,7 @@ public class EditEmployeeDialog extends AbstractEditDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JDialog deleteEmployeeDialog = new DeleteEmployeeDialog(self);
+				var deleteEmployeeDialog = new DeleteEmployeeDialog(self);
 				deleteEmployeeDialog.setVisible(true);
 			}
 

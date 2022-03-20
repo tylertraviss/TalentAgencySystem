@@ -9,9 +9,9 @@ import java.io.IOException;
 import javax.swing.JFrame;
 
 import UI.textarea.ConsoleTA;
-import src.src.com.company.Company;
-import src.src.com.company.SponsorshipMediator;
-import src.src.com.company.TextFileAudit;
+import src.company.Company;
+import src.company.SponsorshipMediator;
+import src.company.TextFileAudit;
 
 public class PrintDialog extends AbstractEditDialog {
 
@@ -28,17 +28,17 @@ public class PrintDialog extends AbstractEditDialog {
 		addButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TextFileAudit textFileAudit = new TextFileAudit();
+				var textFileAudit = new TextFileAudit();
 				try {
 					textFileAudit.writeInformationToTextFile();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
 
-				File f = new File("GeneratedAudit.txt");
-				Desktop desktop = Desktop.getDesktop();
+				var f = new File("GeneratedAudit.txt");
+				var desktop = Desktop.getDesktop();
 				if (!f.exists()) {
-					// open the error dialog and show that the file does not exist
+					new ErrorDialog("There was an error while generating the audit file.", "Error Opening Audit File");
 					return;
 				}
 				try {
@@ -57,39 +57,40 @@ public class PrintDialog extends AbstractEditDialog {
 				var company = Company.getInstance();
 				var console = ConsoleTA.getInstance();
 				var sponsorshipMediator = SponsorshipMediator.getInstance();
+				var sponsorships = sponsorshipMediator.getSponsorships();
 
-				console.log("Client Count : " + company.getNumberOfClients());
-				console.log("Employee Count: " + company.getNumberOfEmployees());
-				console.log("Sponsorship Count: " + sponsorshipMediator.getSponsorships().size());
+				console.log("Client Count :  " + company.getNumberOfClients());
+				console.log("Employee Count:  " + company.getNumberOfEmployees());
+				console.log("Sponsorship Count:  " + sponsorships.size());
 
 				console.log(SEPERATOR);
 
-				console.log("\t\tCLIENT LIST");
+				console.log("CLIENT LIST");
 
 				if (company.getAllClients().size() == 0)
 					console.log("No Clients Yet");
 				else
-					for (var client : company.getClients())
+					for (var client :  company.getClients())
 						console.log(client.getStringToPrintToConsole());
 
 				console.log(SEPERATOR);
 
-				console.log("\t\tEMPLOYEE LIST");
+				console.log("EMPLOYEE LIST");
 
 				if (company.getEmployees().size() == 0)
 					console.log("No Employees Yet");
 				else
-					for (var emp : company.getEmployees())
+					for (var emp :  company.getEmployees())
 						console.log(emp.getStringToPrintToConsole());
 
 				console.log(SEPERATOR);
 
-				console.log("\t\tSPONSOR LIST");
+				console.log("SPONSOR LIST");
 
 				if (sponsorshipMediator.getSponsorships().size() == 0)
 					console.log("No Sponsors Yet");
 				else
-					for (var sp : sponsorshipMediator.getSponsorships())
+					for (var sp :  sponsorshipMediator.getSponsorships())
 						console.log(sp.getStringToPrintToConsole());
 
 				console.log(SEPERATOR);

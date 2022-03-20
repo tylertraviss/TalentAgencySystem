@@ -17,30 +17,40 @@ public class TextField_Skeleton extends JTextField implements FocusListener {
 
 	public TextField_Skeleton(String title, String placeholder) {
 		this.placeholder = placeholder;
+
 		this.displayPlaceholder = placeholder == null ? false : true;
-		if (displayPlaceholder)
-			this.setFont(PlaceholderFont.getInstance());
-		else
-			this.setFont(StandardFont.getInstance());
+		var fontToUse = (displayPlaceholder) ? PlaceholderFont.getInstance() : StandardFont.getInstance();
+		
+		this.setFont(fontToUse);
 		this.setOpaque(false);
-		this.setBorder(new CustomTitledBorder(title));
+
+		var customTitledBorder = new CustomTitledBorder(title);
+
+		this.setBorder(customTitledBorder);
 		addFocusListener(this);
 		setDefaultText();
 	}
 
 	@Override
 	public void focusGained(FocusEvent e) {
-		if (getFont() == PlaceholderFont.getInstance()) {
+
+		var placeholderFont = PlaceholderFont.getInstance();
+		var standardFont = StandardFont.getInstance();
+
+		if (getFont() == placeholderFont) {
 			setText("");
 			setForeground(Color.BLACK);
-			setFont(StandardFont.getInstance());
+			setFont(standardFont);
 		}
 	}
 
 	@Override
 	public void focusLost(FocusEvent e) {
 		if (getText().isBlank() && displayPlaceholder) {
-			setFont(PlaceholderFont.getInstance());
+
+			var placeholderFont = PlaceholderFont.getInstance();
+
+			setFont(placeholderFont);
 			setDefaultText();
 		}
 	}

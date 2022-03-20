@@ -2,24 +2,22 @@ package UI.dialogs;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 
-import UI.textarea.ConsoleTA;
-import src.src.com.company.Sponsorship;
-import src.src.com.company.SponsorshipMediator;
+import src.company.Sponsorship;
+import src.company.SponsorshipMediator;
 
 public class DeleteSponsorDialog extends AbstractDeleteDialog {
 
-	private SponsorshipMediator sponsorshipMediator = SponsorshipMediator.getInstance();
-	private ConsoleTA console = ConsoleTA.getInstance();
+	private SponsorshipMediator spMediator = SponsorshipMediator.getInstance();
 
 	public DeleteSponsorDialog(JDialog parentDialog) {
 		super("Delete Sponsors");
-
 		setLocationRelativeTo(parentDialog);
 
-		selectionCBBox.setModel(new DefaultComboBoxModel(sponsorshipMediator.getSponsorships().toArray()));
+		var sponsorships = spMediator.getSponsorships();
+
+		setSelectionCBBox(sponsorships);
 	}
 
 	@Override
@@ -31,9 +29,11 @@ public class DeleteSponsorDialog extends AbstractDeleteDialog {
 			return;
 		}
 
-		sponsorshipMediator.discontinueSponsorship(s);
+		spMediator.discontinueSponsorship(s);
 
-		console.log("A sponsorship has been discontinued: " + s.getSponsor().getSponsorName());
+		var sponsor = s.getSponsor();
+
+		console.log("A sponsorship has been discontinued: " + sponsor.getSponsorName());
 		dispose();
 
 	}

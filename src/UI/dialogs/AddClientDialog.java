@@ -2,7 +2,6 @@ package UI.dialogs;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -19,26 +18,25 @@ import javax.swing.SwingConstants;
 import UI.borders.CustomTitledBorder;
 import UI.borders.WindowBorder;
 import UI.buttons.Button_Skeleton;
+import UI.fonts.BoldFont;
 import UI.fonts.PlaceholderFont;
 import UI.panels.ButtonPanel_Skeleton;
 import UI.panels.Header;
 import UI.textarea.ConsoleTA;
 import UI.textfields.TextField_Skeleton;
 import UI.utilities.ClientType;
-import src.src.com.company.Actor;
-import src.src.com.company.Athlete;
-import src.src.com.company.Award;
-import src.src.com.company.Client;
-import src.src.com.company.Company;
-import src.src.com.company.Experience;
-import src.src.com.company.Instrument;
-import src.src.com.company.MementoCreator;
-import src.src.com.company.MementoRestorer;
-import src.src.com.company.Musician;
+import src.company.Actor;
+import src.company.Athlete;
+import src.company.Award;
+import src.company.Client;
+import src.company.Company;
+import src.company.Experience;
+import src.company.Instrument;
+import src.company.MementoCreator;
+import src.company.MementoRestorer;
+import src.company.Musician;
 
 public class AddClientDialog extends JDialog {
-
-	private Company company = Company.getInstance();
 
 	private JTextField name, age, gender, nationality, experiences, commission, awards, revenueGenerated;
 	private JPanel buttonPanel, clientTypePanel, header;
@@ -48,11 +46,15 @@ public class AddClientDialog extends JDialog {
 
 	public AddClientDialog(JDialog parentDialog) {
 		var console = ConsoleTA.getInstance();
+		var company = Company.getInstance();
+		var windowBorder = WindowBorder.getInstance();
+		var contentPane = getContentPane();
+		var boldFont = BoldFont.getInstance();
 
 		setModal(true);
 		setModalityType(ModalityType.APPLICATION_MODAL);
-		getContentPane().setLayout(null);
-		getRootPane().setBorder(WindowBorder.getInstance());
+		contentPane.setLayout(null);
+		getRootPane().setBorder(windowBorder);
 		setBounds(10, 10, 435, 800);
 		setUndecorated(true);
 		setTitle("Add Client");
@@ -75,29 +77,31 @@ public class AddClientDialog extends JDialog {
 		nationality = new TextField_Skeleton("Nationality", "Example...");
 		nationality.setBounds(223, 214, 200, 50);
 
-		getContentPane().add(name);
-		getContentPane().add(age);
-		getContentPane().add(gender);
-		getContentPane().add(commission);
-		getContentPane().add(awards);
-		getContentPane().add(revenueGenerated);
-		getContentPane().add(nationality);
+		contentPane.add(name);
+		contentPane.add(age);
+		contentPane.add(gender);
+		contentPane.add(commission);
+		contentPane.add(awards);
+		contentPane.add(revenueGenerated);
+		contentPane.add(nationality);
 
 		/*
 		 * JPanel
 		 */
 		buttonPanel = new ButtonPanel_Skeleton();
 		buttonPanel.setBounds(10, 704, 414, 50);
-		getContentPane().add(buttonPanel);
+		contentPane.add(buttonPanel);
 
 		clientTypePanel = new JPanel();
 		clientTypePanel.setOpaque(false);
 		clientTypePanel.setBounds(10, 523, 414, 170);
-		clientTypePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		getContentPane().add(clientTypePanel);
+
+		var flowLayout = new FlowLayout(FlowLayout.CENTER, 5, 5);
+		clientTypePanel.setLayout(flowLayout);
+		contentPane.add(clientTypePanel);
 
 		header = new Header(this, "New Client", null, false);
-		getContentPane().add(header);
+		contentPane.add(header);
 
 		/*
 		 * JButton
@@ -117,8 +121,8 @@ public class AddClientDialog extends JDialog {
 
 				if (validateAllFields()) {
 
-					MementoCreator mCreator = MementoCreator.getInstance();
-					MementoRestorer mRestorer = MementoRestorer.getInstance();
+					var mCreator = MementoCreator.getInstance();
+					var mRestorer = MementoRestorer.getInstance();
 
 					nameIn = name.getText();
 					genderIn = gender.getText();
@@ -132,10 +136,10 @@ public class AddClientDialog extends JDialog {
 						awardList = strAwardToList(awardsIn);
 					}
 					var selectedItem = groupCBBox.getSelectedItem().toString();
-					if (selectedItem.equalsIgnoreCase("No Groups"))
-						group = null;
-					else
-						group = (Client) groupCBBox.getSelectedItem();
+
+					// if there is no group selected then set it to null
+					group = selectedItem.equalsIgnoreCase("No Groups") ? null : (Client) groupCBBox.getSelectedItem();
+
 					ageIn = Integer.parseInt(age.getText());
 					commissionIn = Double.parseDouble(commission.getText());
 					revenueGeneratedIn = Double.parseDouble(revenueGenerated.getText());
@@ -144,26 +148,17 @@ public class AddClientDialog extends JDialog {
 					switch ((ClientType) clientTypeCBBox.getSelectedItem()) {
 						case ACTOR:
 							toAdd = new Actor(nameIn, ageIn, genderIn, nationalityIn, experienceList, commissionIn,
-									awardList,
-									revenueGeneratedIn, clientTypeInList.get(0));
+									awardList, revenueGeneratedIn, clientTypeInList.get(0));
 							break;
 						case MUSICIAN:
 							instrumentIn = new Instrument(clientTypeInList.get(2));
-							toAdd = new Musician(nameIn, ageIn, genderIn, nationalityIn,
-									experienceList, commissionIn, awardList, revenueGeneratedIn,
-									clientTypeInList.get(0), clientTypeInList.get(1), instrumentIn);
+							toAdd = new Musician(nameIn, ageIn, genderIn, nationalityIn, experienceList, commissionIn,
+									awardList, revenueGeneratedIn, clientTypeInList.get(0), clientTypeInList.get(1),
+									instrumentIn);
 							break;
 						case ATHLETE:
-							if (!validateDoubles(clientTypeInList.get(0))) {
-								// SHOW ERROR MSG
-							}
-							if (!validateDoubles(clientTypeInList.get(1))) {
-								// SHOW ERROR MSG
-							}
-
-							toAdd = new Athlete(nameIn, ageIn, genderIn, nationalityIn,
-									experienceList, commissionIn, awardList, revenueGeneratedIn,
-									Double.parseDouble(clientTypeInList.get(0)),
+							toAdd = new Athlete(nameIn, ageIn, genderIn, nationalityIn, experienceList, commissionIn,
+									awardList, revenueGeneratedIn, Double.parseDouble(clientTypeInList.get(0)),
 									Double.parseDouble(clientTypeInList.get(1)), clientTypeInList.get(2));
 							break;
 					}
@@ -192,10 +187,12 @@ public class AddClientDialog extends JDialog {
 		groupCBBox = new JComboBox(company.getClients().toArray());
 		groupCBBox.setBounds(10, 397, 414, 50);
 		groupCBBox.addItem("No Groups");
+
 		if (company.getNumberOfClients() != 0)
 			groupCBBox.setSelectedIndex(company.getNumberOfClients());
+
 		groupCBBox.setBorder(new CustomTitledBorder("Existing Groups"));
-		getContentPane().add(groupCBBox);
+		contentPane.add(groupCBBox);
 
 		clientTypeCBBox = new JComboBox(ClientType.values());
 		clientTypeCBBox.setBounds(10, 462, 414, 50);
@@ -206,20 +203,19 @@ public class AddClientDialog extends JDialog {
 				var selection = clientTypeCBBox.getSelectedItem();
 				updateClientTypePanel((ClientType) selection);
 			}
-
 		});
-		getContentPane().add(clientTypeCBBox);
+		contentPane.add(clientTypeCBBox);
 
 		experiences = new TextField_Skeleton("Experiences (Sepearate each experience by [,]", "Exp 1, Exp 2, Exp...");
 		experiences.setBounds(10, 336, 414, 50);
-		getContentPane().add(experiences);
+		contentPane.add(experiences);
 
 		titleLabel = new JLabel("New Client");
 		titleLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(new Font("Consolas", Font.BOLD, 12));
+		titleLabel.setFont(boldFont);
 		titleLabel.setBounds(10, 46, 414, 35);
-		getContentPane().add(titleLabel);
+		contentPane.add(titleLabel);
 
 		// by default set actor
 		updateClientTypePanel(ClientType.ACTOR);
@@ -232,7 +228,7 @@ public class AddClientDialog extends JDialog {
 		// each update clears the panel
 		clientTypePanel.removeAll();
 
-		Dimension size = new Dimension(400, 50);
+		var size = new Dimension(400, 50);
 
 		switch (type) {
 			case ACTOR:
@@ -272,32 +268,29 @@ public class AddClientDialog extends JDialog {
 	private boolean clientTypeFilled() {
 		boolean toReturn = true;
 
-		if (clientTypePanel.getComponents().length == 1)
-			toReturn &= !(((JTextField) clientTypePanel.getComponent(0)).getText().isBlank())
-					& !(clientTypePanel.getComponent(0).getFont() instanceof PlaceholderFont);
-
-		else
-			for (var component : clientTypePanel.getComponents()) {
-				if (((JTextField) component).getText().isBlank())
-					toReturn &= false;
-				if (component.getFont() instanceof PlaceholderFont)
-					toReturn &= false;
-			}
+		// for each component within the clientTypePanel, check if its empty
+		for (var component : clientTypePanel.getComponents()) {
+			if (((JTextField) component).getText().isBlank() | component.getFont() instanceof PlaceholderFont)
+				toReturn &= false;
+		}
 		return toReturn;
 	}
 
 	private List<String> getClientTypeInfo() {
 		List<String> toReturn = new ArrayList<>();
 
-		for (var component : clientTypePanel.getComponents()) {
+		var clientTypePanelComponents = clientTypePanel.getComponents();
+
+		for (var component : clientTypePanelComponents) {
+			// takes each entry and save it in the list (toReturn)
 			toReturn.add(((JTextField) component).getText());
 		}
-
 		return toReturn;
 	}
 
 	private boolean validateDoubles(String text) {
 		try {
+			// if unable to parse, its not a valid double
 			Double.parseDouble(text);
 			return true;
 		} catch (NumberFormatException e) {
@@ -307,6 +300,7 @@ public class AddClientDialog extends JDialog {
 
 	private boolean validateIntegers(String text) {
 		try {
+			// if unable to parse, its not a valid int
 			Integer.parseInt(text);
 			return true;
 		} catch (NumberFormatException e) {
@@ -315,6 +309,7 @@ public class AddClientDialog extends JDialog {
 	}
 
 	private boolean isFilled(JTextField field) {
+		// check if the given field is blank or if the font type is the placeholder font
 		return !((field.getFont() instanceof PlaceholderFont) | field.getText().isBlank());
 	}
 
@@ -335,18 +330,22 @@ public class AddClientDialog extends JDialog {
 
 	private List<Experience> strExpToList(String list) {
 		List<Experience> toReturn = new ArrayList<>();
-		String temp[] = list.split(",");
-		for (var exp : temp)
-			toReturn.add(new Experience(exp.strip()));
+		var temp = list.split(",");
+		for (var exp : temp) {
+			var e = new Experience(exp.strip());
+			toReturn.add(e);
+		}
 
 		return toReturn;
 	}
 
 	private List<Award> strAwardToList(String list) {
 		List<Award> toReturn = new ArrayList<>();
-		String temp[] = list.split(",");
-		for (var award : temp)
-			toReturn.add(new Award(award.strip()));
+		var temp = list.split(",");
+		for (var award : temp) {
+			var a = new Award(award.strip());
+			toReturn.add(a);
+		}
 
 		return toReturn;
 	}

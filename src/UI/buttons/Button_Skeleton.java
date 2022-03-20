@@ -15,37 +15,45 @@ import UI.fonts.StandardFont;
 public class Button_Skeleton extends JButton implements MouseListener {
 
 	public Button_Skeleton(String text) {
+
+		var roundedBorder = RoundedBorder.getInstance();
+		var standardFont = StandardFont.getInstance();
+
 		this.setText(text);
-		this.setBorder(RoundedBorder.getInstance());
-		this.setFont(StandardFont.getInstance());
+		this.setBorder(roundedBorder);
+		this.setFont(standardFont);
 		this.setFocusPainted(false);
 		this.setFocusable(false);
 		this.setContentAreaFilled(false);
-		this.setPreferredSize(new Dimension(120, 40));
-		addMouseListener(this);
+
+		var dimension = new Dimension(120, 40);
+
+		this.setPreferredSize(dimension);
+		this.addMouseListener(this);
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+		// unsued
 
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+		// unsued
 
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+		// unsued
 
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		setFont(BoldFont.getInstance());
+		var boldFont = BoldFont.getInstance();
+		setFont(boldFont);
 		setBorder(RoundedBorder.getInstance(Color.WHITE));
 	}
 
@@ -55,8 +63,10 @@ public class Button_Skeleton extends JButton implements MouseListener {
 
 			@Override
 			public void run() {
-				setFont(StandardFont.getInstance());
-				setBorder(RoundedBorder.getInstance());
+				var roundedBorder = RoundedBorder.getInstance();
+				var standardFont = StandardFont.getInstance();
+				setFont(standardFont);
+				setBorder(roundedBorder);
 			}
 
 		});

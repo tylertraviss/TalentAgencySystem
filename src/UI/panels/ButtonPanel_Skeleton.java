@@ -9,7 +9,10 @@ public class ButtonPanel_Skeleton extends JPanel {
 	public ButtonPanel_Skeleton() {
 		super();
 		setOpaque(false);
-		setLayout(new FlowLayout());
+
+		var flowLayout = new FlowLayout();
+
+		setLayout(flowLayout);
 	}
 
 }

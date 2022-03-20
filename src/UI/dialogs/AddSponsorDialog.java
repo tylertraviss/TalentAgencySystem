@@ -21,14 +21,14 @@ import UI.panels.ButtonPanel_Skeleton;
 import UI.panels.Header;
 import UI.textarea.ConsoleTA;
 import UI.textfields.TextField_Skeleton;
-import src.src.com.company.Client;
-import src.src.com.company.Company;
-import src.src.com.company.MementoCreator;
-import src.src.com.company.MementoRestorer;
-import src.src.com.company.Sponsor;
-import src.src.com.company.SponsoredClient;
-import src.src.com.company.Sponsorship;
-import src.src.com.company.SponsorshipMediator;
+import src.company.Client;
+import src.company.Company;
+import src.company.MementoCreator;
+import src.company.MementoRestorer;
+import src.company.Sponsor;
+import src.company.SponsoredClient;
+import src.company.Sponsorship;
+import src.company.SponsorshipMediator;
 
 public class AddSponsorDialog extends JDialog {
 
@@ -45,17 +45,23 @@ public class AddSponsorDialog extends JDialog {
 	 */
 	public AddSponsorDialog(JDialog parentDialog) {
 		super(parentDialog);
+
 		var console = ConsoleTA.getInstance();
 		var sponsorshipMediator = SponsorshipMediator.getInstance();
+		var contentPane = getContentPane();
+		var borderLayout = new BorderLayout();
+		var windowBorder = WindowBorder.getInstance();
+
 		setModal(true);
 		setTitle("Add Sponsor");
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setBounds(100, 100, 435, 385);
-		getContentPane().setLayout(new BorderLayout());
-		getRootPane().setBorder(WindowBorder.getInstance());
+
+		contentPane.setLayout(borderLayout);
+		getRootPane().setBorder(windowBorder);
 		contentPanel.setLayout(null);
 		setUndecorated(true);
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPane.add(contentPanel, BorderLayout.CENTER);
 
 		/*
 		 * TextField
@@ -73,9 +79,11 @@ public class AddSponsorDialog extends JDialog {
 		 * Combobox
 		 */
 		var company = Company.getInstance();
+		var clientList = company.getAllClients();
+		var customTitledBorder = new CustomTitledBorder("Select Client");
 
-		clientCBBox = new JComboBox(company.getAllClients().toArray());
-		clientCBBox.setBorder(new CustomTitledBorder("Select Client"));
+		clientCBBox = new JComboBox(clientList.toArray());
+		clientCBBox.setBorder(customTitledBorder);
 		clientCBBox.setBounds(10, 171, 414, 50);
 		contentPanel.add(clientCBBox);
 
@@ -108,13 +116,14 @@ public class AddSponsorDialog extends JDialog {
 					sponsorIn = sponsor.getText();
 					clientIn = (Client) clientCBBox.getSelectedItem();
 					sponsoredAmountIn = Double.parseDouble(amount.getText());
-					Sponsor s = new Sponsor(sponsorIn, sponsorshipMediator);
-					SponsoredClient sc = new SponsoredClient(clientIn, sponsorshipMediator);
-					Sponsorship sp = new Sponsorship(s, sc, sponsoredAmountIn, sponsorshipMediator);
+
+					var s = new Sponsor(sponsorIn, sponsorshipMediator);
+					var sc = new SponsoredClient(clientIn, sponsorshipMediator);
+					var sp = new Sponsorship(s, sc, sponsoredAmountIn, sponsorshipMediator);
 
 					sponsorshipMediator.registerSponsorship(sp);
 
-					console.log("Added new Sponsor for client :\t" + sc);
+					console.log("Added new Sponsor for client :" + sc);
 
 					sponsorshipMediator.sortSponsors();
 
@@ -166,11 +175,11 @@ public class AddSponsorDialog extends JDialog {
 
 	private boolean validateClient() {
 		try {
+			// checks if there a client exist
 			clientCBBox.getSelectedItem().toString();
 			return true;
 		} catch (NullPointerException e) {
 			return false;
 		}
-
 	}
 }

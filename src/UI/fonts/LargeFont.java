@@ -4,7 +4,7 @@ import java.awt.Font;
 
 public class LargeFont extends Font {
 
-	public static LargeFont instance = null;
+	private static LargeFont instance = null;
 
 	private LargeFont() {
 		super("Consolas", Font.PLAIN, 25);

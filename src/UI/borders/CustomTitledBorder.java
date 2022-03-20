@@ -8,7 +8,9 @@ public class CustomTitledBorder extends TitledBorder {
 
 	public CustomTitledBorder(String title) {
 		super(title);
-		setTitleFont(StandardFont.getInstance());
+
+		var standardFont = StandardFont.getInstance();
+		setTitleFont(standardFont);
 	}
 
 }

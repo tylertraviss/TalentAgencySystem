@@ -35,10 +35,16 @@ public class ErrorDialog extends JDialog {
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setUndecorated(true);
 		setBounds(100, 100, 450, 210);
-		getContentPane().setLayout(new BorderLayout());
+
+		var contentPane = getContentPane();
+		var borderLayout = new BorderLayout();
+		var windowBorder = WindowBorder.getInstance();
+		var standardFont = StandardFont.getInstance();
+
+		contentPane.setLayout(borderLayout);
 		contentPanel.setLayout(null);
-		getRootPane().setBorder(WindowBorder.getInstance());
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		getRootPane().setBorder(windowBorder);
+		contentPane.add(contentPanel, BorderLayout.CENTER);
 		/*
 		 * JPanels
 		 */
@@ -54,7 +60,7 @@ public class ErrorDialog extends JDialog {
 		context = new JLabel(CONTEXT_HEADER + errorMsg + CONTEXT_FOOTER);
 		context.setHorizontalTextPosition(SwingConstants.CENTER);
 		context.setHorizontalAlignment(SwingConstants.CENTER);
-		context.setFont(StandardFont.getInstance());
+		context.setFont(standardFont);
 		context.setBounds(10, 46, 430, 89);
 		contentPanel.add(context);
 
@@ -70,7 +76,10 @@ public class ErrorDialog extends JDialog {
 			}
 
 		});
+
 		setLocationRelativeTo(null);
+
+		// display it
 		setVisible(true);
 	}
 

@@ -17,22 +17,28 @@ public class ConsoleTA extends JTextArea {
 		setEditable(false);
 		setLineWrap(true);
 		setWrapStyleWord(true);
-		setFont(StandardFont.getInstance());
+
+		var standardFont = StandardFont.getInstance();
+
+		setFont(standardFont);
 	}
 
 	public static ConsoleTA getInstance() {
 		if (instance == null)
 			instance = new ConsoleTA();
+
 		return instance;
 	}
 
 	public void log(String string) {
-		int start = getCaretPosition();
+		// get position before writing
+		var start = getCaretPosition();
+
 		context += string + System.lineSeparator() + System.lineSeparator();
 		setText(context);
-		int end = getCaretPosition();
 
-		System.out.println(start + " " + end);
+		// get position after writing
+		var end = getCaretPosition();
 
 		setCaretPosition(end);
 		moveCaretPosition(start + 10);

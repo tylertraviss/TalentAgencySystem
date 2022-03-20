@@ -1,5 +1,6 @@
 package UI;
 
+import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -18,17 +19,16 @@ import UI.dialogs.EditSponsorDialog;
 import UI.dialogs.PrintDialog;
 import UI.panels.Header;
 import UI.textarea.ConsoleTA;
-import src.src.com.company.Company;
-import src.src.com.company.MementoRestorer;
-import src.src.com.company.SponsorshipMediator;
+import src.company.Company;
+import src.company.MementoRestorer;
+import src.company.SponsorshipMediator;
 
 public class MainFrame {
 
 	private JFrame frame;
 
+	private Container contentPane;
 	private JPanel buttonPanel, header;
-
-	private ConsoleTA consoleTA;
 
 	private JButton editClient, editEmployee, editSponsor, print, undo;
 	private JScrollPane consoleSP;
@@ -61,13 +61,18 @@ public class MainFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+
+		var console = ConsoleTA.getInstance();
+		var windowBorder = WindowBorder.getInstance();
+
 		frame = new JFrame();
+		contentPane = frame.getContentPane();
 		frame.setUndecorated(true);
 		frame.setBounds(100, 100, 730, 435);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		contentPane.setLayout(null);
 		frame.setResizable(false);
-		frame.getRootPane().setBorder(WindowBorder.getInstance());
+		frame.getRootPane().setBorder(windowBorder);
 
 		/*
 		 * JTextArea
@@ -75,9 +80,8 @@ public class MainFrame {
 
 		consoleSP = new JScrollPane();
 		consoleSP.setBounds(10, 46, 710, 269);
-		frame.getContentPane().add(consoleSP);
-		consoleTA = ConsoleTA.getInstance();
-		consoleSP.setViewportView(consoleTA);
+		contentPane.add(consoleSP);
+		consoleSP.setViewportView(console);
 		consoleSP.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
 		/*
@@ -86,12 +90,13 @@ public class MainFrame {
 		buttonPanel = new JPanel();
 		buttonPanel.setOpaque(false);
 		buttonPanel.setBorder(null);
-		buttonPanel.setLayout(new FlowLayout());
+		var flowLayout = new FlowLayout();
+		buttonPanel.setLayout(flowLayout);
 		buttonPanel.setBounds(10, 335, 710, 50);
-		frame.getContentPane().add(buttonPanel);
+		contentPane.add(buttonPanel);
 
 		header = new Header(frame, "Talent Agency System", null, true);
-		frame.getContentPane().add(header);
+		contentPane.add(header);
 
 		/*
 		 * JButton
@@ -100,41 +105,46 @@ public class MainFrame {
 		editClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new EditClientDialog(frame).setVisible(true);
+				var editClientDialog = new EditClientDialog(frame);
+				editClientDialog.setVisible(true);
 			}
 		});
 		editEmployee = new Button_Skeleton("Edit Employee");
 		editEmployee.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new EditEmployeeDialog(frame).setVisible(true);
+				var editEmployeeDialog = new EditEmployeeDialog(frame);
+				editEmployeeDialog.setVisible(true);
 			}
 		});
 		editSponsor = new Button_Skeleton("Edit Sponsor");
 		editSponsor.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new EditSponsorDialog(frame).setVisible(true);
+				var editSponsorDialog = new EditSponsorDialog(frame);
+				editSponsorDialog.setVisible(true);
 			}
 		});
 		print = new Button_Skeleton("Print");
 		print.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new PrintDialog(frame).setVisible(true);
+				var printDialog = new PrintDialog(frame);
+				printDialog.setVisible(true);
 			}
 		});
 		undo = new Button_Skeleton("Undo");
 		undo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MementoRestorer mRestorer = MementoRestorer.getInstance();
-				SponsorshipMediator sponsorshipMediator = SponsorshipMediator.getInstance();
-				Company company = Company.getInstance();
+				var mRestorer = MementoRestorer.getInstance();
+				var sponsorshipMediator = SponsorshipMediator.getInstance();
 				var memento = mRestorer.getLastMemento();
+				var company = Company.getInstance();
 
+				/* Checks if the memento is empty. If so do nothing. */
 				if (memento == null) {
-					consoleTA.log("Nothing to undo.");
+					console.log("Nothing to undo.");
 					return;
 				}
 				var empToRemove = memento.getEmployee();
@@ -151,10 +161,10 @@ public class MainFrame {
 					sponsorshipMediator.discontinueSponsorship(sponsorship);
 				}
 
-
+				/* Undo previous adding action and remove that memento */
 				mRestorer.removeLastMemento();
 
-				consoleTA.log("Previous action have been undone.");
+				console.log("Previous action have been undone.");
 			}
 		});
 		/*

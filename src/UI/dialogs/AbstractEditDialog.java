@@ -2,7 +2,6 @@ package UI.dialogs;
 
 import java.awt.BorderLayout;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -25,8 +24,6 @@ public abstract class AbstractEditDialog extends JDialog {
 	private JLabel titleLabel;
 	protected JDialog self;
 
-	protected ImageIcon icon;
-
 	/**
 	 * Create the dialog.
 	 */
@@ -37,12 +34,17 @@ public abstract class AbstractEditDialog extends JDialog {
 		setResizable(false);
 		setTitle(title);
 		setModal(true);
-		getRootPane().setBorder(WindowBorder.getInstance());
+
+		var windowBorder = WindowBorder.getInstance();
+		var contentPane = getContentPane();
+		var boldFont = BoldFont.getInstance();
+
+		getRootPane().setBorder(windowBorder);
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setBounds(100, 100, 450, 185);
-		getContentPane().setLayout(new BorderLayout());
+		contentPane.setLayout(new BorderLayout());
 		contentPanel.setLayout(null);
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPane.add(contentPanel, BorderLayout.CENTER);
 
 		/*
 		 * Labels
@@ -50,7 +52,7 @@ public abstract class AbstractEditDialog extends JDialog {
 		titleLabel = new JLabel(title);
 		titleLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(BoldFont.getInstance());
+		titleLabel.setFont(boldFont);
 		titleLabel.setBounds(10, 46, 414, 50);
 		contentPanel.add(titleLabel);
 
@@ -69,9 +71,10 @@ public abstract class AbstractEditDialog extends JDialog {
 
 		buttonPanel.add(addButton);
 		buttonPanel.add(removeButton);
-		header = new Header(this, title, icon, false);
+		header = new Header(this, title, null, false);
 		contentPanel.add(header);
 
+		/* sets self to this for child class to use */
 		self = this;
 	}
 

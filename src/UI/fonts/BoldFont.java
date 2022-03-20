@@ -4,7 +4,7 @@ import java.awt.Font;
 
 public class BoldFont extends Font {
 
-	public static BoldFont instance = null;
+	private static BoldFont instance = null;
 
 	private BoldFont() {
 		super("Consolas", Font.BOLD, 12);

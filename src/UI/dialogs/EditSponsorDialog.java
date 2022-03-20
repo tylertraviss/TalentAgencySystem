@@ -15,7 +15,8 @@ public class EditSponsorDialog extends AbstractEditDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddSponsorDialog(self).setVisible(true);
+				var addSponsorDialog = new AddSponsorDialog(self);
+				addSponsorDialog.setVisible(true);
 			}
 		});
 
@@ -23,7 +24,8 @@ public class EditSponsorDialog extends AbstractEditDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new DeleteSponsorDialog(self).setVisible(true);
+				var deleteSponsorDialog = new DeleteSponsorDialog(self);
+				deleteSponsorDialog.setVisible(true);
 			}
 		});
 	}

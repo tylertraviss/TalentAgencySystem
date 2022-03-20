@@ -3,7 +3,6 @@ package UI.panels;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -28,11 +27,6 @@ public class Header extends JPanel {
 	private JLabel LBL_taskbar;
 	private boolean focused;
 
-	/**
-	 * Create the panel.
-	 * 
-	 * @wbp.parser.constructor
-	 */
 	public Header(JFrame frame, String title, ImageIcon icon, boolean isMain) {
 		init(frame, null, title, icon, isMain);
 	}
@@ -41,17 +35,15 @@ public class Header extends JPanel {
 		init(null, dialog, title, icon, isMain);
 	}
 
-//	@Override
-//	protected void paintComponent(Graphics g) {
-//		super.paintComponent(g);
-//		g.setColor(Color.GRAY);
-//		g.fillRect(50, 5, 2, 25);
-//	}
-
 	private void init(JFrame frame, JDialog dialog, String title, ImageIcon icon, boolean isMain) {
-		setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
-		setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY));
+
+		var moveCursor = Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR);
+		var matteBorder = BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY);
+
+		setCursor(moveCursor);
+		setBorder(matteBorder);
 		setLayout(null);
+
 		if (frame != null)
 			setBounds(0, 0, frame.getWidth(), 35);
 		else
@@ -72,7 +64,10 @@ public class Header extends JPanel {
 			});
 
 		JButton BTN_exit = new JButton("X");
-		BTN_exit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+		var handCursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
+
+		BTN_exit.setCursor(handCursor);
 		BTN_exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (frame != null)
@@ -87,7 +82,10 @@ public class Header extends JPanel {
 		BTN_exit.setRequestFocusEnabled(false);
 		BTN_exit.setOpaque(false);
 		BTN_exit.setForeground(Color.RED);
-		BTN_exit.setFont(new Font("Consolas", Font.PLAIN, 20));
+
+		var buttonFont = new Font("Consolas", Font.PLAIN, 20);
+
+		BTN_exit.setFont(buttonFont);
 		BTN_exit.setFocusable(false);
 		BTN_exit.setFocusTraversalKeysEnabled(false);
 		BTN_exit.setFocusPainted(false);
@@ -125,14 +123,16 @@ public class Header extends JPanel {
 		BTN_minimize.setRequestFocusEnabled(false);
 		BTN_minimize.setOpaque(false);
 		BTN_minimize.setForeground(Color.RED);
-		BTN_minimize.setFont(new Font("Consolas", Font.PLAIN, 20));
+		BTN_minimize.setFont(buttonFont);
 		BTN_minimize.setFocusable(false);
 		BTN_minimize.setFocusTraversalKeysEnabled(false);
 		BTN_minimize.setFocusPainted(false);
 		BTN_minimize.setContentAreaFilled(false);
 		BTN_minimize.setBorder(null);
+
 		if (frame != null)
 			BTN_minimize.setBounds((frame.getWidth() - 70), 11, 43, 24);
+
 		add(BTN_minimize);
 
 		addMouseMotionListener(new MouseMotionListener() {
@@ -159,7 +159,7 @@ public class Header extends JPanel {
 		});
 
 		LBL_taskbar = new JLabel(title);
-		LBL_taskbar.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
+		LBL_taskbar.setCursor(moveCursor);
 		LBL_taskbar.setForeground(Color.BLACK);
 		LBL_taskbar.setFont(StandardFont.getInstance());
 		if (frame != null)
@@ -169,13 +169,15 @@ public class Header extends JPanel {
 		add(LBL_taskbar);
 
 		JLabel LBL_taskbarIcon = new JLabel(icon, JLabel.CENTER);
-		LBL_taskbarIcon.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
+		LBL_taskbarIcon.setCursor(moveCursor);
 		LBL_taskbarIcon.setFocusTraversalKeysEnabled(false);
 		LBL_taskbarIcon.setFocusable(false);
 		LBL_taskbarIcon.setBounds(0, 5, 56, 30);
 		add(LBL_taskbarIcon);
 
-		LBL_taskbar.setFont(StandardFont.getInstance());
+		var standardFont = StandardFont.getInstance();
+
+		LBL_taskbar.setFont(standardFont);
 	}
 
 	public void setTitle(String newTitle) {

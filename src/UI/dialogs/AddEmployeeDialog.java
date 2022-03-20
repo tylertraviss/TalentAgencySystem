@@ -3,8 +3,6 @@ package UI.dialogs;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -23,11 +21,11 @@ import UI.panels.ButtonPanel_Skeleton;
 import UI.panels.Header;
 import UI.textarea.ConsoleTA;
 import UI.textfields.TextField_Skeleton;
-import src.src.com.company.Company;
-import src.src.com.company.Date;
-import src.src.com.company.Employee;
-import src.src.com.company.MementoCreator;
-import src.src.com.company.MementoRestorer;
+import src.company.Company;
+import src.company.Date;
+import src.company.Employee;
+import src.company.MementoCreator;
+import src.company.MementoRestorer;
 
 public class AddEmployeeDialog extends JDialog {
 
@@ -46,12 +44,16 @@ public class AddEmployeeDialog extends JDialog {
 	 */
 	public AddEmployeeDialog(JDialog parentDialog) {
 		var console = ConsoleTA.getInstance();
+		var windowBorder = WindowBorder.getInstance();
+		var boldFont = BoldFont.getInstance();
+		var borderLayout = new BorderLayout();
+
 		setModal(true);
 		setUndecorated(true);
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setBounds(100, 100, 440, 500);
-		getContentPane().setLayout(new BorderLayout());
-		getRootPane().setBorder(WindowBorder.getInstance());
+		getContentPane().setLayout(borderLayout);
+		getRootPane().setBorder(windowBorder);
 		contentPanel.setLayout(null);
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		setTitle("Add Employee");
@@ -62,7 +64,7 @@ public class AddEmployeeDialog extends JDialog {
 		titleLabel = new JLabel("New Employee");
 		titleLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setFont(BoldFont.getInstance());
+		titleLabel.setFont(boldFont);
 		titleLabel.setBounds(10, 53, 414, 50);
 		contentPanel.add(titleLabel);
 
@@ -91,8 +93,8 @@ public class AddEmployeeDialog extends JDialog {
 				int ageIn;
 
 				if (validateAllFields()) {
-					MementoCreator mCreator = MementoCreator.getInstance();
-					MementoRestorer mRestorer = MementoRestorer.getInstance();
+					var mCreator = MementoCreator.getInstance();
+					var mRestorer = MementoRestorer.getInstance();
 
 					nameIn = name.getText();
 					genderIn = gender.getText();
@@ -104,13 +106,12 @@ public class AddEmployeeDialog extends JDialog {
 					ageIn = Integer.parseInt(age.getText());
 
 					var selectedItem = superiorCBBox.getSelectedItem().toString();
-					if (selectedItem.equalsIgnoreCase("No Superior"))
-						superiorIn = null;
-					else
-						superiorIn = (Employee) superiorCBBox.getSelectedItem();
 
-					Employee employee = new Employee(nameIn, ageIn, genderIn, nationalityIn, jobTitleIn, wageIn,
-							startIn,
+					// if the selected item is "No Superior then set superior to null
+					superiorIn = (selectedItem.equalsIgnoreCase("No Superior")) ? null
+							: (Employee) superiorCBBox.getSelectedItem();
+
+					var employee = new Employee(nameIn, ageIn, genderIn, nationalityIn, jobTitleIn, wageIn, startIn,
 							endIn, superiorIn);
 
 					if (superiorIn != null)
@@ -164,15 +165,16 @@ public class AddEmployeeDialog extends JDialog {
 		/*
 		 * ComboBox
 		 */
-		
 
 		superiorCBBox = new JComboBox(company.getEmployees().toArray());
 		superiorCBBox.addItem("No superior");
-		superiorCBBox.setSelectedIndex(company.getEmployees().size());
-		superiorCBBox.setBorder(new CustomTitledBorder("Select Superior"));
+		superiorCBBox.setSelectedIndex(company.getNumberOfEmployees());
+
+		var customTitledBorder = new CustomTitledBorder("Select Superior");
+
+		superiorCBBox.setBorder(customTitledBorder);
 		superiorCBBox.setBounds(10, 358, 414, 50);
 		contentPanel.add(superiorCBBox);
-
 		setLocationRelativeTo(parentDialog);
 
 	}
@@ -188,7 +190,7 @@ public class AddEmployeeDialog extends JDialog {
 
 	private boolean validateDate(JTextField field) {
 
-		String[] temp = field.getText().split("/");
+		var temp = field.getText().split("/");
 
 		if (temp.length != 3)
 			return false;
@@ -231,7 +233,7 @@ public class AddEmployeeDialog extends JDialog {
 	}
 
 	private Date strToDate(String strDate) {
-		String temp[] = strDate.split("/");
+		var temp = strDate.split("/");
 		var day = Integer.parseInt(temp[0]);
 		var month = Integer.parseInt(temp[1]);
 		var year = Integer.parseInt(temp[2]);
