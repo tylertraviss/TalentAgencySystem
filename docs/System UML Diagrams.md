@@ -1,6 +1,4 @@
 # System UML Diagrams
-list the classes and their functions relating to the rest of the project
-***
 ### Memento
 Memento is used by MementoCreator and MementoRestorer. It stores the instance from Company and has the function to return that state in a memento.
 ### MementoCreator
