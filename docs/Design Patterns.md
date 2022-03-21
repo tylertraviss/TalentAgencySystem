@@ -270,3 +270,25 @@ public class TextFileAudit implements AuditStrategy{
 }
 
 ```
+### Facade
+Since parts of the UI such as MainFrame and the Dialog components are comprised of many classes, We implemented the Facade pattern to simplify the complex network into a forefront interface.
+Here we import the many different classes that MainFrame interfaces with.
+```Java
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+import UI.borders.WindowBorder;
+import UI.buttons.Button_Skeleton;
+import UI.dialogs.EditClientDialog;
+import UI.dialogs.EditEmployeeDialog;
+import UI.dialogs.EditSponsorDialog;
+import UI.dialogs.PrintDialog;
+import UI.panels.Header;
+import UI.textarea.ConsoleTA;
+import src.src.com.company.Company;
+import src.src.com.company.MementoRestorer;
+import src.src.com.company.SponsorshipMediator;
+```
+
