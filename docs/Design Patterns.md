@@ -1,6 +1,5 @@
 # Design Patterns
-List of all our design patterns, how they are implemented, and what solution are they providing to our project.
-***
+
 ### Memento
 This was used to create undo functionality. A Memento class was created to grab a company state and set a company state.
 ```java
@@ -87,7 +86,7 @@ class SponsorshipMediator implements SponsorshipMediatorBase{
 }
 ```
 ### Composite
-Composition was used to show who is in charge of each specific person.
+Composition was used to structure the hierarchy of employees of who is in charge of each specific person.
 ### Singleton
 Validating there is only a single instance of the company.
 ```java
