@@ -1,7 +1,7 @@
 # Design Patterns
 
 ### Memento
-This was used to create undo functionality. A Memento class was created to grab a company state and set a company state.
+The Memento pattern was chosen to create undo functionality for our Company state. A Memento class is created to grab a company state and set a company state. This allows the users to undo any changes made to Company if needing to.
 ```java
 public class Memento {
     private Company companyState;
@@ -86,9 +86,9 @@ class SponsorshipMediator implements SponsorshipMediatorBase{
 }
 ```
 ### Composite
-Composition was used to structure the hierarchy of employees of who is in charge of each specific person.
+Composition was used to structure the hierarchy of employees of who is in charge of each specific person. This creates an organized tree structure of employees allowing the users to track what are each employees superior.
 ### Singleton
-Validating there is only a single instance of the company.
+Validating there is only a single instance of the company. This creates a global access to the company to easily keep track of the state of the company for the system and for the UNDO function when needed.
 ```java
     private Company() {
         employees = new ArrayList<>();
@@ -104,14 +104,14 @@ Validating there is only a single instance of the company.
 ```
 
 ### Prototype
-Although not implemented into UI version of software, one may build an employee and copy and paste it using the prototype pattern.
+Although not implemented into UI version of software, one may build an employee and copy and paste it using the prototype pattern. This allows the users to create create new employee instances with ease.
 ```java
     public Employee clone(){
         return new Employee(this.name, this.age, this.gender, this.nationality, this.jobTitle, this.wage, this.contractStartDate, this.contractEndDate, this.superior);
     }
 ```
 ### Template
-This was used for auditing functionality. It was done in both a console and a text document. 
+This was used for auditing functionality. It was done in both a console and a text document. With this pattern the users can easily print their company stats of employees and clients and will automatically be updated with any new changes to the company.
 ```java
 public interface AuditStrategy {
 
