@@ -271,7 +271,7 @@ public class TextFileAudit implements AuditStrategy{
 
 ```
 ### Facade
-Since parts of the UI such as MainFrame and the Dialog components are comprised of many classes, We implemented the Facade pattern to simplify the complex network into a forefront interface.
+Since parts of the UI such as MainFrame and the Dialog components are comprised of many classes, We implemented the Facade pattern to simplify the complex network into a forefront interface.<br/>
 Here we import the many different classes that MainFrame interfaces with.
 ```Java
 import javax.swing.JButton;
