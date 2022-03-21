@@ -1,4 +1,4 @@
-# UI UML Diagrams
+# UI UML Diagram
 list of the UI components and description of each
 ***
 ## JPanel
